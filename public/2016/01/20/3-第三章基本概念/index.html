@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/20/3-第三章基本概念/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
-<meta property="og:updated_time" content="2016-01-25T07:01:02.000Z">
+<meta property="og:updated_time" content="2016-01-25T09:15:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三章 基本概念">
 <meta name="twitter:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
@@ -109,7 +109,12 @@
 <h2 id="u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><a href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B" class="headerlink" title="严格模式 &quot;use strict;&quot;"></a>严格模式 <code>&quot;use strict;&quot;</code></h2><p><a href="http://www.yangshengdonghome.com/2016/01/21/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">严格模式</a></p>
 <h2 id="u8BED_u53E5"><a href="#u8BED_u53E5" class="headerlink" title="语句"></a>语句</h2><ul>
 <li>一个语句由一个或多个表达式、关键字或运算符（符号）组成。通常，在一个行上书写一个语句，但可在两个行或多个行上书写一个语句。此外，在同一个行上书写两个或多个语句，用分号分隔。通常，每个新行都开始一个新语句。最好是显式终止您的语句。可使用分号 (;) 做到这一点，分号是 JavaScript 语句的终止字符。</li>
-<li>由括号 ({}) 包围的一组 JavaScript 语句称为一个块。组织在一个块中的语句通常可以视为一个语句。</li>
+<li><p>由括号 ({}) 包围的一组 JavaScript 语句称为一个块。组织在一个块中的语句通常可以视为一个语句，比如<code>var a = function (){};</code>和对象字面量(<code>a = {};</code>)，这两个结尾的也需要加分号，其他的大括号情况(for循环、ifelse判断)，可以不加分号。</p>
+<pre><code>abc={}bbc=function(){}//报错 Uncaught SyntaxError: Unexpected identifier
+abc=function(){}bbc=function(){}//报错 Uncaught SyntaxError: Unexpected identifier
+if(a==1){}bbc=function(){}// 正常
+for(var a = 1;a&lt;10;a++){}bbc=function(){}//正常
+</code></pre></li>
 </ul>
 <h1 id="u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><a href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57" class="headerlink" title="关键字和保留字"></a>关键字和保留字</h1><p>按照规则，关键字也是语言保留的，不能用作标识符。</p>
 <ul>
