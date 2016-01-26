@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/20/3-第三章基本概念/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
-<meta property="og:updated_time" content="2016-01-25T09:15:31.000Z">
+<meta property="og:updated_time" content="2016-01-26T02:13:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三章 基本概念">
 <meta name="twitter:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
@@ -96,7 +96,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u58F0_u660E_u53D8_u91CF"><span class="toc-number">3.1.</span> <span class="toc-text">声明变量</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -122,13 +122,55 @@ for(var a = 1;a&lt;10;a++){}bbc=function(){}//正常
 <p>  if分支语句：if, else<br>  switch分支语句：switch, case, default, break<br>  循环语句：do, while, for, continue<br>  异常处理语句：try, catch, finally, throw<br>  获取类型：typeof, instanceof<br>  布尔值：true, false, null<br>  函数相关：var, void, function, return<br>  其他：in, this, with, new, delete</p>
 </li>
 <li><p>保留字：结合java、C++等面向对象语言的思路，将来有可能新加入的关键字。</p>
-<p>  基本数据类型：byte, char, boolean, int, short, long, float, double, <span style="color:green;">enum</span><br>  继承：<span style="color:red;">implements</span>, <span style="color:green;">extends</span>, <span style="color:green;">super</span><br>  类与接口：<span style="color:green;">class</span>, <span style="color:red;">interface</span><br>  用来修饰函数的关键字：abstract, native, <span style="color:red;">static</span>, final, <span style="color:green;">const</span>, volatile, synchronized<br>  导入导出：<span style="color:green;">export</span>, <span style="color:green;">import</span><br>  访问权限：<span style="color:red;">private</span>, <span style="color:red;">protected</span>, <span style="color:red;">public</span><br>  其他：goto, <span style="color:red;">package</span>, throws, transient, debugger, <span style="color:red;">let</span>,  <span style="color:red;">yield</span><br>  <span style="color:#ddd;">注意：红色字体为第5版严格模式下做的限制</span><br>  <span style="color:#ddd;">注意：第5版把在非严格模式下运行时的保留字减少到绿色字体这几个。但是为了最大的兼容性还是都不要使用了吧。</span></p>
+<p>  基本数据类型：byte, char, boolean, int, short, long, float, double, <span style="color:green;">enum</span><br>  继承：<span style="color:red;">implements</span>, <span style="color:green;">extends</span>, <span style="color:green;">super</span><br>  类与接口：<span style="color:green;">class</span>, <span style="color:red;">interface</span><br>  用来修饰函数的关键字：abstract, native, <span style="color:red;">static</span>, final, <span style="color:green;">const</span>, volatile, synchronized<br>  导入导出：<span style="color:green;">export</span>, <span style="color:green;">import</span><br>  访问权限：<span style="color:red;">private</span>, <span style="color:red;">protected</span>, <span style="color:red;">public</span><br>  其他：goto, <span style="color:red;">package</span>, throws, transient, debugger, <span style="color:red;">let</span>,  <span style="color:red;">yield</span>,  <span style="color:red;">arguments</span>,  <span style="color:red;">eval</span><br>  <span style="color:#ddd;">注意：红色字体为第5版严格模式下做的限制，<span style="color:red;">arguments</span>,  <span style="color:red;">eval</span>这两个在严格模式下不能做标识符或属性名。</span><br>  <span style="color:#ddd;">注意：第5版把在非严格模式下运行时的保留字减少到绿色字体这几个，但是为了最大的兼容性还是都不要使用了吧。</span></p>
 </li>
 </ul>
 <blockquote>
 <p><strong>顺便整理下javascript语言中提供的有用的常用的变量和函数。</strong></p>
 <p>数据类型：Number, Boolean, String, undefined, Object, Array, Function, Date, Math, RegExp, Error<br>错误类型：EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError<br>编码：decodeURI, decodeURIComponent, encodeURI<br>转义：escape, unescape<br>类型转换：parentInt, parentFloat<br>特殊值及判断：isFinite, isNaN, NaN, Infinity<br>其他：arguments, eval<br>最后注意：我们常用的函数alert()不属于上面的三类。</p>
 </blockquote>
+<h1 id="u53D8_u91CF"><a href="#u53D8_u91CF" class="headerlink" title="变量"></a>变量</h1><h2 id="u58F0_u660E_u53D8_u91CF"><a href="#u58F0_u660E_u53D8_u91CF" class="headerlink" title="声明变量"></a>声明变量</h2><ol>
+<li>使用关键词 var，这个语法可以同时用来声明局部(function内部)和全局变量。</li>
+<li>在非严格模式下，无论是在全局范围内还是函数内，使用直接给变量赋值<code>count = 3</code>这种语法，会产生一个全部变量count(隐式全局变量)，这种方式不推荐。</li>
+<li><p><span style="color:red;">无法用var声明块级局部变量</span>。</p>
+<pre><code>// A single declaration.
+var count;  
+// Multiple declarations with a single var keyword.
+var count, amount, level;    
+// Variable declaration and initialization in one statement.
+var count = 0, amount = 100;
+count = 3;//无论实在全局范围内还是函数内，使用这种语法直接给变量赋值，会产生一个全部变量
+</code></pre><p>如果未在 var 语句中初始化您的变量，它将自动采用 undefined 值，试图访问一个未初始化的变量会导致一个 ReferenceError 异常被抛出</p>
+</li>
+</ol>
+<blockquote>
+<p>隐式全局变量和明确定义的全局变量间有些小的差异，就是通过delete操作符让变量未定义的能力。</p>
+<ul>
+<li>通过var创建的全局变量（任何函数之外的程序中创建）是不能被删除的。</li>
+<li><p>无var创建的隐式全局变量（无视是否在函数中创建）是能被删除的。<br>这表明，在技术上，隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。属性是可以通过delete操作符删除的，而变量是不能的：</p>
+<pre><code>// 定义三个全局变量
+var global_var = 1;
+global_novar = 2; // 反面教材
+(function () {
+   global_fromfunc = 3; // 反面教材
+}());
+
+// 试图删除
+delete global_var; // false
+delete global_novar; // true
+delete global_fromfunc; // true
+
+// 测试该删除
+typeof global_var; // &quot;number&quot;
+typeof global_novar; // &quot;undefined&quot;
+typeof global_fromfunc; // &quot;undefined&quot;
+</code></pre></li>
+</ul>
+<hr>
+<p>了解另外两种变量的声明方式：</p>
+<pre><code>* let：声明块范围局部变量，可选初始化值。
+* const：声明一个只读命名常量。
+</code></pre></blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -191,7 +233,7 @@ for(var a = 1;a&lt;10;a++){}bbc=function(){}//正常
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u58F0_u660E_u53D8_u91CF"><span class="toc-number">3.1.</span> <span class="toc-text">声明变量</span></a></li></ol></li></ol>
  
   </div>
 
