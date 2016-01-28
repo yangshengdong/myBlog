@@ -17,7 +17,8 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/20/3-第三章基本概念/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
-<meta property="og:updated_time" content="2016-01-26T02:13:06.000Z">
+<meta property="og:image" content="http://yoursite.com/2016/01/20/3-第三章基本概念/number.png">
+<meta property="og:updated_time" content="2016-01-28T11:32:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三章 基本概念">
 <meta name="twitter:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
@@ -96,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u58F0_u660E_u53D8_u91CF"><span class="toc-number">3.1.</span> <span class="toc-text">声明变量</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u58F0_u660E_u53D8_u91CF"><span class="toc-number">3.1.</span> <span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u636E_u7C7B_u578B"><span class="toc-number">3.2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined_u7C7B_u578B"><span class="toc-number">3.2.1.</span> <span class="toc-text">undefined类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u63D0_u9AD8_u8BBF_u95EE_u5B57_u9762_u503Cundefined_u7684_u6027_u80FD_uFF1A"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">提高访问字面值undefined的性能：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null_u7C7B_u578B"><span class="toc-number">3.2.2.</span> <span class="toc-text">null类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean_u7C7B_u578B"><span class="toc-number">3.2.3.</span> <span class="toc-text">Boolean类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Number_u7C7B_u578B"><span class="toc-number">3.2.4.</span> <span class="toc-text">Number类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6574_u6570"><span class="toc-number">3.2.4.1.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6D6E_u70B9_u503C"><span class="toc-number">3.2.4.2.</span> <span class="toc-text">浮点值</span></a></li></ol></li></ol></li></ol></li></ol>
 		
 		</div>
 		
@@ -126,8 +127,8 @@ for(var a = 1;a&lt;10;a++){}bbc=function(){}//正常
 </li>
 </ul>
 <blockquote>
-<p><strong>顺便整理下javascript语言中提供的有用的常用的变量和函数。</strong></p>
-<p>数据类型：Number, Boolean, String, undefined, Object, Array, Function, Date, Math, RegExp, Error<br>错误类型：EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError<br>编码：decodeURI, decodeURIComponent, encodeURI<br>转义：escape, unescape<br>类型转换：parentInt, parentFloat<br>特殊值及判断：isFinite, isNaN, NaN, Infinity<br>其他：arguments, eval<br>最后注意：我们常用的函数alert()不属于上面的三类。</p>
+<p><strong>顺便整理下javascript语言中提供的有用的常用的变量和函数</strong></p>
+<p>数据类型：Number, Boolean, String, undefined, Object, Array, Function, Date, Math, RegExp, Error<br>错误类型：EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError<br>编码：decodeURI, decodeURIComponent, encodeURI<br>转义：escape, unescape<br>类型转换：parentInt, parentFloat<br>特殊值及判断：isFinite, isNaN, NaN, Infinity<br>其他：arguments, eval<br><span style="red;">这些都不是ECMAScript的关键字，undefined不是关键字但是null确实关键字。</span><br>最后注意：我们常用的函数alert()不属于上面的三类。</p>
 </blockquote>
 <h1 id="u53D8_u91CF"><a href="#u53D8_u91CF" class="headerlink" title="变量"></a>变量</h1><h2 id="u58F0_u660E_u53D8_u91CF"><a href="#u58F0_u660E_u53D8_u91CF" class="headerlink" title="声明变量"></a>声明变量</h2><ol>
 <li>使用关键词 var，这个语法可以同时用来声明局部(function内部)和全局变量。</li>
@@ -171,6 +172,154 @@ typeof global_fromfunc; // &quot;undefined&quot;
 <pre><code>* let：声明块范围局部变量，可选初始化值。
 * const：声明一个只读命名常量。
 </code></pre></blockquote>
+<h2 id="u6570_u636E_u7C7B_u578B"><a href="#u6570_u636E_u7C7B_u578B" class="headerlink" title="数据类型"></a>数据类型</h2><p>ECMAScript是变量松散类型语言(动态数据类型语言)，即每个变量只是一个占位符，其类型并不固定，可以随时变化，这意味着你定义变量时不必指定变量类型，而且变量类型会在脚本执行需要时自动转换。但是，<span style="red;">数据本身和各种运算是有类型的</span>。<br>ECMAScript 中有5 种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有1 种复杂数据类型——Object，Object 本质上是由一组无序的名值对组成的。</p>
+<h3 id="undefined_u7C7B_u578B"><a href="#undefined_u7C7B_u578B" class="headerlink" title="undefined类型"></a>undefined类型</h3><p>undefined类型只有一个值，即特殊的undefined，我们称之为<code>字面值undefined</code>，undefined意为<code>未定义</code>。</p>
+<p><code>字面值undefined</code>是全局Global对象（window）的一个特殊属性，其值是未定义的。但 typeof window.undefined 返回”undefined” 。</p>
+<p>我们可以通过下面的例子来验证undefined是否为全局Global对象（window）的属性:</p>
+<pre><code>alert(&apos;undefined&apos; in window);//输出：true   
+var anObj = {};   
+alert(&apos;undefined&apos; in anObj); //输出：false 
+从中可以看出，undefined是window对象的一个属性，但却不是anObj对象的一个属性。
+</code></pre><p><code>字面值undefined</code>产生的原因有5种：</p>
+<pre><code>* 访问对象不存在的属性或方法
+* 声明了变量但从未赋值
+* 调用函数时，应该提供的参数没有提供，该参数等于undefined。
+* 方法没有返回值，默认返回undefined
+* 访问越界的数组。
+
+var v1,obj = {};      
+
+console.log(v1); //`字面值undefined`    
+console.log(obj.get); //`字面值undefined`
+
+typeof v1; // &quot;undefined&quot;    
+typeof v2; // 对未声明的变量使用typeof 也会输出 &quot;undefined&quot;。     
+typeof obj.get; // &quot;undefined&quot;
+
+var message1 = undefined;  //显示的设置为undefined
+typeof message1 //&quot;undefined&quot;
+
+function test(){}; 
+console.log(test()); //`字面值undefined`
+
+var arr = []; 
+console.log(arr[8]) //`字面值undefined`
+</code></pre><p><span style="red;">当我们在程序中使用<code>字面值undefined</code>时，实际上使用的是window对象的undefined属性，同样，当我们定义一个变量但未赋予其初始值，例如：<code>var aValue;</code>这时，JavaScript在预编译时会将其初始值设置为对window.undefined属性的引用，于是，当我们将一个变量或值与undefined比较时，实际上是与window对象的undefined属性比较。这个比较过程中，JavaScript会搜索window对象名叫”undefined”的属性，然后再比较两个操作数的引用指针是否相同。</span></p>
+<hr>
+<p>您可以通过将变量与<code>字面值undefined</code>进行比较确定变量是否存在，您也可以通过将变量的类型与字符串“undefined”进行比较确定其类型是否为 undefined类型。<br>以下示例演示了如何确定已声明的变量的 x：</p>
+<pre><code>var x;
+
+// This method works.
+if (x == undefined) { //这种方式只能对已经声明的变量使用，对未声明的变量使用会报错。
+    document.write(&quot;comparing x to undefined &lt;br/&gt;&quot;);
+}
+
+// This method doesn&apos;t work - you must check for the string &quot;undefined&quot;.
+if (typeof(x) == undefined) {//未执行，因为typeof 方法返回的是字符串。
+    document.write(&quot;comparing the type of x to undefined &lt;br/&gt;&quot;);
+}
+// This method does work. 
+if (typeof(x) == &quot;undefined&quot;) {
+    document.write(&quot;comparing the type of x to the string &apos;undefined&apos;&quot;);
+}
+
+// Output: 
+// comparing x to undefined 
+// comparing the type of x to the string &apos;undefined&apos;
+</code></pre><h4 id="u63D0_u9AD8_u8BBF_u95EE_u5B57_u9762_u503Cundefined_u7684_u6027_u80FD_uFF1A"><a href="#u63D0_u9AD8_u8BBF_u95EE_u5B57_u9762_u503Cundefined_u7684_u6027_u80FD_uFF1A" class="headerlink" title="提高访问字面值undefined的性能："></a>提高访问<code>字面值undefined</code>的性能：</h4><p>由于window对象的属性值是非常多的，在每一次与<code>字面值undefined</code>的比较中，搜索window对象的undefined属性都会花费时间。在需要频繁与undefined进行比较的函数中，这可能会是一个性能问题点。因此，在这种情况下，我们可以自行定义一个局部的undefined变量，来加快对undefined的比较速度。例如：</p>
+<pre><code>function anyFunc() {
+    var undefined; //自定义局部undefined变量
+    if (x == undefined){} //作用域上的引用比较
+    while (y != undefined){} //作用域上的引用比较
+};
+</code></pre><p>其中，定义undefined局部变量时，其初始值会是对window.undefined属性值的引用。新定义的局部undefined变量存在与该函数的作用域上。<br>在随后的比较操作中，JavaScript代码的书写方式没有任何的改变，但比较速度却很快。因为作用域上的变量数量会远远少于window对象的属性，搜索变量的速度会极大提高。<br>这就是许多前端JS框架为什么常常要自己定义一个局部undefined变量的原因!!!<br>比如jQuery 源码：</p>
+<pre><code>(function( window, undefined ) {
+    /*
+    * 
+    * code
+    * 
+    * */
+})( window );
+</code></pre><h3 id="null_u7C7B_u578B"><a href="#null_u7C7B_u578B" class="headerlink" title="null类型"></a>null类型</h3><p>null类型也只有一个值：null , 表示一个变量中没有包含有效数据，null表示”没有对象”。<code>字面值null</code>在这里意为<code>空值</code>、<code>空对象</code>的意思，更确切的说，一个被赋值为null的变量没有保存有效的对象等，可以通过给一个变量赋值为null来清空变量中的内容(不删除变量)。</p>
+<p>主要用处：</p>
+<ul>
+<li>作为函数的参数传递，表示该函数的参数不是对象。</li>
+<li><p>作为对象原型链的终点。</p>
+<p>  Object.getPrototypeOf(Object.prototype) // null</p>
+</li>
+</ul>
+<p>产生null的原因只有一个，即对一个变量显式的赋值为null 。</p>
+<pre><code>var p = null;
+console.log(p); //null
+typeof p; // &quot;object&quot;
+typeof null; // &quot;object&quot;
+</code></pre><p>另外，需要注意的是，typeof null 应该返回”null”，但实际上返回的是”object”，这是一个历史遗留问题，并没有其他原因，不要想太多，曾经有提案 typeof null === ‘null’但提案被拒绝。</p>
+<blockquote>
+<p>《javascript高级程序设计3》是这么解释的从逻辑角度来看，null 值表示一个空对象指针，而这也正是使用typeof 操作符检测null 值时会返回”object”的原因。</p>
+</blockquote>
+<pre><code>判断null值，这个时候就不能用typeOf了，直接用if(xxx === null){}
+console.log(typeof null) //&quot;Object&quot;
+console.log(null instanceof Object) // false
+var a = null,b;
+console.log(a === null) //true
+console.log(b === null) //false 因为 undefined !== null  三个等号为false
+console.log(b == null) // true 两个等号为true
+</code></pre><blockquote>
+<p>undefined == null //true <a href="https://www.w3.org/html/ig/zh/wiki/ES5/expressions#.E7.AD.89.E5.80.BC.E8.BF.90.E7.AE.97.E7.AC.A6" target="_blank" rel="external">为什么相等？</a></p>
+</blockquote>
+<h3 id="Boolean_u7C7B_u578B"><a href="#Boolean_u7C7B_u578B" class="headerlink" title="Boolean类型"></a>Boolean类型</h3><p>boolean类型只有两个字面值：<code>true</code>和<code>false</code> 。 但在Javascript中，所有类型的值都可以转化为与boolean等价的值。要将一个值转换为其对应的Boolean值，可以调用类型转换函数Boolean()。其中转换结果为false的值有(false, “”, +0, -0, NaN, null, undefined)，其他值(包括空对象、空数组)均将转换为true。</p>
+<pre><code>typeof true; // &quot;boolean&quot;
+
+typeof false; // &quot;boolean&quot;
+
+Boolean(new Object()); //true
+
+Boolean(undefined); //false
+
+Boolean(null); //false
+
+Boolean(&apos;&apos;); //false
+
+Boolean(0); //false
+
+Boolean(100); // true
+
+Boolean([]) // true
+
+Boolean({}) // true
+</code></pre><p>if判断语句中自动调用Boolean()。</p>
+<pre><code>if (x = y + z){} //将值 y + z 赋给变量 x，然后检查整个表达式的结果（x 的值）是否为 0。
+</code></pre><h3 id="Number_u7C7B_u578B"><a href="#Number_u7C7B_u578B" class="headerlink" title="Number类型"></a>Number类型</h3><p>在 JavaScript 中使用IEEE754格式来表示整数和浮点数值，数字可以是两种类型中的任意一种（在内部，JavaScript 作为浮点值表示所有数字），还有一种特殊的数值，即NaN（非数值 Not a Number）。</p>
+<p>JavaScript 使用数字表示形式的 8 字节 IEEE 754 浮点标准来表示数字。</p>
+<pre><code>精确地描述，Number类型拥有 18437736874454810627（即，264-253+3）个值，表示为 IEEE-754 格式 64 位双精度数值（IEEE 二进制浮点数算术中描述了它），除了 IEEE 标准中的 9007199254740990（即，253-2）个明显的“非数字”值；在 ECMAScript 中，它们被表示为一个单独的特殊值：NaN。（请注意，NaN 值由程序表达式 NaN 产生，并假设执行程序不能调整定义的全局变量 NaN。） 在某些实现中，外部代码也许有能力探测出众多非数字值之间的不同，但此类行为依赖于具体实现；对于 ECMAScript 代码而言，NaN 值相互之间无法区别。还有另外两个特殊值，称为正无穷和负无穷。为简洁起见，在说明目的时，用符号 +∞ 和 -∞ 分别代表它们。（请注意，两个无限数值由程序表达式 +Infinity（简作 Infinity） 和 -Infinity 产生，并假设执行程序不能调整定义的全局变量 Infinity。）另外 18437736874454810624（即，264-253） 个值被称为有限数值。
+NaN 用于处理计算中出现的错误情况，比如 0.0 除以 0.0 或者求负数的平方根。由上面的表中可以看出，对于单精度浮点数，NaN 表示为指数为 emax + 1 = 128（指数域全为 1），且尾数域不等于零的浮点数。IEEE 标准没有要求具体的尾数域，所以 &lt;span style=&quot;red;&quot;&gt;NaN 实际上不是一个，而是一族&lt;/span&gt;。
+</code></pre><blockquote>
+<p>对于这个如果有兴趣细扣就<a href="http://www.cnblogs.com/kingwolfofsky/archive/2011/07/21/2112299.html" target="_blank" rel="external">点这里</a>，<a href="https://www.w3.org/html/ig/zh/wiki/ES5/types#Number_.E7.B1.BB.E5.9E.8B" target="_blank" rel="external">还有这里</a></p>
+</blockquote>
+<h4 id="u6574_u6570"><a href="#u6574_u6570" class="headerlink" title="整数"></a>整数</h4><p>整数可以被表示成十进制（基数为10）、十六进制（基数为16）以及八进制（基数为8）。</p>
+<ul>
+<li>十进制整数字组成的数字序列，不带前导0（零）。</li>
+<li>通过在八进制整数前面加前导“0”（零）来表示八进制整数。八进制整数只包含 0 到 7 的数字。<span style="red;">具有前导“0”并包含数字“8”和/或“9”的数字将被解释为十进制数字</span>。八进制整数只能包括数字0-7。</li>
+<li>通过在整数前面加前导“0x”（零和 x|X）来表示十六进制（“hex”）整数。字母 A 到 F 以单个数字的形式表示以 10 为基数的 10 到 15。字母 A 到 F 用于以单个数字的形式表示以 10 为基数的 10 到 15。即，0xF 相当于 15，0x10 相当于 16。</li>
+</ul>
+<p>在进行算术计算时，所有以八进制和十六进制表示的数值最终都将被转换成十进制数值，还有严格模式下禁止使用八进制。</p>
+<pre><code>0, 117 and -345 (decimal, base 10)
+015, 0001 and -077 (octal, base 8) 
+0x1123, 0x00111 and -0xF1A7 (hexadecimal, &quot;hex&quot; or base 16)
+</code></pre><p><span style="#555;">IEBUG：从 Internet Explorer 9 标准模式、Internet Explorer 10 标准模式、Internet Explorer 11 标准模式和 Windows 应用商店应用 开始，parseInt 函数不将前缀为“0”的字符串视为八进制。但在不使用 parseInt 函数时，前缀为“0”的字符串仍可被解释为八进制。</span></p>
+<h4 id="u6D6E_u70B9_u503C"><a href="#u6D6E_u70B9_u503C" class="headerlink" title="浮点值"></a>浮点值</h4><ul>
+<li>一个十进制整数，它可以带符号（即前面的“+”或“ - ”号），</li>
+<li>一个小数点（“.”），</li>
+<li>一个小数部分（由一串十进制数表示），</li>
+<li><p>一个指数部分<br>指数部分是以“e”或“E”开头后面跟着一个整数，可以有正负号（即前面写“+”或“-”）。一个浮点数字面值必须至少有一位数字，后接小数点或者“e”（大写“E”也可）组成。一些浮点数字面值的例子，如3.1415，-3.1E13，.1e12以及2E-12。<br>简言之，其语法是：</p>
+<pre><code>[digits][.digits][(E|e)[(+|-)]digits]
+//实例:
+3.14
+2345.789
+.3333333333333333333 // 0 可以省略
+</code></pre><p>数轴：</p>
+<img src="/2016/01/20/3-第三章基本概念/number.png" alt="number.png" title=""></li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -233,7 +382,7 @@ typeof global_fromfunc; // &quot;undefined&quot;
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u58F0_u660E_u53D8_u91CF"><span class="toc-number">3.1.</span> <span class="toc-text">声明变量</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u533A_u5206_u5927_u5C0F_u5199"><span class="toc-number">1.1.</span> <span class="toc-text">区分大小写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u793A_u7B26"><span class="toc-number">1.2.</span> <span class="toc-text">标示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E25_u683C_u6A21_u5F0F__26quot_3Buse_strict_3B_26quot_3B"><span class="toc-number">1.3.</span> <span class="toc-text">严格模式 "use strict;"</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8BED_u53E5"><span class="toc-number">1.4.</span> <span class="toc-text">语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5173_u952E_u5B57_u548C_u4FDD_u7559_u5B57"><span class="toc-number">2.</span> <span class="toc-text">关键字和保留字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u58F0_u660E_u53D8_u91CF"><span class="toc-number">3.1.</span> <span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u636E_u7C7B_u578B"><span class="toc-number">3.2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined_u7C7B_u578B"><span class="toc-number">3.2.1.</span> <span class="toc-text">undefined类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u63D0_u9AD8_u8BBF_u95EE_u5B57_u9762_u503Cundefined_u7684_u6027_u80FD_uFF1A"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">提高访问字面值undefined的性能：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null_u7C7B_u578B"><span class="toc-number">3.2.2.</span> <span class="toc-text">null类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean_u7C7B_u578B"><span class="toc-number">3.2.3.</span> <span class="toc-text">Boolean类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Number_u7C7B_u578B"><span class="toc-number">3.2.4.</span> <span class="toc-text">Number类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6574_u6570"><span class="toc-number">3.2.4.1.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6D6E_u70B9_u503C"><span class="toc-number">3.2.4.2.</span> <span class="toc-text">浮点值</span></a></li></ol></li></ol></li></ol></li></ol>
  
   </div>
 
