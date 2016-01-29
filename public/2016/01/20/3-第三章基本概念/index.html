@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/20/3-第三章基本概念/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
-<meta property="og:updated_time" content="2016-01-29T01:58:59.000Z">
+<meta property="og:updated_time" content="2016-01-29T11:05:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三章 基本概念">
 <meta name="twitter:description" content="语法区分大小写ECMAScript 中的一切（变量、函数名和操作符）都区分大小写。">
@@ -172,12 +172,12 @@ typeof global_fromfunc; // &quot;undefined&quot;
 * const：声明一个只读命名常量。
 </code></pre></blockquote>
 <h2 id="u6570_u636E_u7C7B_u578B"><a href="#u6570_u636E_u7C7B_u578B" class="headerlink" title="数据类型"></a>数据类型</h2><p>ECMAScript是变量松散类型语言(动态数据类型语言)，即每个变量只是一个占位符，其类型并不固定，可以随时变化，这意味着你定义变量时不必指定变量类型，而且变量类型会在脚本执行需要时自动转换。但是，<span style="color: red;">数据本身和各种运算是有类型的</span>。<br>ECMAScript 中有5 种简单数据类型（也称为基本数据类型）：Undefined、Null、Boolean、Number和String。还有1 种复杂数据类型——Object，Object 本质上是由一组无序的名值对组成的。</p>
-<h3 id="undefined_u7C7B_u578B"><a href="#undefined_u7C7B_u578B" class="headerlink" title="undefined类型"></a>undefined类型</h3><p><a href="http://www.yangshengdonghome.com/2016/01/21/%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/" target="_blank" rel="external">好好学学undefined！</a></p>
+<h3 id="undefined_u7C7B_u578B"><a href="#undefined_u7C7B_u578B" class="headerlink" title="undefined类型"></a>undefined类型</h3><p><a href="http://www.yangshengdonghome.com/2016/01/29/%E5%A5%BD%E5%A5%BD%E5%AD%A6%E5%AD%A6undefined%EF%BC%81/" target="_blank" rel="external">好好学学undefined！</a></p>
 <h3 id="null_u7C7B_u578B"><a href="#null_u7C7B_u578B" class="headerlink" title="null类型"></a>null类型</h3><p>null类型也只有一个值：null , 表示一个变量中没有包含有效数据，null表示”没有对象”。<code>字面值null</code>在这里意为<code>空值</code>、<code>空对象</code>的意思，更确切的说，一个被赋值为null的变量没有保存有效的对象等，可以通过给一个变量赋值为null来清空变量中的内容(不删除变量)。</p>
 <p>主要用处：</p>
 <ul>
 <li>作为函数的参数传递，表示该函数的参数不是对象。</li>
-<li><p>作为对象原型链的终点。</p>
+<li><p>作为对象原型链的终点（例如声明原型链的结束 Foo.prototype = null）。</p>
 <p>  Object.getPrototypeOf(Object.prototype) // null</p>
 </li>
 </ul>
@@ -222,7 +222,8 @@ Boolean([]) // true
 Boolean({}) // true
 </code></pre><p>if判断语句中自动调用Boolean()。</p>
 <pre><code>if (x = y + z){} //将值 y + z 赋给变量 x，然后检查整个表达式的结果（x 的值）是否为 0。
-</code></pre><h3 id="Number_u7C7B_u578B"><a href="#Number_u7C7B_u578B" class="headerlink" title="Number类型"></a>Number类型</h3>  
+</code></pre><h3 id="Number_u7C7B_u578B"><a href="#Number_u7C7B_u578B" class="headerlink" title="Number类型"></a>Number类型</h3><p><a href="http://www.yangshengdonghome.com/2016/01/29/%E5%A5%BD%E5%A5%BD%E5%AD%A6%E5%AD%A6number/" target="_blank" rel="external">好好学学uumber！</a></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
