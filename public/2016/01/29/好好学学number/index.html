@@ -1,0 +1,603 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>好好学学number! | 前端之路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jack">
+    
+
+    
+    <meta name="description" content="Number类型JavaScript内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相等的，而且1加上1.0得到的还是一个整数，不会像有些语言那样变成小数。
+1 === 1.0 // true
+1 + 1.0 // 2
+也就是说，在JavaScript语言的底层，根本没有整数，所有数字都是小数（64位浮点数）。容易造成混淆的是，某些运算只有整数才能完成，此时JavaS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="好好学学number!">
+<meta property="og:url" content="http://yoursite.com/2016/01/29/好好学学number/index.html">
+<meta property="og:site_name" content="前端之路">
+<meta property="og:description" content="Number类型JavaScript内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相等的，而且1加上1.0得到的还是一个整数，不会像有些语言那样变成小数。
+1 === 1.0 // true
+1 + 1.0 // 2
+也就是说，在JavaScript语言的底层，根本没有整数，所有数字都是小数（64位浮点数）。容易造成混淆的是，某些运算只有整数才能完成，此时JavaS">
+<meta property="og:image" content="http://yoursite.com/2016/01/29/好好学学number/number2.png">
+<meta property="og:image" content="http://yoursite.com/2016/01/29/好好学学number/number.png">
+<meta property="og:updated_time" content="2016-01-29T05:35:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="好好学学number!">
+<meta name="twitter:description" content="Number类型JavaScript内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相等的，而且1加上1.0得到的还是一个整数，不会像有些语言那样变成小数。
+1 === 1.0 // true
+1 + 1.0 // 2
+也就是说，在JavaScript语言的底层，根本没有整数，所有数字都是小数（64位浮点数）。容易造成混淆的是，某些运算只有整数才能完成，此时JavaS">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端之路" title="前端之路"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端之路">前端之路</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/29/好好学学number/" title="好好学学number!" itemprop="url">好好学学number!</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-29T01:55:43.000Z" itemprop="datePublished"> 发表于 2016-01-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Number_u7C7B_u578B"><span class="toc-number">1.</span> <span class="toc-text">Number类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6574_u6570"><span class="toc-number">1.1.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D6E_u70B9_u503C"><span class="toc-number">1.2.</span> <span class="toc-text">浮点值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NaN"><span class="toc-number">1.3.</span> <span class="toc-text">NaN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#+0__u548C_-0"><span class="toc-number">1.4.</span> <span class="toc-text">+0 和 -0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA7_u751F_u539F_u56E0"><span class="toc-number">1.4.1.</span> <span class="toc-text">产生原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53C2_u4E0E_u8FD0_u7B97"><span class="toc-number">1.4.2.</span> <span class="toc-text">参与运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53C2_u4E0EMath_u5BF9_u8C61_u7684_u65B9_u6CD5"><span class="toc-number">1.4.3.</span> <span class="toc-text">参与Math对象的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u533A_u5206_u8FD9_u4E24_u4E2A_u96F6"><span class="toc-number">1.4.4.</span> <span class="toc-text">区分这两个零</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="Number_u7C7B_u578B"><a href="#Number_u7C7B_u578B" class="headerlink" title="Number类型"></a>Number类型</h1><p>JavaScript内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相等的，而且1加上1.0得到的还是一个整数，不会像有些语言那样变成小数。</p>
+<pre><code>1 === 1.0 // true
+1 + 1.0 // 2
+</code></pre><p>也就是说，在JavaScript语言的底层，根本没有整数，所有数字都是小数（64位浮点数）。容易造成混淆的是，某些运算只有整数才能完成，此时JavaScript会自动把64位浮点数，转成32位整数，然后再进行运算。</p>
+<p>由于浮点数不是精确的值，所以涉及小数的比较和运算要特别小心。</p>
+<pre><code>0.1 + 0.2 === 0.3  // false
+
+0.3 / 0.1          // 2.9999999999999996
+
+(0.3 - 0.2) === (0.2 - 0.1)    // false
+</code></pre><img src="/2016/01/29/好好学学number/number2.png" alt="number2.png" title="">
+<p>解释：根据国际标准IEEE-754，64位浮点数格式的64个二进制位中，第0位到第51位储存有效数字部分（共52位），第52到第62位储存指数部分，第63位是符号位，0表示正数，1表示负数。</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>)        <span class="comment">// 9007199254740992</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">1</span>    <span class="comment">// 9007199254740992</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">2</span>    <span class="comment">// 9007199254740994</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">3</span>    <span class="comment">// 9007199254740996</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">4</span>    <span class="comment">// 9007199254740996</span></span><br></pre></td></tr></table></figure>
+</code></pre><p>从上面示例可以看到，大于2的53次方以后，整数运算的结果开始出现错误。所以，大于等于2的53次方的数值，都无法保持精度。因此，JavaScript提供的有效数字的精度为53个二进制位（IEEE 754规定有效数字第一位默认总是为1，不保存在64位浮点数之中，这一位再加上后面的52位，就是总共53位），也就是说，绝对值小于2的53次方的整数，即-(2<sup>53</sup>-1)到2<sup>53</sup>-1，都可以精确表示。</p>
+<p>那么超过2<sup>53</sup>部分的数字怎么处理呢？</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>)    <span class="comment">// 9007199254740992</span></span><br><span class="line"></span><br><span class="line"><span class="number">9007199254740992111</span>    <span class="comment">// 9007199254740992000</span></span><br></pre></td></tr></table></figure>
+</code></pre><p>上面示例表明，大于2的53次方以后，多出来的有效数字（最后三位的<code>111</code>）都会无法保存，变成0。</p>
+<p>另一方面，64位浮点数的指数部分的长度是11个二进制位，意味着指数部分的最大值是2047（2的11次方减1）。也就是说，64位浮点数的指数部分的值最大为2047，分出一半表示负数，则JavaScript能够表示的数值范围为2<sup>1024</sup>到2<sup>-1023</sup>（开区间），超出这个范围的数无法表示。</p>
+<p>如果指数部分等于或超过最大正值1024，JavaScript会返回<code>Infinity</code>（关于Infinity的介绍参见下文），这称为“正向溢出”；如果等于或超过最小负值-1023（即非常接近0），JavaScript会直接把这个数转为0，这称为“负向溢出”。事实上，JavaScript对指数部分的两个极端值（<code>11111111111</code>(二进制)和<code>00000000000</code>(二进制)）做了定义，<code>11111111111</code>(二进制)表示<code>NaN</code>和<code>Infinity</code>，<code>00000000000</code>(二进制)表示0。</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0.5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">25</span>; i++) &#123;</span><br><span class="line">  x = x * x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);<span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+</code></pre><p>上面代码对0.5连续做25次平方，由于最后结果太接近0，超出了可表示的范围，JavaScript就直接将其转为0。</p>
+<blockquote>
+<ul>
+<li>精确地描述，Number类型拥有 18437736874454810627（即，2<sup>64</sup>-2<sup>53</sup>+3）个值，表示为 IEEE-754 格式 64 位双精度数值（IEEE 二进制浮点数算术中描述了它）。</li>
+<li><span style="color: red;">除了 IEEE 标准中的 9007199254740990（即，2<sup>53</sup>-2）个明显的“非数字”值；在 ECMAScript 中，它们被表示为一个单独的特殊值：NaN。</span>（请注意，NaN 值由程序表达式 NaN 产生，并假设执行程序不能调整定义的全局变量 NaN，在javascript中NaN是global全局对象的一个属性<code>window.NaN</code>） 在某些实现中，外部代码也许有能力探测出众多非数字值之间的不同，但此类行为依赖于具体实现；对于 ECMAScript 代码而言，NaN 值相互之间无法区别。</li>
+<li>还有另外两个特殊值，称为正无穷和负无穷。为简洁起见，在说明目的时，用符号 +∞ 和 -∞ 分别代表它们。（请注意，两个无限数值由程序表达式 +Infinity（简作 Infinity） 和 -Infinity 产生，并假设执行程序不能调整定义的全局变量 Infinity，在javascript中global全局对象的一个Infinity属性<code>window.Infinity</code>）。</li>
+<li>另外 18437736874454810624（即，2<sup>64</sup>-2<sup>53</sup>）个值被称为有限数值，其中的一半是正数，另一半是负数，对于每个正数而言，都有一个与之对应的、相同规模的负数。</li>
+<li>请注意，还有一个正零和一个负零。</li>
+</ul>
+</blockquote>
+<p>数轴：</p>
+<img src="/2016/01/29/好好学学number/number.png" alt="[200] [400]" title="[200] [400]">
+<blockquote>
+<p>对于这个如果有兴趣细扣就<a href="http://www.cnblogs.com/kingwolfofsky/archive/2011/07/21/2112299.html" target="_blank" rel="external">点这里</a>，<a href="https://www.w3.org/html/ig/zh/wiki/ES5/types#Number_.E7.B1.BB.E5.9E.8B" target="_blank" rel="external">还有这里</a></p>
+</blockquote>
+<h2 id="u6574_u6570"><a href="#u6574_u6570" class="headerlink" title="整数"></a>整数</h2><p>整数可以被表示成十进制（基数为10）、十六进制（基数为16）以及八进制（基数为8）。</p>
+<ul>
+<li>十进制：十进制整数字组成的数字序列，不带前导0（零）。</li>
+<li>八进制：八进制整数只能包括数字0-7，通过在八进制整数前面加前导<code>0</code>（零）或者或<code>0o</code>的数值来表示八进制整数。八进制整数只包含 0 到 7 的数字。<span style="color:red;">具有前导<code>0</code>并包含数字“8”和/或“9”的数字将被解释为十进制数字</span>，具有前导<code>0o</code>并包含数字“8”和/或“9”的数字将会报错。</li>
+<li>十六进制：通过在整数前面加前导“0x”（零和 x|X）来表示十六进制（“hex”）整数。字母 A 到 F 以单个数字的形式表示以 10 为基数的 10 到 15。字母 A 到 F 用于以单个数字的形式表示以 10 为基数的 10 到 15。即，0xF 相当于 15，0x10 相当于 16。</li>
+<li>二进制：有前缀<code>0b</code>或<code>0B</code>的数值。</li>
+</ul>
+<p>在进行算术计算时，所有以八进制和十六进制表示的数值最终都将被转换成十进制数值，还有严格模式下禁止使用八进制。</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认情况下，JavaScript内部会自动将八进制、十六进制、二进制转为十进制。    </span></span><br><span class="line"><span class="number">0xff</span>   <span class="comment">// 255</span></span><br><span class="line">-<span class="number">0xF1A7</span><span class="comment">// -61863</span></span><br><span class="line"><span class="number">0o377</span>  <span class="comment">// 255</span></span><br><span class="line"><span class="number">015</span>    <span class="comment">// 13</span></span><br><span class="line"><span class="number">019</span>    <span class="comment">// 19</span></span><br><span class="line"><span class="number">0b11</span>   <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果八进制、十六进制、二进制的数值里面，出现不属于该进制的数字，就会报错。</span></span><br><span class="line"><span class="number">0</span>xzz <span class="comment">// 报错</span></span><br><span class="line"><span class="number">0</span>o88 <span class="comment">// 报错</span></span><br><span class="line"><span class="number">0</span>b22 <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+</code></pre><p><span style="color:#555;">IEBUG：从 Internet Explorer 9 标准模式、Internet Explorer 10 标准模式、Internet Explorer 11 标准模式和 Windows 应用商店应用 开始，parseInt 函数不将前缀为“0”的字符串视为八进制。但在不使用 parseInt 函数时，前缀为“0”的字符串仍可被解释为八进制。</span></p>
+<h2 id="u6D6E_u70B9_u503C"><a href="#u6D6E_u70B9_u503C" class="headerlink" title="浮点值"></a>浮点值</h2><ul>
+<li>一个十进制整数，它可以带符号（即前面的“+”或“ - ”号），</li>
+<li>一个小数点（“.”），</li>
+<li>一个小数部分（由一串十进制数表示），</li>
+<li><p>一个指数部分<br>指数部分是以“e”或“E”开头后面跟着一个整数，可以有正负号（即前面写“+”或“-”）。一个浮点数字面值必须至少有一位数字，后接小数点或者“e”（大写“E”也可）组成。一些浮点数字面值的例子，如3.1415，-3.1E13，.1e12以及2E-12。<br>简言之，其语法是：</p>
+<pre><code>[digits][.digits][(E|e)[(+|-)]digits]
+//实例:
+3.14
+2345.789
+.3333333333333333333 // 0 可以省略
+</code></pre></li>
+</ul>
+<p>以下两种情况，JavaScript会自动将数值转为科学计数法表示，其他情况都采用字面形式直接表示。</p>
+<ul>
+<li>小数点前的数字多于21位  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1234567890123456789012</span>)    <span class="comment">// 1.2345678901234568e+21</span></span><br></pre></td></tr></table></figure></li>
+<li>小数点后的零多于5个  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">0.0000003</span>) <span class="comment">//3e-7</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h2><pre><code>NaN 用于处理计算中出现的错误情况，比如 0.0 除以 0.0 或者求负数的平方根。由上面的表中可以看出，对于单精度浮点数，NaN 表示为指数为 emax + 1 = 128（指数域全为 1），且尾数域不等于零的浮点数。IEEE 标准没有要求具体的尾数域，所以 &lt;span style=&quot;red;&quot;&gt;NaN 实际上不是一个，而是一族&lt;/span&gt;。
+</code></pre><h2 id="+0__u548C_-0"><a href="#+0__u548C_-0" class="headerlink" title="+0 和 -0"></a>+0 和 -0</h2><p>先看一道题： 假如 A === B 并且 1/A &lt; 1/B; 请问 A 等于 几？</p>
+<h3 id="u4EA7_u751F_u539F_u56E0"><a href="#u4EA7_u751F_u539F_u56E0" class="headerlink" title="产生原因"></a>产生原因</h3><p>数字需要被编码才能进行数字化存储.举个例子,假如我们要将一个整数编码为4位的二进制数,使用原码(sign-and-magnitude)方法,则最高位是符号位(0代表正,1代表负),剩下的三位表示大小(具体的值).因此,−2和+2会编码成为下面这样:</p>
+<pre><code>1010 // +2
+0010 // -2
+这就意味着将会有两个零:
+1000 // -0
+0000 // +0
+</code></pre><p>在JavaScript中,所有的数字都是浮点数,都是根据IEEE-754标准中的浮点数算法以双精度格式被编码。这个标准中正负号的处理方式类似于原码(sign-and-magnitude)方法中整数的编码方式,所以也有正负零。</p>
+<h3 id="u53C2_u4E0E_u8FD0_u7B97"><a href="#u53C2_u4E0E_u8FD0_u7B97" class="headerlink" title="参与运算"></a>参与运算</h3><pre><code>+0 === -0 //true 虽然有正0和负0但是他们两个是相等
+-0 &lt; +0   //false  
++0 &lt; -0   //false
+
+-0 + -0  // -0
+-0 + +0  // +0
++0 X -5  // -0
+-0 X -5  // +0
+ 1 / +0  // Infinity
+ 1 / -0  // -Infinity
++0 / -0  // NaN
+</code></pre><h3 id="u53C2_u4E0EMath_u5BF9_u8C61_u7684_u65B9_u6CD5"><a href="#u53C2_u4E0EMath_u5BF9_u8C61_u7684_u65B9_u6CD5" class="headerlink" title="参与Math对象的方法"></a>参与Math对象的方法</h3><ul>
+<li><p>Math.pow(x,y)方法可返回从  之间的角度。</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.pow(+<span class="number">0</span>, -<span class="number">1</span>) <span class="comment">// Infinity</span></span><br><span class="line"><span class="built_in">Math</span>.pow(-<span class="number">0</span>, -<span class="number">1</span>) <span class="comment">// -Infinity</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Math.atan2(x,y)方法可返回从 x<sup>y</sup> 的值。</p>
+<pre><code>x = 0 , y &lt;= -0     // π(3.141592653589793)
+Math.atan2(+0, -0)  // π(3.141592653589793)
+
+x = 0 , y &gt;= 0      // 0
+Math.atan2(+0, +0)  // 0
+
+x = -0 , y &gt;= +0    // -0
+Math.atan2(-0, +0)  // -0
+
+x = -0 , y &lt;= -0    // -π(-3.141592653589793)
+Math.atan2(-0, -0)  // -π(-3.141592653589793)
+</code></pre></li>
+</ul>
+<ul>
+<li><p>Math.round()是另外一个参数不为零却产生-0结果的操作:</p>
+<pre><code>Math.round(-0.1) // -0
+</code></pre></li>
+</ul>
+<h3 id="u533A_u5206_u8FD9_u4E24_u4E2A_u96F6"><a href="#u533A_u5206_u8FD9_u4E24_u4E2A_u96F6" class="headerlink" title="区分这两个零"></a>区分这两个零</h3><p>方法1: 判断一个零是正还是负的标准解法是用它除1,然后看计算的结果是-Infinity还是+Infinity</p>
+<pre><code>function isNegativeZero(x) {
+    return x === 0 &amp;&amp; (1/x &lt; 0);
+}
+</code></pre><p>方法2: 除了上面讲的几种解法.还有一个解法来自Allen Wirfs-Brock(译者注:TC39编辑,ES标准就是他写出来的。):</p>
+<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNegativeZero</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x !== <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(obj, <span class="string">'z'</span>, &#123; value: -<span class="number">0</span>, configurable: <span class="literal">false</span> &#125;);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 如果x的值和z属性的当前值不相等的话,就会抛出异常.</span></span><br><span class="line">        <span class="built_in">Object</span>.defineProperty(obj, <span class="string">'z'</span>, &#123; value: x &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><p>解释: 通常情况下,你不能重新定义一个不可配置的对象属性，否则会抛出异常:<code>TypeError: Cannot redefine property: z</code>可是，如果你重新定义属性时指定的属性特性的值与该特性当前的值相等，则JavaScript会忽略掉这个重定义，不会抛出异常。其中在判断两个值是否相等时使用的运算不是===，是一个称之为SameValue的内部算法，该算法可以区分开 -0 和 +0 。可以从Wirfs-Brock的原文中了解更多细。(冻结一个对象会让该对象的所有属性变的不可配置)。</p>
+<blockquote>
+<p>在执行一些特殊方法的时候，比如alert或innerHTML等方法，它将由脚本解析器自动调用toString()方法。</p>
+</blockquote>
+<p>看完上面这些，那么这节开头的题目的结果自然而然就知道喽。</p>
+<p>引用：</p>
+<blockquote>
+<p><a href="http://www.cnblogs.com/ziyunfei/archive/2012/12/10/2777099.html" target="_blank" rel="external">紫云飞</a><br><a href="http://javascript.ruanyifeng.com/grammar/number.html" target="_blank" rel="external">阮一峰</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/01/29/好好学学number/" data-title="好好学学number! | 前端之路" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/29/void-0/" title="javascript:void(0);到底是什么鬼?">
+  <strong>上一篇：</strong><br/>
+  <span>
+  javascript:void(0);到底是什么鬼?</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/29/好好学学undefined！/"  title="好好学学undefined！">
+ <strong>下一篇：</strong><br/> 
+ <span>好好学学undefined！
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Number_u7C7B_u578B"><span class="toc-number">1.</span> <span class="toc-text">Number类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6574_u6570"><span class="toc-number">1.1.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6D6E_u70B9_u503C"><span class="toc-number">1.2.</span> <span class="toc-text">浮点值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NaN"><span class="toc-number">1.3.</span> <span class="toc-text">NaN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#+0__u548C_-0"><span class="toc-number">1.4.</span> <span class="toc-text">+0 和 -0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA7_u751F_u539F_u56E0"><span class="toc-number">1.4.1.</span> <span class="toc-text">产生原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53C2_u4E0E_u8FD0_u7B97"><span class="toc-number">1.4.2.</span> <span class="toc-text">参与运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53C2_u4E0EMath_u5BF9_u8C61_u7684_u65B9_u6CD5"><span class="toc-number">1.4.3.</span> <span class="toc-text">参与Math对象的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u533A_u5206_u8FD9_u4E24_u4E2A_u96F6"><span class="toc-number">1.4.4.</span> <span class="toc-text">区分这两个零</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="jack">jack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

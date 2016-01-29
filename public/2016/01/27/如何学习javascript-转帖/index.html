@@ -1,0 +1,498 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>如何学习javascript(转帖) | 前端之路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jack">
+    
+
+    
+    <meta name="description" content="首先说明首先要说明的是，咱现在不是高手，最多还是一个半桶水，算是入了JS的门。 谈不上经验，都是一些教训。这个时候有人要说，“靠，你丫半桶水，凭啥教我们”。您先别急着骂，先听我说。你叫一个大学生去教小学数学，不见得比一个初中生教得好。因为大学生早已经过了那个阶段，都忘记自己怎么走过来的了。而对于初中生，刚好走过那个阶段，对自己怎么走过来的还记忆犹新，或者还有一些自己的总结。比如，很多高手觉得那本犀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何学习javascript(转帖)">
+<meta property="og:url" content="http://yoursite.com/2016/01/27/如何学习javascript-转帖/index.html">
+<meta property="og:site_name" content="前端之路">
+<meta property="og:description" content="首先说明首先要说明的是，咱现在不是高手，最多还是一个半桶水，算是入了JS的门。 谈不上经验，都是一些教训。这个时候有人要说，“靠，你丫半桶水，凭啥教我们”。您先别急着骂，先听我说。你叫一个大学生去教小学数学，不见得比一个初中生教得好。因为大学生早已经过了那个阶段，都忘记自己怎么走过来的了。而对于初中生，刚好走过那个阶段，对自己怎么走过来的还记忆犹新，或者还有一些自己的总结。比如，很多高手觉得那本犀">
+<meta property="og:updated_time" content="2016-01-27T02:42:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何学习javascript(转帖)">
+<meta name="twitter:description" content="首先说明首先要说明的是，咱现在不是高手，最多还是一个半桶水，算是入了JS的门。 谈不上经验，都是一些教训。这个时候有人要说，“靠，你丫半桶水，凭啥教我们”。您先别急着骂，先听我说。你叫一个大学生去教小学数学，不见得比一个初中生教得好。因为大学生早已经过了那个阶段，都忘记自己怎么走过来的了。而对于初中生，刚好走过那个阶段，对自己怎么走过来的还记忆犹新，或者还有一些自己的总结。比如，很多高手觉得那本犀">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端之路" title="前端之路"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端之路">前端之路</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/27/如何学习javascript-转帖/" title="如何学习javascript(转帖)" itemprop="url">如何学习javascript(转帖)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-27T02:24:34.000Z" itemprop="datePublished"> 发表于 2016-01-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u9996_u5148_u8BF4_u660E"><span class="toc-number">1.</span> <span class="toc-text">首先说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5148_u8BF4_u8BF4_u5B66js_u7684_u6761_u4EF6"><span class="toc-number">2.</span> <span class="toc-text">先说说学js的条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u518D_u8BF4_u51E0_u70B9_u5FE0_u544A"><span class="toc-number">3.</span> <span class="toc-text">再说几点忠告</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u63A8_u8350_u51E0_u672C_u597D_u4E66"><span class="toc-number">4.</span> <span class="toc-text">推荐几本好书</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u4E00_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u7F16_u7A0B_u827A_u672F_u300B"><span class="toc-number">4.1.</span> <span class="toc-text">第一阶段：《JavaScript DOM编程艺术》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u4E8C_u9636_u6BB5_uFF1A_u300AJavaScript_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B"><span class="toc-number">4.2.</span> <span class="toc-text">第二阶段：《JavaScript高级程序设计》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u4E09_u9636_u6BB5_uFF1A_u300AJavaScript_u8BED_u8A00_u7CBE_u7CB9_u300B_u548C_u300A_u9AD8_u6027_u80FDJavaScript_u300B"><span class="toc-number">4.3.</span> <span class="toc-text">第三阶段：《JavaScript语言精粹》和《高性能JavaScript》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u56DB_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B_u548C_u300AJavaScript_u8BBE_u8BA1_u6A21_u5F0F_u300B"><span class="toc-number">4.4.</span> <span class="toc-text">第四阶段：《JavaScript DOM高级程序设计》和《JavaScript设计模式》</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u6700_u540E_u60F3_u8BF4_u7684"><span class="toc-number">5.</span> <span class="toc-text">最后想说的</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="u9996_u5148_u8BF4_u660E"><a href="#u9996_u5148_u8BF4_u660E" class="headerlink" title="首先说明"></a>首先说明</h1><p>首先要说明的是，咱现在不是高手，最多还是一个半桶水，算是入了JS的门。 谈不上经验，都是一些教训。这个时候有人要说，“靠，你丫半桶水，凭啥教我们”。您先别急着骂，先听我说。你叫一个大学生去教小学数学，不见得比一个初中生教得好。因为大学生早已经过了那个阶段，都忘记自己怎么走过来的了。而对于初中生，刚好走过那个阶段，对自己怎么走过来的还记忆犹新，或者还有一些自己的总结。比如，很多高手觉得那本犀牛书入门很好，他们觉得太简单了，但以我的经验来看，它不是入门的最好选择。<br><a id="more"></a></p>
+<h1 id="u5148_u8BF4_u8BF4_u5B66js_u7684_u6761_u4EF6"><a href="#u5148_u8BF4_u8BF4_u5B66js_u7684_u6761_u4EF6" class="headerlink" title="先说说学js的条件"></a>先说说学js的条件</h1><p>论条件，咱是文科生，大学专业工商管理，和计算机毛关系都没；有人说英语，读了四年大学，很遗憾，咱还四级没混过；就咱这条件都学得乐呵呵的，您还等啥。 当然学习JS也是有门槛的，就是你的html和css至少还比较熟练，您不能连<body>这东东是干啥的都不知道就开始上JS了，学乘除前，学好加减法总是有益无害的。</body></p>
+<h1 id="u518D_u8BF4_u51E0_u70B9_u5FE0_u544A"><a href="#u518D_u8BF4_u51E0_u70B9_u5FE0_u544A" class="headerlink" title="再说几点忠告"></a>再说几点忠告</h1><ol>
+<li>不要着急看一些复杂网页效果的代码，这样除了打击你自信心，什么也学不到。没达到一定的武功水平，割了小JJ也学不会葵花宝典的。</li>
+<li>别急着加技术交流QQ群，加牛人QQ。如果你找张三丰交流武功，你上去第一句问“丰哥，where is 丹田？”，你会被他一掌劈死的。</li>
+<li>看网上什么多少天精通JS，啥啥啥从入门到精通，这种教程直接跳过吧，太多的事实证明，以一种浮躁的心态去做任何事都会以失败而告终。</li>
+<li>千万别去弄啥电脑培训，花了钱和时间不说，关键是学不到东西。本来你买两本好书自学3个月能学会的，他们硬是能折腾你两年。</li>
+</ol>
+<h1 id="u63A8_u8350_u51E0_u672C_u597D_u4E66"><a href="#u63A8_u8350_u51E0_u672C_u597D_u4E66" class="headerlink" title="推荐几本好书"></a>推荐几本好书</h1><p>“超毛，你丫吹了半天牛B，还是没说怎么学啊” 呵呵，我也没啥特别的办法，只是推荐几本好书。推荐的书，得按先后顺序看。别第一本没看完，就急着上第二本，并不是每次“穿越”都能成功的</p>
+<h2 id="u7B2C_u4E00_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u7F16_u7A0B_u827A_u672F_u300B"><a href="#u7B2C_u4E00_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u7F16_u7A0B_u827A_u672F_u300B" class="headerlink" title="第一阶段：《JavaScript DOM编程艺术》"></a>第一阶段：《JavaScript DOM编程艺术》</h2><p>看这本书之前，请先确认您对Javascript有个基本的了解，应该知道if else之类的语法，如果不懂，先去看看我第二阶段推荐的《Javascript高级程序设计》的前三章，记住看三章就别往下看了，回到《JavaScript DOM编程艺术》这本书上来。 学习Javascript用《JavaScript DOM编程艺术》来入门最好不过了，老老实实看两遍，看完了你就会对JS有一个大概的了解，整本书都围绕着一个网页效果例子展开，你跟着老老实实敲一篇，敲完之后，你会发现这个效果不是常在网页中看到么，发现自己也能做出来网上的效果了，嘿嘿，小有成就感吧。</p>
+<h2 id="u7B2C_u4E8C_u9636_u6BB5_uFF1A_u300AJavaScript_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B"><a href="#u7B2C_u4E8C_u9636_u6BB5_uFF1A_u300AJavaScript_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B" class="headerlink" title="第二阶段：《JavaScript高级程序设计》"></a>第二阶段：《JavaScript高级程序设计》</h2><p>有的书是用来成为经典的，比如犀牛书；还有些书是用来超越经典的，显然这本书就是这种。书中章章经典，由浅入深，其中第6章，关于JS面向对象的解说，没有教程出其右。 如果有一场满分100分的JS考试，看了《JavaScript DOM编程艺术》能让你拿到20分，那么看完这本书，你就能拿到60分以上了。学完后，你会成就感倍增的，相信我（至少看两遍，推荐三篇，跟着书上的代码一行行的敲）。 这本书强烈推荐购买，写的太TMD牛逼了，给你带来的价值超过百倍千倍。 这本书最新的是第三版，貌似就是前些日子出来的，我看的是第二版，第三版相对第二版变动不大，添加了几章内容，价格目前相差10元左右。 接下来，恭喜你可以下山了，这个时候可以自己做一些事情了。 你可以去Ferris这个教程看看他写的这些效果，看看源代码，怎么样，是不是觉得有一部分很简单了，尝试着跟着他写一写这些效果吧。 学技术闭门造车是行不通的，适当的加一两个QQ群交流（注重质量），常去论坛逛逛，你会经常有些小收获的。 再有就是看看前辈这些牛人前辈们分享的文章，它会让你的学习事半功倍的，这里是热心人收集的国内一些牛人的博客、个人网站，点这里。</p>
+<h2 id="u7B2C_u4E09_u9636_u6BB5_uFF1A_u300AJavaScript_u8BED_u8A00_u7CBE_u7CB9_u300B_u548C_u300A_u9AD8_u6027_u80FDJavaScript_u300B"><a href="#u7B2C_u4E09_u9636_u6BB5_uFF1A_u300AJavaScript_u8BED_u8A00_u7CBE_u7CB9_u300B_u548C_u300A_u9AD8_u6027_u80FDJavaScript_u300B" class="headerlink" title="第三阶段：《JavaScript语言精粹》和《高性能JavaScript》"></a>第三阶段：《JavaScript语言精粹》和《高性能JavaScript》</h2><p>接下来两本书《JavaScript语言精粹》和《高性能JavaScript》算是JS高级教程的补充，里面有一些内容和JS高级教程重复了，两本书可以同时看，都不厚，可以对前面所学的有一个很好的加强和巩固。</p>
+<h2 id="u7B2C_u56DB_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B_u548C_u300AJavaScript_u8BBE_u8BA1_u6A21_u5F0F_u300B"><a href="#u7B2C_u56DB_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B_u548C_u300AJavaScript_u8BBE_u8BA1_u6A21_u5F0F_u300B" class="headerlink" title="第四阶段：《JavaScript DOM高级程序设计》和《JavaScript设计模式》"></a>第四阶段：《JavaScript DOM高级程序设计》和《JavaScript设计模式》</h2><p>在吃透了前面所说的书之后，接下来两本书的顺序已经无关紧要了，《JavaScript DOM高级程序设计》（注意和《JavaScript 高级程序设计》相区别）和《JavaScript设计模式》，这两本都是重量级的书，能让你的JS技术上一个新的台阶；这两本书前者主修炼外功，后者主修炼内功，有点想乾坤大挪移和九阳神功的关系。《JavaScript DOM高级程序设计》 首先教你搭建一个类似JQuery的额工具函数库，然后通过讲解几个实际中经常遇到的几个应用例子，会让初学者受益匪浅。《JavaScript设计模式》主要讲Javascript的设计模式，说实话，翻译的质量很一般，有些生硬，但已经基本不影响你的学习，看代码完全可以理解出自己的意思。</p>
+<h1 id="u6700_u540E_u60F3_u8BF4_u7684"><a href="#u6700_u540E_u60F3_u8BF4_u7684" class="headerlink" title="最后想说的"></a>最后想说的</h1><p>不安逸，不浮躁。任何学习都不是一蹴而就的，牛B就是一个学习积累的过程，别指望两三个月，你的水平就多么厉害。倚天屠龙记里面的武功最牛B的是张三丰，而不是张无忌。任何工作都需要多种技能，别忽略了html, css等其他知识的学习。</p>
+<blockquote>
+<p>转自 (博客园)[<a href="http://kb.cnblogs.com/page/191787/" target="_blank" rel="external">http://kb.cnblogs.com/page/191787/</a>]</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/01/27/如何学习javascript-转帖/" data-title="如何学习javascript(转帖) | 前端之路" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/29/好好学学undefined！/" title="好好学学undefined！">
+  <strong>上一篇：</strong><br/>
+  <span>
+  好好学学undefined！</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/21/ECMAScrip中的对象存取器-getter和setter/"  title="ECMAScrip中的对象存取器:getter和setter">
+ <strong>下一篇：</strong><br/> 
+ <span>ECMAScrip中的对象存取器:getter和setter
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u9996_u5148_u8BF4_u660E"><span class="toc-number">1.</span> <span class="toc-text">首先说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u5148_u8BF4_u8BF4_u5B66js_u7684_u6761_u4EF6"><span class="toc-number">2.</span> <span class="toc-text">先说说学js的条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u518D_u8BF4_u51E0_u70B9_u5FE0_u544A"><span class="toc-number">3.</span> <span class="toc-text">再说几点忠告</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u63A8_u8350_u51E0_u672C_u597D_u4E66"><span class="toc-number">4.</span> <span class="toc-text">推荐几本好书</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u4E00_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u7F16_u7A0B_u827A_u672F_u300B"><span class="toc-number">4.1.</span> <span class="toc-text">第一阶段：《JavaScript DOM编程艺术》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u4E8C_u9636_u6BB5_uFF1A_u300AJavaScript_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B"><span class="toc-number">4.2.</span> <span class="toc-text">第二阶段：《JavaScript高级程序设计》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u4E09_u9636_u6BB5_uFF1A_u300AJavaScript_u8BED_u8A00_u7CBE_u7CB9_u300B_u548C_u300A_u9AD8_u6027_u80FDJavaScript_u300B"><span class="toc-number">4.3.</span> <span class="toc-text">第三阶段：《JavaScript语言精粹》和《高性能JavaScript》</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7B2C_u56DB_u9636_u6BB5_uFF1A_u300AJavaScript_DOM_u9AD8_u7EA7_u7A0B_u5E8F_u8BBE_u8BA1_u300B_u548C_u300AJavaScript_u8BBE_u8BA1_u6A21_u5F0F_u300B"><span class="toc-number">4.4.</span> <span class="toc-text">第四阶段：《JavaScript DOM高级程序设计》和《JavaScript设计模式》</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#u6700_u540E_u60F3_u8BF4_u7684"><span class="toc-number">5.</span> <span class="toc-text">最后想说的</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="jack">jack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
