@@ -1,0 +1,665 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>onload vs DOMContentLoaded | 前端之路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jack">
+    
+
+    
+    <meta name="description" content="$(document).ready(function () { });
+$(function () { });
+
+以上两行代码的目的和效果都一样———待DOM加载完成之后，执行传入的function函数。
+这是我们在页面初始化时经常使用的监听方案，那么他的实际的执行关系时什么样的呢？在原生js中是什么样的一种表现？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="onload vs DOMContentLoaded">
+<meta property="og:url" content="http://yoursite.com/2016/01/08/DOMContentLoaded/index.html">
+<meta property="og:site_name" content="前端之路">
+<meta property="og:description" content="$(document).ready(function () { });
+$(function () { });
+
+以上两行代码的目的和效果都一样———待DOM加载完成之后，执行传入的function函数。
+这是我们在页面初始化时经常使用的监听方案，那么他的实际的执行关系时什么样的呢？在原生js中是什么样的一种表现？">
+<meta property="og:image" content="http://yoursite.com/2016/01/08/DOMContentLoaded/onLoadVSDomContentLoaded.png">
+<meta property="og:image" content="http://yoursite.com/2016/01/08/DOMContentLoaded/zongjie.png">
+<meta property="og:updated_time" content="2016-01-19T12:59:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="onload vs DOMContentLoaded">
+<meta name="twitter:description" content="$(document).ready(function () { });
+$(function () { });
+
+以上两行代码的目的和效果都一样———待DOM加载完成之后，执行传入的function函数。
+这是我们在页面初始化时经常使用的监听方案，那么他的实际的执行关系时什么样的呢？在原生js中是什么样的一种表现？">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端之路" title="前端之路"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端之路">前端之路</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/08/DOMContentLoaded/" title="onload vs DOMContentLoaded" itemprop="url">onload vs DOMContentLoaded</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-08T02:27:11.000Z" itemprop="datePublished"> 发表于 2016-01-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B9A_u4E49"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u517C_u5BB9_u65B9_u6848"><span class="toc-number">1.1.</span> <span class="toc-text">兼容方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ie8_u53CA_u4EE5_u4E0B_u517C_u5BB9_u5904_u7406_u65B9_u6848"><span class="toc-number">1.1.1.</span> <span class="toc-text">ie8及以下兼容处理方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#doScroll__u68C0_u6D4B_u6CD5"><span class="toc-number">1.1.2.</span> <span class="toc-text">doScroll 检测法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery_u7684_u5B9E_u73B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">jQuery的实现</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<ul>
+<li><code>$(document).ready(function () { });</code></li>
+<li><code>$(function () { });</code></li>
+</ul>
+<p>以上两行代码的目的和效果都一样———待DOM加载完成之后，执行传入的function函数。</p>
+<p>这是我们在页面初始化时经常使用的监听方案，那么他的实际的执行关系时什么样的呢？<br>在原生js中是什么样的一种表现？<br><a id="more"></a></p>
+<h2 id="u5B9A_u4E49"><a href="#u5B9A_u4E49" class="headerlink" title="定义"></a>定义</h2><ul>
+<li>onload:<br>当onload事件触发的时候，页面上的所有dom，样式表，脚本，图片，flash，iframe都已经加载完成了。</li>
+<li>DOMContentLoaded:<br>当DOMContentLoaded事件触发时，仅当dom加载完成，不包括样式表，图片，flash，iframe</li>
+</ul>
+<p>光看定义，一目了然，哪个比较适合作为我们判断的标准：图片啊什么的，我们完全可以不用等。</p>
+<p>在某些Gecko和Webkit引擎版本的浏览器里面，包括IE8在内，会同时发起多个http的请求并行加载样式表和脚步，但是脚本会等样式表加载完成之后才会被执行，甚至样式表加载之前页面都不会渲染。opera不会，样式表未加载好就可以执行js。</p>
+<img src="/2016/01/08/DOMContentLoaded/onLoadVSDomContentLoaded.png" alt="onLoadVSDomContentLoaded.png" title="">
+<h3 id="u517C_u5BB9_u65B9_u6848"><a href="#u517C_u5BB9_u65B9_u6848" class="headerlink" title="兼容方案"></a>兼容方案</h3><h4 id="ie8_u53CA_u4EE5_u4E0B_u517C_u5BB9_u5904_u7406_u65B9_u6848"><a href="#ie8_u53CA_u4EE5_u4E0B_u517C_u5BB9_u5904_u7406_u65B9_u6848" class="headerlink" title="ie8及以下兼容处理方案"></a>ie8及以下兼容处理方案</h4><p>ie的一般处理方案 — <code>onreadystatechange</code> 事件。<br>html加载过程中会有一个document.readyState状态<br>五种状态：</p>
+<ul>
+<li>0（未初始化）：还没有send</li>
+<li>1 loading（载入）：正在发送请求</li>
+<li>2 loaded（载入完成）：执行完成，已经接收到全部响应内容</li>
+<li>3 interactive（交互）： 正在解析响应内容</li>
+<li>4 complete（完成）： 响应内容解析完成，客户端可以用了。<br><em>complete事件和window.onload事件是同时的。</em></li>
+</ul>
+<p>这就是要监听页面的readystatechange事件，当事件为interactive或者complete时就可以开始做js的事情了。<br>document.readyState 状态<br>如果我们注册 ready 函数的时间点太晚了，页面已经加载完成之后，我们才注册自己的 ready 函数，那就用不着上面的层层检查了，直接看看当前页面的 readyState 就可以了，如果已经是 complete ，那就可以直接执行我们准备注册的 ready 函数了。不过 ChrisS 报告了一个很特别的错误情况，我们需要延迟一下执行。<br>&gt;<br>setTimeout 经常被用来做网页上的定时器，允许为它指定一个毫秒数作为间隔执行的时间。当被启动的程序需要在非常短的时间内运行，我们就会给它指定一个很小的时间数，或者需要马上执行的话，我们甚至把这个毫秒数设置为0，但事实上，setTimeout有一个最小执行时间，当指定的时间小于该时间时，浏览器会用最小允许的时间作为setTimeout的时间间隔，也就是说即使我们把setTimeout的毫秒数设置为0，被调用的程序也没有马上启动。这个最小的时间间隔是多少呢？这和浏览器及操作系统有关。在John Resig的新书《Javascript忍者的秘密》一书中提到。</p>
+<blockquote>
+<blockquote>
+<p>Browsers all have a 10ms minimum delay on OSX and a(approximately) 15ms delay on Windows.（在苹果机上的最小时间间隔是10毫秒，在Windows系统上的最小时间间隔大约是15毫秒），另外，MDC中关于setTimeout的介绍中也提到，Firefox中定义的最小时间间隔（DOM_MIN_TIMEOUT_VALUE）是10毫秒，HTML5定义的最小时间间隔是4毫秒。</p>
+</blockquote>
+</blockquote>
+<p>既然规范都是这样写的，那看来使用setTimeout是没办法再把这个最小时间间隔缩短了。这样，通过设置为 1, 我们可以让程序在浏览器支持的最小时间间隔之后执行了。</p>
+<pre><code>if (document.readyState === &quot;complete&quot;) {
+    // 延迟 1 毫秒之后，执行 ready 函数
+    setTimeout(jQuery.ready, 1);
+}
+</code></pre><h4 id="doScroll__u68C0_u6D4B_u6CD5"><a href="#doScroll__u68C0_u6D4B_u6CD5" class="headerlink" title="doScroll 检测法"></a>doScroll 检测法</h4><p>但是当页面中带有iframe时，这个readyState状态会挂起一直等待，等待页面的iframe也加载完毕之后再处理，这个过程是我们不想要得，那就有另外一种处理方案。<br>&gt;<br>MSDN 关于 JScript 的一个方法有段不起眼的话，当页面 DOM 未加载完成时，调用 doScroll 方法时，会产生异常。那么我们反过来用，如果不异常，那么就是页面DOM加载完毕了！<br>Diego Perini 在 2007 年的时候，报告了一种检测 IE 是否加载完成的方式，使用 doScroll 方法调用。详细的说明见这里。<br>原理是对于 IE 在非 iframe 内时，只有不断地通过能否执行 doScroll 判断 DOM 是否加载完毕。在本例中每间隔 50 毫秒尝试去执行 doScroll，注意，由于页面没有加载完成的时候，调用 doScroll 会导致异常，所以使用了 try -catch 来捕获异常。</p>
+<pre><code>(function doScrollCheck() {
+    if (!jQuery.isReady) {  
+        try {
+            // Use the trick by Diego Perini
+            // http://javascript.nwbox.com/IEContentLoaded/
+            top.doScroll(&quot;left&quot;);
+        } catch (e) {
+            return setTimeout(doScrollCheck, 50);
+        }   
+        // and execute any waiting functions
+        jQuery.ready();
+    }
+})();
+</code></pre><h4 id="jQuery_u7684_u5B9E_u73B0"><a href="#jQuery_u7684_u5B9E_u73B0" class="headerlink" title="jQuery的实现"></a>jQuery的实现</h4><pre><code>//全局方法
+DOMContentLoaded = function() {
+    if ( document.addEventListener ) {
+        document.removeEventListener( &quot;DOMContentLoaded&quot;, DOMContentLoaded, false );
+        jQuery.ready();
+    } else if ( document.readyState === &quot;complete&quot; ) {
+        // we&apos;re here because readyState === &quot;complete&quot; in oldIE
+        // which is good enough for us to call the dom ready!
+        document.detachEvent( &quot;onreadystatechange&quot;, DOMContentLoaded );
+        jQuery.ready();
+    }
+}
+
+//入口 jquery实例调用
+ready: function( fn ) {
+    // Add the callback
+    jQuery.ready.promise().done( fn );
+
+    return this;
+}
+
+jQuery.ready.promise = function( obj ) {
+if ( !readyList ) {
+
+    readyList = jQuery.Deferred();
+
+    // Catch cases where $(document).ready() is called after the browser event has already occurred.
+    // we once tried to use readyState &quot;interactive&quot; here, but it caused issues like the one
+    // discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
+    // 当页面加载完了，直接调用ready方法
+    if ( document.readyState === &quot;complete&quot; ) {
+        // Handle it asynchronously to allow scripts the opportunity to delay ready
+        setTimeout( jQuery.ready, 1 );
+
+    // Standards-based browsers support DOMContentLoaded
+    } else if ( document.addEventListener ) {
+        // Use the handy event callback
+        document.addEventListener( &quot;DOMContentLoaded&quot;, DOMContentLoaded, false );
+
+        // A fallback to window.onload, that will always work
+        window.addEventListener( &quot;load&quot;, jQuery.ready, false );
+
+    // If IE event model is used
+    } else {
+        // Ensure firing before onload, maybe late but safe also for iframes
+        document.attachEvent( &quot;onreadystatechange&quot;, DOMContentLoaded );
+
+        // A fallback to window.onload, that will always work
+        window.attachEvent( &quot;onload&quot;, jQuery.ready );
+
+        // If IE and not a frame
+        // continually check to see if the document is ready
+        var top = false;
+
+        try {
+            top = window.frameElement == null &amp;&amp; document.documentElement;
+        } catch(e) {}
+
+        if ( top &amp;&amp; top.doScroll ) {
+            (function doScrollCheck() {
+                if ( !jQuery.isReady ) {
+
+                    try {
+                        // Use the trick by Diego Perini
+                        // http://javascript.nwbox.com/IEContentLoaded/
+                        top.doScroll(&quot;left&quot;);
+                    } catch(e) {
+                        return setTimeout( doScrollCheck, 50 );
+                    }
+
+                    // and execute any waiting functions
+                    jQuery.ready();
+                }
+            })();
+        }
+    }
+}
+return readyList.promise( obj );
+};
+
+jQuery.extend({
+    // Is the DOM ready to be used? Set to true once it occurs.
+    isReady: false,
+
+    // A counter to track how many items to wait for before
+    // the ready event fires. See #6781
+    // ready方法执行前需要等待的次数
+    readyWait: 1,
+
+    // Handle when the DOM is ready
+    // 当DOM加载完毕时开始执行ready
+    ready: function( wait ) {
+        // Abort if there are pending holds or we&apos;re already ready
+        // 判断页面是否加载完成并且ready方法已经执行
+        // 若传入的参数为true，则--readyWait；否则判断isReady，即ready是否正在执行
+        if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
+            return;
+        }
+
+        // Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
+        if ( !document.body ) {
+            return setTimeout( jQuery.ready, 1 );
+        }
+
+        // Remember that the DOM is ready
+        jQuery.isReady = true; //指示ready 方法已经被执行
+
+        // If a normal DOM Ready event fired, decrement, and wait if need be
+        // 若readyWait-1后还是大于0，则返回，不执行ready。
+        if ( wait !== true &amp;&amp; --jQuery.readyWait &gt; 0 ) {
+            return;
+        }
+
+        // If there are functions bound, to execute
+        readyList.resolveWith( document, [ jQuery ] );
+
+        // Trigger any bound ready events
+        if ( jQuery.fn.trigger ) {
+            // 触发ready方法，然后解除绑定的ready方法。
+            jQuery( document ).trigger(&quot;ready&quot;).off(&quot;ready&quot;);
+        }
+    }
+});
+</code></pre><p>根据以上代码可见，最终DOMContented事件执行的，其实是jQUery.ready()这个工具函数。<br>（注意，jquery.ready()和jquery(document).raedy()不一样！！，前者是工具函数，后者是实例函数。）<br>这里是通过定义一个DOMContentLoaded函数作为桥梁来执行jquery.ready()函数的，这样做的目的就是为了及时的remove掉document的DOMContentLoaded事件的引用。<br><img src="/2016/01/08/DOMContentLoaded/zongjie.png" alt="zongjie.png" title=""><br>推荐好文:  <a href="http://www.xiabingbao.com/jquery/2015/06/27/jquery-holdready/" target="_blank" rel="external">何控制jquery的ready事件</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a><a href="/tags/jQuery/">jQuery</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/01/08/DOMContentLoaded/" data-title="onload vs DOMContentLoaded | 前端之路" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/01/19/webkit的预加载扫描器/" title="webkit的预加载扫描器">
+  <strong>上一篇：</strong><br/>
+  <span>
+  webkit的预加载扫描器</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/01/05/2-在HTML中使用JavaScrpt/"  title="第二章 在HTML中使用JavaScrpt">
+ <strong>下一篇：</strong><br/> 
+ <span>第二章 在HTML中使用JavaScrpt
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B9A_u4E49"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u517C_u5BB9_u65B9_u6848"><span class="toc-number">1.1.</span> <span class="toc-text">兼容方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ie8_u53CA_u4EE5_u4E0B_u517C_u5BB9_u5904_u7406_u65B9_u6848"><span class="toc-number">1.1.1.</span> <span class="toc-text">ie8及以下兼容处理方案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#doScroll__u68C0_u6D4B_u6CD5"><span class="toc-number">1.1.2.</span> <span class="toc-text">doScroll 检测法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery_u7684_u5B9E_u73B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">jQuery的实现</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>3</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>11</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>4</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="jack">jack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
