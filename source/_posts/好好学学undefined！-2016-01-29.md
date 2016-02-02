@@ -9,7 +9,7 @@ categories:
 ---
 # undefined类型
 undefined类型只有一个值，即特殊的undefined，我们称之为`字面值undefined`，undefined意为`未定义`。
-
+<!--more-->
 `字面值undefined`是全局Global对象（window）的一个特殊属性，其值是未定义的。但 typeof window.undefined 返回"undefined" 。
 
 我们可以通过下面的例子来验证undefined是否为全局Global对象（window）的属性:

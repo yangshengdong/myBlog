@@ -81,6 +81,65 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/02/02/好好学学String/" title="好好学学String" itemprop="url">好好学学String</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-02T06:36:10.000Z" itemprop="datePublished"> 发表于 2016-02-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/01/29/void-0/" title="javascript:void(0);到底是什么鬼?" itemprop="url">javascript:void(0);到底是什么鬼?</a>
   </h1>
   <p class="article-author">By
@@ -175,7 +234,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/JavaScript/">JavaScript</a><a href="/tags/jQuery/">jQuery</a>
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
   </div>
 
 </div>
@@ -216,62 +275,12 @@
 </header>
     <div class="article-content">
         
-        <h1 id="undefined_u7C7B_u578B"><a href="#undefined_u7C7B_u578B" class="headerlink" title="undefined类型"></a>undefined类型</h1><p>undefined类型只有一个值，即特殊的undefined，我们称之为<code>字面值undefined</code>，undefined意为<code>未定义</code>。</p>
-<p><code>字面值undefined</code>是全局Global对象（window）的一个特殊属性，其值是未定义的。但 typeof window.undefined 返回”undefined” 。</p>
-<p>我们可以通过下面的例子来验证undefined是否为全局Global对象（window）的属性:</p>
-<pre><code>alert(&apos;undefined&apos; in window);//输出：true   
-var anObj = {};   
-alert(&apos;undefined&apos; in anObj); //输出：false 
-从中可以看出，undefined是window对象的一个属性，但却不是anObj对象的一个属性。
-</code></pre><h2 id="u5B57_u9762_u503Cundefined_u7684_u4EA7_u751F"><a href="#u5B57_u9762_u503Cundefined_u7684_u4EA7_u751F" class="headerlink" title="字面值undefined的产生"></a><code>字面值undefined</code>的产生</h2><p><code>字面值undefined</code>产生的原因有5种：</p>
-<pre><code>* 访问对象不存在的属性或方法
-* 声明了变量但从未赋值
-* 调用函数时，应该提供的参数没有提供，该参数等于undefined。
-* 方法没有返回值，默认返回undefined
-* 访问越界的数组。
-* void(expression) 形式的表达式。
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> v1,obj = &#123;&#125;;      </span><br><span class="line">  </span><br><span class="line"><span class="built_in">console</span>.log(v1); <span class="comment">//`字面值undefined`    </span></span><br><span class="line"><span class="built_in">console</span>.log(obj.get); <span class="comment">//`字面值undefined`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> v1; <span class="comment">// "undefined"    </span></span><br><span class="line"><span class="keyword">typeof</span> v2; <span class="comment">// 对未声明的变量使用typeof 也会输出 "undefined"。     </span></span><br><span class="line"><span class="keyword">typeof</span> obj.get; <span class="comment">// "undefined"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> message1 = <span class="literal">undefined</span>;  <span class="comment">//显示的设置为undefined</span></span><br><span class="line"><span class="keyword">typeof</span> message1 <span class="comment">//"undefined"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;&#125;; </span><br><span class="line"><span class="built_in">console</span>.log(test()); <span class="comment">//`字面值undefined`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = []; </span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">8</span>]) <span class="comment">//`字面值undefined`</span></span><br></pre></td></tr></table></figure>
-</code></pre><p><span style="color: red;">当我们在程序中使用<code>字面值undefined</code>时，实际上使用的是window对象的undefined属性，同样，当我们定义一个变量但未赋予其初始值，例如：<code>var aValue;</code>这时，JavaScript在预编译时会将其初始值设置为对window.undefined属性的引用，于是，当我们将一个变量或值与undefined比较时，实际上是与window对象的undefined属性比较。这个比较过程中，JavaScript会搜索window对象名叫”undefined”的属性，然后再比较两个操作数的引用指针是否相同。</span></p>
-<hr>
-<p>您可以通过将变量与<code>字面值undefined</code>进行比较确定变量是否存在，您也可以通过将变量的类型与字符串“undefined”进行比较确定其类型是否为 undefined类型。<br>以下示例演示了如何确定已声明的变量的 x：</p>
-<pre><code>var x;
-
-// This method works.
-if (x == undefined) { //这种方式只能对已经声明的变量使用，对未声明的变量使用会报错。
-    document.write(&quot;comparing x to undefined &lt;br/&gt;&quot;);
-}
-
-// This method doesn&apos;t work - you must check for the string &quot;undefined&quot;.
-if (typeof(x) == undefined) {//未执行，因为typeof 方法返回的是字符串。
-    document.write(&quot;comparing the type of x to undefined &lt;br/&gt;&quot;);
-}
-// This method does work. 
-if (typeof(x) == &quot;undefined&quot;) {
-    document.write(&quot;comparing the type of x to the string &apos;undefined&apos;&quot;);
-}
-
-// Output: 
-// comparing x to undefined 
-// comparing the type of x to the string &apos;undefined&apos;
-</code></pre><h2 id="u63D0_u9AD8_u8BBF_u95EE_u5B57_u9762_u503Cundefined_u7684_u6027_u80FD_uFF1A"><a href="#u63D0_u9AD8_u8BBF_u95EE_u5B57_u9762_u503Cundefined_u7684_u6027_u80FD_uFF1A" class="headerlink" title="提高访问字面值undefined的性能："></a>提高访问<code>字面值undefined</code>的性能：</h2><p>由于window对象的属性值是非常多的，在每一次与<code>字面值undefined</code>的比较中，搜索window对象的undefined属性都会花费时间。在需要频繁与undefined进行比较的函数中，这可能会是一个性能问题点。因此，在这种情况下，我们可以自行定义一个局部的undefined变量，来加快对undefined的比较速度。例如：</p>
-<pre><code>function anyFunc() {
-    var undefined; //自定义局部undefined变量
-    if (x == undefined){} //作用域上的引用比较
-    while (y != undefined){} //作用域上的引用比较
-};
-</code></pre><p>其中，定义undefined局部变量时，其初始值会是对window.undefined属性值的引用。新定义的局部undefined变量存在与该函数的作用域上。<br>在随后的比较操作中，JavaScript代码的书写方式没有任何的改变，但比较速度却很快。因为作用域上的变量数量会远远少于window对象的属性，搜索变量的速度会极大提高。<br>这就是许多前端JS框架为什么常常要自己定义一个局部undefined变量的原因!!!<br>比如jQuery 源码：</p>
-<pre><code>(function( window, undefined ) {
-    /*
-    * 
-    * code
-    * 
-    * */
-})( window );
-</code></pre>
+        <h1 id="undefined_u7C7B_u578B"><a href="#undefined_u7C7B_u578B" class="headerlink" title="undefined类型"></a>undefined类型</h1><p>undefined类型只有一个值，即特殊的undefined，我们称之为<code>字面值undefined</code>，undefined意为<code>未定义</code>。<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2016/01/29/好好学学undefined！/#more">Read More</a>
           
        </p>
     </div>
@@ -678,67 +687,6 @@ if (typeof(x) == &quot;undefined&quot;) {
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/01/05/2-在HTML中使用JavaScrpt/" title="第二章 在HTML中使用JavaScrpt" itemprop="url">第二章 在HTML中使用JavaScrpt</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
-		
-  <p class="article-time">
-    <time datetime="2016-01-05T06:25:13.000Z" itemprop="datePublished"> 发表于 2016-01-05</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="script_u5143_u7D20"><a href="#script_u5143_u7D20" class="headerlink" title="script元素"></a>script元素</h2><p><code>&lt;script src=&quot;demo.js&quot;&gt;&lt;/script&gt;</code>尽管<code>&lt;script&gt;</code> 标签内没有内容，结束的 <code>&lt;/script&gt;</code> 标签也是必需的。外部文件一般扩展名为.js，但这不是强制的，不写.js扩展名一样可以运行。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/01/05/2-在HTML中使用JavaScrpt/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/《JS高程3-笔记》/">《JS高程3-笔记》</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -760,7 +708,7 @@ if (typeof(x) == &quot;undefined&quot;) {
 		<ul>
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>7</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
 		  
 		
 		  
@@ -777,11 +725,11 @@ if (typeof(x) == &quot;undefined&quot;) {
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>11</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>12</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>4</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
 			
 		
 		</ul>
