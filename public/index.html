@@ -81,7 +81,68 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/02/02/好好学学String/" title="好好学学String" itemprop="url">好好学学String</a>
+      <a href="/2016/02/03/好好学学Object/" title="好好学学Object!" itemprop="url">好好学学Object!</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-03T08:09:30.000Z" itemprop="datePublished"> 发表于 2016-02-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="u6982_u8FF0"><a href="#u6982_u8FF0" class="headerlink" title="概述"></a>概述</h2><h3 id="u5B9A_u4E49_u65B9_u6CD5"><a href="#u5B9A_u4E49_u65B9_u6CD5" class="headerlink" title="定义方法"></a>定义方法</h3><p>对象（object）是JavaScript的核心概念，也是最重要的数据类型。JavaScript的所有数据都可以被视为对象。<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2016/02/03/好好学学Object/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/《JS高程3-笔记》/">《JS高程3-笔记》</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/02/02/好好学学String/" title="好好学学String!" itemprop="url">好好学学String!</a>
   </h1>
   <p class="article-author">By
        
@@ -455,7 +516,7 @@
 </header>
     <div class="article-content">
         
-        <h1 id="u6982_u8FF0"><a href="#u6982_u8FF0" class="headerlink" title="概述"></a>概述</h1><p>ECMAScript 5 的严格模式是JavaScript中的一种限制性更强的变种方式。严格模式不是一个子集：它在语义上与正常代码有着明显的差异。不支持严格模式的浏览器与同支持严格模式的浏览器行为上也不一样， 所以不要在未经严格模式特性测试情况下使用严格模式。严格模式可以与非严格模式共存，所以脚本可以逐渐的选择性加入严格模式。<br>严格模式在语义上与正常的JavaScript有一些不同。</p>
+        <h1 id="u6982_u8FF0"><a href="#u6982_u8FF0" class="headerlink" title="概述"></a>概述</h1><p>ECMAScript 5 的严格模式是JavaScript中的一种限制性更强的变种方式。严格模式不是一个子集：它在语义上与正常代码有着明显的差异。不支持严格模式的浏览器与同支持严格模式的浏览器行为上也不一样， 所以不要在未经严格模式特性测试情况下使用严格模式。严格模式可以与非严格模式共存，所以脚本可以逐渐的选择性加入严格模式。<br>支持情况：IE 10在内的主流浏览器，都已经支持它，许多大项目已经开始全面拥抱。（github上面好多项目都是用的严格模式）<br>严格模式在语义上与正常的JavaScript有一些不同。</p>
 <ul>
 <li>首先，严格模式会将JavaScript陷阱直接变成明显的错误。</li>
 <li>其次，严格模式修正了一些引擎难以优化的错误：同样的代码有些时候严格模式会比非严格模式下更快。</li>
@@ -623,72 +684,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/01/08/DOMContentLoaded/" title="onload vs DOMContentLoaded" itemprop="url">onload vs DOMContentLoaded</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
-		
-  <p class="article-time">
-    <time datetime="2016-01-08T02:27:11.000Z" itemprop="datePublished"> 发表于 2016-01-08</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <ul>
-<li><code>$(document).ready(function () { });</code></li>
-<li><code>$(function () { });</code></li>
-</ul>
-<p>以上两行代码的目的和效果都一样———待DOM加载完成之后，执行传入的function函数。</p>
-<p>这是我们在页面初始化时经常使用的监听方案，那么他的实际的执行关系时什么样的呢？<br>在原生js中是什么样的一种表现？<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/01/08/DOMContentLoaded/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/JavaScript/">JavaScript</a><a href="/tags/jQuery/">jQuery</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -714,7 +709,7 @@
 		  
 		
 		  
-			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>3</sup></a></li>
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>4</sup></a></li>
 		  
 		
 		</ul>
@@ -727,7 +722,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>12</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
 			
 		
 			

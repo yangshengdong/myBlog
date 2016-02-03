@@ -1,0 +1,581 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>好好学学Object! | 前端之路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jack">
+    
+
+    
+    <meta name="description" content="概述定义方法对象（object）是JavaScript的核心概念，也是最重要的数据类型。JavaScript的所有数据都可以被视为对象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="好好学学Object!">
+<meta property="og:url" content="http://yoursite.com/2016/02/03/好好学学Object/index.html">
+<meta property="og:site_name" content="前端之路">
+<meta property="og:description" content="概述定义方法对象（object）是JavaScript的核心概念，也是最重要的数据类型。JavaScript的所有数据都可以被视为对象。">
+<meta property="og:updated_time" content="2016-02-03T10:08:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="好好学学Object!">
+<meta name="twitter:description" content="概述定义方法对象（object）是JavaScript的核心概念，也是最重要的数据类型。JavaScript的所有数据都可以被视为对象。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端之路" title="前端之路"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端之路">前端之路</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/02/03/好好学学Object/" title="好好学学Object!" itemprop="url">好好学学Object!</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-03T08:09:30.000Z" itemprop="datePublished"> 发表于 2016-02-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u8FF0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9A_u4E49_u65B9_u6CD5"><span class="toc-number">1.1.</span> <span class="toc-text">定义方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u952E_u540D"><span class="toc-number">1.2.</span> <span class="toc-text">键名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u65B9_u6CD5"><span class="toc-number">1.4.</span> <span class="toc-text">生成方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u5199_u5C5E_u6027"><span class="toc-number">1.5.</span> <span class="toc-text">读写属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5C5E_u6027_u7684_u5220_u9664"><span class="toc-number">1.6.</span> <span class="toc-text">属性的删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5BF9_u8C61_u7684_u5F15_u7528"><span class="toc-number">1.7.</span> <span class="toc-text">对象的引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in_u8FD0_u7B97_u7B26"><span class="toc-number">1.8.</span> <span class="toc-text">in运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for_u2026in_u5FAA_u73AF"><span class="toc-number">1.9.</span> <span class="toc-text">for…in循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#with_u8BED_u53E5"><span class="toc-number">2.</span> <span class="toc-text">with语句</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="u6982_u8FF0"><a href="#u6982_u8FF0" class="headerlink" title="概述"></a>概述</h2><h3 id="u5B9A_u4E49_u65B9_u6CD5"><a href="#u5B9A_u4E49_u65B9_u6CD5" class="headerlink" title="定义方法"></a>定义方法</h3><p>对象（object）是JavaScript的核心概念，也是最重要的数据类型。JavaScript的所有数据都可以被视为对象。<br><a id="more"></a><br>简单说，所谓对象，就是一种无序的数据集合，由若干个“键值对”（key-value）构成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="string">'p'</span>: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，大括号就定义了一个对象，它被赋值给变量<code>o</code>。这个对象内部包含一个键值对（又称为“成员”），<code>p</code>是“键名”（成员的名称），字符串“Hello World”是“键值”（成员的值）。键名与键值之间用冒号分隔。如果对象内部包含多个键值对，每个键值对之间用逗号分隔。</p>
+<h3 id="u952E_u540D"><a href="#u952E_u540D" class="headerlink" title="键名"></a>键名</h3><p>对象的所有键名都是字符串，所以加不加引号都可以。上面的代码也可以写成下面这样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  p: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>但是，如果键名不符合标识名的条件（比如第一个字符为数字，或者含有空格或运算符），也不是数字，则必须加上引号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="string">'1p'</span>: <span class="string">"Hello World"</span>,</span><br><span class="line">  <span class="string">'h w'</span>: <span class="string">"Hello World"</span>,</span><br><span class="line">  <span class="string">'p+q'</span>: <span class="string">"Hello World"</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面对象的三个键名，都不符合标识名的条件，所以必须加上引号。</p>
+<p>注意，JavaScript的保留字可以不加引号当作键名。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  for: 1,</span><br><span class="line">  class: 2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果键名是数字，则会默认转为对应的字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">1e2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">1e-2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">.234</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">0xFF</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Obj</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   100: true,</span></span><br><span class="line"><span class="comment">//   255: true,</span></span><br><span class="line"><span class="comment">//   0.01: true,</span></span><br><span class="line"><span class="comment">//   0.234: true</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<p>上面代码表示，如果键名为数值，则会先转为标准形式的数值，然后再转为字符串。</p>
+<h3 id="u5C5E_u6027"><a href="#u5C5E_u6027" class="headerlink" title="属性"></a>属性</h3><p>对象的每一个“键名”又称为“属性”（property），它的“键值”可以是任何数据类型。如果一个属性的值为函数，通常把这个属性称为“方法”，它可以像函数那样调用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  p: <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">2</span> * x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.p(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>上面的对象就有一个方法<code>p</code>，它就是一个函数。</p>
+<p>对象的属性之间用逗号分隔，最后一个属性后面可以加逗号（trailing comma），也可以不加。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  p: <span class="number">123</span>,</span><br><span class="line">  m: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; ... &#125;,<span class="comment">//这个逗号不能加</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码中m属性后面的那个逗号，有或没有都不算错。但是，ECMAScript 3不允许添加逗号，所以如果要兼容老式浏览器（比如IE 8），那就不能加这个逗号。</p>
+<p>由于对象的方法就是函数，因此也有<code>name</code>属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  m1: <span class="function"><span class="keyword">function</span> <span class="title">m1</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">  m2: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.m1.name <span class="comment">// m1</span></span><br><span class="line">obj.m2.name <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<h3 id="u751F_u6210_u65B9_u6CD5"><a href="#u751F_u6210_u65B9_u6CD5" class="headerlink" title="生成方法"></a>生成方法</h3><p>对象的生成方法，通常有三种方法。除了像上面那样直接使用大括号生成（<code>{}</code>），还可以用<code>new</code>命令生成一个Object对象的实例，或者使用<code>Object.create</code>方法生成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = <span class="keyword">new</span> <span class="built_in">Object</span>();<span class="comment">// 可以简写为 var o2 = new Object; 但是不推荐</span></span><br><span class="line"><span class="keyword">var</span> o3 = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+<p>上面三行语句是等价的。一般来说，第一种采用大括号的写法比较简洁，第二种采用构造函数的写法清晰地表示了意图，第三种写法一般用在需要对象继承的场合。关于第二种写法，详见《标准库》一章的Object对象一节，第三种写法详见《面向对象编程》一章。</p>
+<h3 id="u8BFB_u5199_u5C5E_u6027"><a href="#u8BFB_u5199_u5C5E_u6027" class="headerlink" title="读写属性"></a>读写属性</h3><p><strong>（1）读取属性</strong></p>
+<p>读取对象的属性，有两种方法，一种是使用点运算符，还有一种是使用方括号运算符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  p: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.p <span class="comment">// "Hello World"</span></span><br><span class="line">o[<span class="string">'p'</span>] <span class="comment">// "Hello World"</span></span><br></pre></td></tr></table></figure>
+<p>上面代码分别采用点运算符和方括号运算符，读取属性<code>p</code>。</p>
+<p>请注意，如果使用方括号运算符，键名必须放在引号里面，否则会被当作变量处理。但是，数字键可以不加引号，因为会被当作字符串处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="number">0.7</span>: <span class="string">"Hello World"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.[<span class="string">'0.7'</span>] <span class="comment">// "Hello World"</span></span><br><span class="line">o[<span class="number">0.7</span>] <span class="comment">// "Hello World"</span></span><br></pre></td></tr></table></figure>
+<p>方括号运算符内部可以使用表达式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">o[<span class="string">'hello'</span> + <span class="string">' world'</span>]</span><br><span class="line">o[<span class="number">3</span> + <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p>数值键名不能使用点运算符（因为会被当成小数点），只能使用方括号运算符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">obj<span class="number">.0</span>xFF</span><br><span class="line"><span class="comment">// SyntaxError: Unexpected token</span></span><br><span class="line">obj[<span class="number">0xFF</span>]</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>上面代码的第一个表达式，对数值键名0xFF使用点运算符，结果报错。第二个表达式使用方括号运算符，结果就是正确的。</p>
+<p><strong>（2）检查变量是否声明</strong></p>
+<p>如果读取一个不存在的键，会返回undefined，而不是报错。可以利用这一点，来检查一个变量是否被声明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查a变量是否被声明</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a) &#123;...&#125; <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.a) &#123;...&#125; <span class="comment">// 不报错</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>[<span class="string">'a'</span>]) &#123;...&#125; <span class="comment">// 不报错</span></span><br></pre></td></tr></table></figure>
+<p>上面的后二种写法之所以不报错，是因为在浏览器环境，所有全局变量都是window对象的属性。window.a的含义就是读取window对象的a属性，如果该属性不存在，就返回undefined，并不会报错。</p>
+<p>需要注意的是，后二种写法有漏洞，如果a属性是一个空字符串（或其他对应的布尔值为false的情况），则无法起到检查变量是否声明的作用。正确的写法是使用<code>in</code>运算符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="string">'a'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>（3）写入属性</strong></p>
+<p>点运算符和方括号运算符，不仅可以用来读取值，还可以用来赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">o.p = <span class="string">'abc'</span>;</span><br><span class="line">o[<span class="string">'p'</span>] = <span class="string">'abc'</span>;</span><br></pre></td></tr></table></figure>
+<p>上面代码分别使用点运算符和方括号运算符，对属性p赋值。</p>
+<p>JavaScript允许属性的“后绑定”，也就是说，你可以在任意时刻新增属性，没必要在定义对象的时候，就定义好属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123; p: <span class="number">1</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line">o.p = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>（4）查看所有属性</strong></p>
+<p>查看一个对象本身的所有属性，可以使用<code>Object.keys</code>方法，次防止支持<code>IE9+</code>(包括IE9)。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  key1: <span class="number">1</span>,</span><br><span class="line">  key2: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(o);</span><br><span class="line"><span class="comment">// ['key1', 'key2']</span></span><br></pre></td></tr></table></figure>
+<p>兼容处理方案：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (!Object.keys) &#123;&#10;    Object.keys = function(o) &#123;&#10;        if (o !== Object(o)) &#123;&#10;            throw new TypeError(&#39;Object.keys called on a non-object&#39;);&#10;        &#125;&#10;        var k = [],&#10;            p;&#10;        for (p in o) &#123;&#10;            if (Object.prototype.hasOwnProperty.call(o, p)) &#123;&#10;                k.push(p);&#10;            &#125;&#10;        &#125;&#10;        return k;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u5C5E_u6027_u7684_u5220_u9664"><a href="#u5C5E_u6027_u7684_u5220_u9664" class="headerlink" title="属性的删除"></a>属性的删除</h3><p>删除一个属性，需要使用<code>delete</code>命令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;p: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(o) <span class="comment">// ["p"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> o.p <span class="comment">// true</span></span><br><span class="line">o.p <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">Object</span>.keys(o) <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<p>上面代码表示，一旦使用<code>delete</code>命令删除某个属性，再读取该属性就会返回<code>undefined</code>，而且<code>Object.keys</code>方法返回的该对象的所有属性中，也将不再包括该属性。</p>
+<p><span style="color: red;">麻烦的是，如果删除一个不存在的属性，delete不报错，而且返回true。</span></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"><span class="keyword">delete</span> o.p <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>上面代码表示，delete命令只能用来保证某个属性的值为undefined，而无法保证该属性是否真的存在。</p>
+<p>只有一种情况，delete命令会返回false，那就是该属性存在，且不得删除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.defineProperty(&#123;&#125;, <span class="string">"p"</span>, &#123;</span><br><span class="line">        value: <span class="number">123</span>,</span><br><span class="line">        configurable: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">o.p <span class="comment">// 123</span></span><br><span class="line"><span class="keyword">delete</span> o.p <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>上面代码之中，o对象的p属性是不能删除的，所以delete命令返回false（关于Object.defineProperty方法的介绍，请看《标准库》一章的Object对象章节）。</p>
+<p>另外，需要注意的是，delete命令只能删除对象本身的属性，不能删除继承的属性（关于继承参见《面向对象编程》一节）。delete命令也不能删除var命令声明的变量，只能用来删除属性。</p>
+<h3 id="u5BF9_u8C61_u7684_u5F15_u7528"><a href="#u5BF9_u8C61_u7684_u5F15_u7528" class="headerlink" title="对象的引用"></a>对象的引用</h3><p>如果不同的变量名指向同一个对象，那么它们都是这个对象的引用，也就是说指向同一个内存地址。修改其中一个变量，会影响到其他所有变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = o1;</span><br><span class="line"></span><br><span class="line">o1.a = <span class="number">1</span>;</span><br><span class="line">o2.a <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">o2.b = <span class="number">2</span>;</span><br><span class="line">o1.b <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>o1</code>和<code>o2</code>指向同一个对象，因此为其中任何一个变量添加属性，另一个变量都可以读写该属性。</p>
+<p>此时，如果取消某一个变量对于原对象的引用，不会影响到另一个变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = o1;</span><br><span class="line"></span><br><span class="line">o1 = <span class="number">1</span>;</span><br><span class="line">o2 <span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>o1</code>和<code>o2</code>指向同一个对象，然后<code>o1</code>的值变为1，这时不会对<code>o2</code>产生影响，<code>o2</code>还是指向原来的那个对象。</p>
+<p>但是，这种引用只局限于对象，对于原始类型的数据则是传值引用，也就是说，都是值的拷贝。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> y = x;</span><br><span class="line"></span><br><span class="line">x = <span class="number">2</span>;</span><br><span class="line">y <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码中，当<code>x</code>的值发生变化后，<code>y</code>的值并不变，这就表示<code>y</code>和<code>x</code>并不是指向同一个内存地址。</p>
+<h3 id="in_u8FD0_u7B97_u7B26"><a href="#in_u8FD0_u7B97_u7B26" class="headerlink" title="in运算符"></a>in运算符</h3><p>in运算符用于检查对象是否包含某个属性（注意，检查的是键名，不是键值），如果包含就返回<code>true</code>，否则返回<code>false</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123; p: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="string">'p'</span> <span class="keyword">in</span> o <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>在JavaScript语言中，所有全局变量都是顶层对象（浏览器的顶层对象就是<code>window</code>对象）的属性，因此可以用<code>in</code>运算符判断，一个全局变量是否存在。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设变量x未定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法一：报错</span></span><br><span class="line"><span class="keyword">if</span> (x) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二：不正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.x) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法三：正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'x'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br></pre></td></tr></table></figure>
+<p>上面三种写法之中，如果<code>x</code>不存在，第一种写法会报错；如果<code>x</code>的值对应布尔值<code>false</code>（比如<code>x</code>等于空字符串），第二种写法无法得到正确结果；只有第三种写法，才能正确判断变量<code>x</code>是否存在。</p>
+<p><span style="color: red;"><code>in</code>运算符的一个问题是，它不能区分对象继承的属性。</span></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.hasOwnProperty(<span class="string">'toString'</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="string">'toString'</span> <span class="keyword">in</span> o <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>toString</code>方法不是对象<code>o</code>自身的属性，而是继承的属性，<code>hasOwnProperty</code>方法可以说明这一点。但是，<code>in</code>运算符不能区分，对继承的属性也返回<code>true</code>。</p>
+<h3 id="for_u2026in_u5FAA_u73AF"><a href="#for_u2026in_u5FAA_u73AF" class="headerlink" title="for…in循环"></a>for…in循环</h3><p><code>for...in</code>循环用来遍历一个对象的全部属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;a: <span class="number">1</span>, b: <span class="number">2</span>, c: <span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> o)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(o[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>下面是一个使用<code>for...in</code>循环，进行数组赋值的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> props = [], i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (props[i++] <span class="keyword">in</span> &#123;x: <span class="number">1</span>, y: <span class="number">2</span>&#125;);</span><br><span class="line"></span><br><span class="line">props <span class="comment">// ['x', 'y']</span></span><br></pre></td></tr></table></figure>
+<p>注意，<code>for...in</code>循环遍历的是对象所有可enumberable的属性，其中不仅包括定义在对象本身的属性，还包括对象继承的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// name 是 Person 本身的属性</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// describe是Person.prototype的属性</span></span><br><span class="line">Person.prototype.describe = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'Name: '</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">'Jane'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// for...in循环会遍历实例自身的属性（name），</span></span><br><span class="line"><span class="comment">// 以及继承的属性（describe）</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// name</span></span><br><span class="line"><span class="comment">// describe</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>name</code>是对象本身的属性，<code>describe</code>是对象继承的属性，<code>for...in</code>循环的遍历会包括这两者。</p>
+<p>如果只想遍历对象本身的属性，可以使用hasOwnProperty方法，在循环内部做一个判断。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">  <span class="keyword">if</span> (person.hasOwnProperty(key)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// name</span></span><br></pre></td></tr></table></figure>
+<p>为了避免这一点，可以新建一个继承<code>null</code>的对象。由于<code>null</code>没有任何属性，所以新对象也就不会有继承的属性了。</p>
+<h2 id="with_u8BED_u53E5"><a href="#with_u8BED_u53E5" class="headerlink" title="with语句"></a>with语句</h2><p>with语句的格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">with</span> (object)</span><br><span class="line">  statement</span><br></pre></td></tr></table></figure>
+<p>它的作用是操作同一个对象的多个属性时，提供一些书写的方便。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 例一</span></span><br><span class="line"><span class="keyword">with</span> (o) &#123;</span><br><span class="line">  p1 = <span class="number">1</span>;</span><br><span class="line">  p2 = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"></span><br><span class="line">o.p1 = <span class="number">1</span>;</span><br><span class="line">o.p2 = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例二</span></span><br><span class="line"><span class="keyword">with</span> (<span class="built_in">document</span>.links[<span class="number">0</span>])&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(href);</span><br><span class="line">  <span class="built_in">console</span>.log(title);</span><br><span class="line">  <span class="built_in">console</span>.log(style);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.links[<span class="number">0</span>].href);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.links[<span class="number">0</span>].title);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.links[<span class="number">0</span>].style);</span><br></pre></td></tr></table></figure>
+<p>注意，with区块内部的变量，必须是当前对象已经存在的属性，否则会创造一个当前作用域的全局变量。这是因为with区块没有改变作用域，它的内部依然是当前作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> (o)&#123;</span><br><span class="line">  x = <span class="string">"abc"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">o.x</span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line">x</span><br><span class="line"><span class="comment">// "abc"</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，对象o没有属性x，所以with区块内部对x的操作，等于创造了一个全局变量x。正确的写法应该是，先定义对象o的属性x，然后在with区块内操作它。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">o.x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> (o)&#123;</span><br><span class="line">  x = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">o.x</span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>这是with语句的一个很大的弊病，就是绑定对象不明确。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">with</span> (o) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单纯从上面的代码块，根本无法判断x到底是全局变量，还是o对象的一个属性。这非常不利于代码的除错和模块化，编译器也无法对这段代码进行优化，只能留到运行时判断，这就拖慢了运行速度。因此，建议不要使用with语句，可以考虑用一个临时变量代替with。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">with</span>(o1.o2.o3) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(p1 + p2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以写成</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> temp = o1.o2.o3;</span><br><span class="line"><span class="built_in">console</span>.log(temp.p1 + temp.p2);</span><br></pre></td></tr></table></figure>
+<p>with语句少数有用场合之一，就是替换模板变量。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'Hello &lt;%= name %&gt;!'</span>;</span><br></pre></td></tr></table></figure>
+<p>上面代码是一个模板字符串，为了替换其中的变量name，可以先将其分解成三部分<code>&#39;Hello &#39;, name, &#39;!&#39;</code>，然后进行模板变量替换。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  name: <span class="string">'Alice'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = [];</span><br><span class="line"><span class="keyword">var</span> tmpl = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span>(o)&#123;</span><br><span class="line">  p.push(<span class="string">'Hello '</span>, name, <span class="string">'!'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">p.join(<span class="string">''</span>) <span class="comment">// "Hello Alice!"</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，with区块内部，模板变量name可以被对象o的属性替换，而p依然是全局变量。事实上，这就是很多模板引擎的实现原理。</p>
+<blockquote>
+<p><a href="http://javascript.ruanyifeng.com/" target="_blank" rel="external">阮一峰</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/《JS高程3-笔记》/">《JS高程3-笔记》</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/02/03/好好学学Object/" data-title="好好学学Object! | 前端之路" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/02/02/好好学学String/"  title="好好学学String!">
+ <strong>下一篇：</strong><br/> 
+ <span>好好学学String!
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u8FF0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9A_u4E49_u65B9_u6CD5"><span class="toc-number">1.1.</span> <span class="toc-text">定义方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u952E_u540D"><span class="toc-number">1.2.</span> <span class="toc-text">键名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u65B9_u6CD5"><span class="toc-number">1.4.</span> <span class="toc-text">生成方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u5199_u5C5E_u6027"><span class="toc-number">1.5.</span> <span class="toc-text">读写属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5C5E_u6027_u7684_u5220_u9664"><span class="toc-number">1.6.</span> <span class="toc-text">属性的删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5BF9_u8C61_u7684_u5F15_u7528"><span class="toc-number">1.7.</span> <span class="toc-text">对象的引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in_u8FD0_u7B97_u7B26"><span class="toc-number">1.8.</span> <span class="toc-text">in运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for_u2026in_u5FAA_u73AF"><span class="toc-number">1.9.</span> <span class="toc-text">for…in循环</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#with_u8BED_u53E5"><span class="toc-number">2.</span> <span class="toc-text">with语句</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="jack">jack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

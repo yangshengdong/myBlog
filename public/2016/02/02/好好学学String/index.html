@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>好好学学String | 前端之路</title>
+    <title>好好学学String! | 前端之路</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="jack">
@@ -13,13 +13,13 @@
     
     <meta name="description" content="概述定义字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="好好学学String">
+<meta property="og:title" content="好好学学String!">
 <meta property="og:url" content="http://yoursite.com/2016/02/02/好好学学String/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="概述定义字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。">
-<meta property="og:updated_time" content="2016-02-02T10:19:39.000Z">
+<meta property="og:updated_time" content="2016-02-03T08:10:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="好好学学String">
+<meta name="twitter:title" content="好好学学String!">
 <meta name="twitter:description" content="概述定义字符串就是零个或多个排在一起的字符，放在单引号或双引号之中。">
 
     
@@ -80,7 +80,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/02/02/好好学学String/" title="好好学学String" itemprop="url">好好学学String</a>
+      <a href="/2016/02/02/好好学学String/" title="好好学学String!" itemprop="url">好好学学String!</a>
   </h1>
   <p class="article-author">By
        
@@ -96,7 +96,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u8FF0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9A_u4E49"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B57_u7B26_u4E32_u4E0E_u6570_u7EC4"><span class="toc-number">1.2.</span> <span class="toc-text">字符串与数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#length_u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">length属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u7B26_u96C6"><span class="toc-number">2.</span> <span class="toc-text">字符集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base64_u8F6C_u7801"><span class="toc-number">3.</span> <span class="toc-text">Base64转码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u8F6C_u6362_String_28_29"><span class="toc-number">4.</span> <span class="toc-text">类型转换 String()</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u8FF0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9A_u4E49"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B57_u7B26_u4E32_u4E0E_u6570_u7EC4"><span class="toc-number">1.2.</span> <span class="toc-text">字符串与数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#length_u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">length属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u7B26_u96C6"><span class="toc-number">2.</span> <span class="toc-text">字符集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base64_u8F6C_u7801"><span class="toc-number">3.</span> <span class="toc-text">Base64转码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32_String_28_29"><span class="toc-number">4.</span> <span class="toc-text">转换为字符串 String()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#toString_28_29"><span class="toc-number">4.1.</span> <span class="toc-text">toString()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String_28_29"><span class="toc-number">4.2.</span> <span class="toc-text">String()</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -169,37 +169,42 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">btoa(<span class="string">'你好'</span>)</span><br><span class="line"><span class="comment">// Uncaught DOMException: The string to be encoded contains characters outside of the Latin1 range.</span></span><br></pre></td></tr></table></figure>
 <p>要将非ASCII码字符转为Base64编码，必须中间插入一个转码环节，再使用这两个方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b64Encode</span>(<span class="params"> str </span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> btoa(<span class="built_in">unescape</span>(<span class="built_in">encodeURIComponent</span>( str )));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b64Decode</span>(<span class="params"> str </span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>(<span class="built_in">escape</span>(atob( str )));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b64Encode(<span class="string">'你好'</span>) <span class="comment">// "5L2g5aW9"</span></span><br><span class="line">b64Decode(<span class="string">'5L2g5aW9'</span>) <span class="comment">// "你好"</span></span><br></pre></td></tr></table></figure>
-<h2 id="u7C7B_u578B_u8F6C_u6362_String_28_29"><a href="#u7C7B_u578B_u8F6C_u6362_String_28_29" class="headerlink" title="类型转换 String()"></a>类型转换 String()</h2><p>String函数：强制转换成字符串<br>使用String函数，可以将任意类型的值转化成字符串。规则如下：</p>
+<h2 id="u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32_String_28_29"><a href="#u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32_String_28_29" class="headerlink" title="转换为字符串 String()"></a>转换为字符串 String()</h2><h3 id="toString_28_29"><a href="#toString_28_29" class="headerlink" title="toString()"></a>toString()</h3><p>数值、布尔值、对象和字符串值（没错，每个字符串也都有一个<code>toString()</code>方法，该方法返回字符串的一个副本）都有<code>toString()</code>方法。但<code>null</code> 和 <code>undefined</code> 值没有这个方法。<br>多数情况下，调用<code>toString()</code>方法不必传递参数。但是，在调用数值的<code>toString()</code>方法时，可以传递一个参数：输出数值的基数。默认情况下，<code>toString()</code>方法以十进制格式返回数值的字符串表示。而通过传递基数，<code>toString()</code>可以输出以二进制、八进制、十六进制，乃至其他任意有效进制格式表示的字符串值。<br>在不知道要转换的值是不是<code>null</code> 或 <code>undefined</code> 的情况下，还可以使用转型函数<code>String()</code>。</p>
+<h3 id="String_28_29"><a href="#String_28_29" class="headerlink" title="String()"></a>String()</h3><p>使用String函数，可以将任意类型的值转化成字符串。规则如下：</p>
+<ol>
+<li>如果值有toString()方法，则调用该方法（没有参数）并返回相应的结果。</li>
+<li>如果值是null，则返回”null”。</li>
+<li>如果值是undefined，则返回”undefined”。</li>
+</ol>
 <p><strong>（1）原始类型值的转换规则</strong></p>
 <ul>
-<li><p><strong>数值</strong>：转为相应的字符串。</p>
+<li><p><strong>数值</strong>：调用Number的toString()方法，转换后还是原来的值。转为相应的字符串。</p>
 </li>
-<li><p><strong>字符串</strong>：转换后还是原来的值。</p>
+<li><p><strong>字符串</strong>：调用String的toString()方法，转换后还是原来的值。</p>
 </li>
-<li><p><strong>布尔值</strong>：true转为“true”，false转为“false”。</p>
+<li><p><strong>布尔值</strong>：调用Boolean的toString()方法，true转为“true”，false转为“false”。</p>
 </li>
 <li><p><strong>undefined</strong>：转为“undefined”。</p>
 </li>
 <li><p><strong>null</strong>：转为“null”。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="number">123</span>) <span class="comment">// "123"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="string">"abc"</span>) <span class="comment">// "abc"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">true</span>) <span class="comment">// "true"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">undefined</span>) <span class="comment">// "undefined"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">null</span>) <span class="comment">// "null"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="number">123</span>) <span class="comment">// "123"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="string">"abc"</span>) <span class="comment">// "abc"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">true</span>) <span class="comment">// "true"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">undefined</span>) <span class="comment">// "undefined"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(<span class="literal">null</span>) <span class="comment">// "null"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Boolean</span>.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"wo bei diaoyongle"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);</span><br><span class="line"><span class="built_in">String</span>(a) <span class="comment">// "wo bei diaoyongle" "undefined"</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><strong>（2）对象的转换规则</strong></p>
 <p>如果要将对象转为字符串，则是采用以下步骤。</p>
 <ol>
-<li><p>先调用toString方法，如果toString方法返回的是简单类型(<code>Boolean</code>、<code>number</code>、<code>string</code>、<code>null</code>、<code>undefined</code>)的值，则对该值使用String方法，不再进行以下步骤。</p>
+<li><p>先调用<code>toString</code>方法，如果toString方法返回的是简单类型(<code>Boolean</code>、<code>number</code>、<code>string</code>、<code>null</code>、<code>undefined</code>)的值，则对该值使用<code>String</code>方法，不再进行以下步骤。</p>
 </li>
-<li><p>如果toString方法返回的是复合类型的值，再调用valueOf方法，如果valueOf方法返回的是原始类型的值，则对该值使用String方法，不再进行以下步骤。</p>
+<li><p>如果<code>toString</code>方法返回的是复合类型的值，再调用<code>valueOf</code>方法，如果<code>valueOf</code>方法返回的是原始类型的值，则对该值使用String方法，不再进行以下步骤。</p>
 </li>
-<li><p>如果valueOf方法返回的是复合类型的值，则报错。</p>
+<li><p>如果<code>valueOf</code>方法返回的是复合类型的值，则报错。</p>
 </li>
 </ol>
 <p>String方法的这种过程正好与Number方法相反。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">String</span>(&#123;a:<span class="number">1</span>&#125;) <span class="comment">// "[object Object]"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span>  T = &#123;toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">true</span>&#125;,valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">undefined</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">String</span>(T) <span class="comment">// "true" 调用toString</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span>  T = &#123;toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;,valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">undefined</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">String</span>(T) <span class="comment">// "undefined" 调用valueOf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span>  T = &#123;toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;,valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;&#125;;</span><br><span class="line"><span class="built_in">String</span>(T) <span class="comment">// Error Uncaught TypeError: Cannot convert object to primitive value(…)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">String</span>(&#123;a:<span class="number">1</span>&#125;) <span class="comment">// "[object Object]"</span></span><br></pre></td></tr></table></figure>
 <p>上面代码相当于下面这样。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">String</span>(&#123;a:<span class="number">1</span>&#125;.toString()) <span class="comment">// "[object Object]"</span></span><br></pre></td></tr></table></figure>
-<p>如果toString方法和valueOf方法，返回的都不是原始类型的值，则String方法报错。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	valueOf: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"valueOf"</span>);</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;; </span><br><span class="line">	&#125;,</span><br><span class="line">	toString: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"toString"</span>);</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(obj) <span class="comment">// TypeError: Cannot convert object to primitive value</span></span><br></pre></td></tr></table></figure>
+<p>如果toString方法和valueOf方法，返回的都不是原始类型的值，则String方法报错。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  T = &#123;toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">true</span>&#125;,valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">undefined</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">String</span>(T) <span class="comment">// "true" 调用toString</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span>  T = &#123;toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;,valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">undefined</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">String</span>(T) <span class="comment">// "undefined" 调用valueOf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span>  T = &#123;toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;,valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;&#125;&#125;;</span><br><span class="line"><span class="built_in">String</span>(T) <span class="comment">// Error Uncaught TypeError: Cannot convert object to primitive value(…)</span></span><br></pre></td></tr></table></figure></p>
 <p>下面是一个自定义toString方法的例子。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">String</span>(&#123;toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">3</span>;&#125;&#125;) <span class="comment">// "3"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(&#123;valueOf:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;&#125;) <span class="comment">// "[object Object]"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>(&#123;valueOf:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;,toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">3</span>;&#125;&#125;) <span class="comment">// "3"</span></span><br></pre></td></tr></table></figure>
 <p>上面代码对三个对象使用String方法。第一个对象返回toString方法的值（数值3），然后对其使用String方法，得到字符串“3”；第二个对象返回的还是toString方法的值（”[object Object]”），这次直接就是字符串；第三个对象表示toString方法先于valueOf方法执行。</p>
@@ -228,7 +233,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/02/02/好好学学String/" data-title="好好学学String | 前端之路" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/02/02/好好学学String/" data-title="好好学学String! | 前端之路" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -241,6 +246,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/02/03/好好学学Object/" title="好好学学Object!">
+  <strong>上一篇：</strong><br/>
+  <span>
+  好好学学Object!</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/01/29/void-0/"  title="javascript:void(0);到底是什么鬼?">
@@ -260,7 +273,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u8FF0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9A_u4E49"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B57_u7B26_u4E32_u4E0E_u6570_u7EC4"><span class="toc-number">1.2.</span> <span class="toc-text">字符串与数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#length_u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">length属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u7B26_u96C6"><span class="toc-number">2.</span> <span class="toc-text">字符集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base64_u8F6C_u7801"><span class="toc-number">3.</span> <span class="toc-text">Base64转码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u8F6C_u6362_String_28_29"><span class="toc-number">4.</span> <span class="toc-text">类型转换 String()</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u8FF0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9A_u4E49"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B57_u7B26_u4E32_u4E0E_u6570_u7EC4"><span class="toc-number">1.2.</span> <span class="toc-text">字符串与数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#length_u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">length属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u7B26_u96C6"><span class="toc-number">2.</span> <span class="toc-text">字符集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base64_u8F6C_u7801"><span class="toc-number">3.</span> <span class="toc-text">Base64转码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32_String_28_29"><span class="toc-number">4.</span> <span class="toc-text">转换为字符串 String()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#toString_28_29"><span class="toc-number">4.1.</span> <span class="toc-text">toString()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String_28_29"><span class="toc-number">4.2.</span> <span class="toc-text">String()</span></a></li></ol></li></ol>
  
   </div>
 
@@ -281,7 +294,7 @@
 		  
 		
 		  
-			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>3</sup></a></li>
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>4</sup></a></li>
 		  
 		
 		</ul>
@@ -294,7 +307,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>12</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
 			
 		
 			
