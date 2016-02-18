@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/03/好好学学Object/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="概述定义方法对象（object）是JavaScript的核心概念，也是最重要的数据类型。JavaScript的所有数据都可以被视为对象。简单说，所谓对象，就是一种无序的数据集合，由若干个“键值对”（key-value）构成。">
-<meta property="og:updated_time" content="2016-02-04T09:35:33.000Z">
+<meta property="og:updated_time" content="2016-02-18T07:44:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="好好学学Object!">
 <meta name="twitter:description" content="概述定义方法对象（object）是JavaScript的核心概念，也是最重要的数据类型。JavaScript的所有数据都可以被视为对象。简单说，所谓对象，就是一种无序的数据集合，由若干个“键值对”（key-value）构成。">
@@ -111,7 +111,7 @@
 <p>注意，JavaScript的保留字可以不加引号当作键名。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  for: 1,</span><br><span class="line">  class: 2</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>如果键名是数字，则会默认转为对应的字符串。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">1e2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">1e-2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">.234</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">0xFF</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Obj</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   100: true,</span></span><br><span class="line"><span class="comment">//   255: true,</span></span><br><span class="line"><span class="comment">//   0.01: true,</span></span><br><span class="line"><span class="comment">//   0.234: true</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="number">1e2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">1e-2</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">.234</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="number">0xFF</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Obj =</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   100: true,</span></span><br><span class="line"><span class="comment">//   255: true,</span></span><br><span class="line"><span class="comment">//   0.01: true,</span></span><br><span class="line"><span class="comment">//   0.234: true</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
 <p>上面代码表示，如果键名为数值，则会先转为标准形式的数值，然后再转为字符串。</p>
 <h3 id="u5C5E_u6027"><a href="#u5C5E_u6027" class="headerlink" title="属性"></a>属性</h3><p>对象的每一个“键名”又称为“属性”（property），它的“键值”可以是任何数据类型。如果一个属性的值为函数，通常把这个属性称为“方法”，它可以像函数那样调用。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  p: <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="number">2</span> * x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">o.p(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
@@ -174,8 +174,8 @@
 <ol>
 <li>在JavaScript语言中，所有全局变量都是顶层对象（浏览器的顶层对象就是<code>window</code>对象）的属性，因此可以用<code>in</code>运算符判断，一个全局变量是否存在。</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设变量x未定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法一：报错</span></span><br><span class="line"><span class="keyword">if</span> (x) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二：不正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.x) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法三：正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'x'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"><span class="keyword">if</span> ( x <span class="keyword">in</span> <span class="built_in">window</span>) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125; <span class="comment">// 注意x要用引号包括起来，是字符串</span></span><br></pre></td></tr></table></figure>
-<p>上面三种写法之中，如果<code>x</code>不存在，第一种写法会报错；如果<code>x</code>的值对应布尔值<code>false</code>（比如<code>x</code>等于空字符串），第二种写法无法得到正确结果；只有第三种写法，才能正确判断变量<code>x</code>是否存在。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设变量x未定义</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法一：报错</span></span><br><span class="line"><span class="keyword">if</span> (x) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法二：不正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.x) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法三：正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'x'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line"><span class="keyword">if</span> ( x <span class="keyword">in</span> <span class="built_in">window</span>) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125; <span class="comment">// 注意x要用引号包括起来，是字符串</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法四： 正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.hasOwnProperty(<span class="string">'x'</span>)) &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125; <span class="comment">// 注意x要用引号包括起来，是字符串</span></span><br></pre></td></tr></table></figure>
+<p>上面三种写法之中，如果<code>x</code>不存在，第一种写法会报错；如果<code>x</code>的值对应布尔值<code>false</code>（比如<code>x</code>等于空字符串），第二种写法无法得到正确结果；只有第三种、第四种写法，才能正确判断变量<code>x</code>是否存在。</p>
 <p><span style="color: red;"><code>in</code>运算符的一个问题是，它不能区分对象继承的属性。</span></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.hasOwnProperty(<span class="string">'toString'</span>) <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="string">'toString'</span> <span class="keyword">in</span> o <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>上面代码中，<code>toString</code>方法不是对象<code>o</code>自身的属性，而是继承的属性，<code>hasOwnProperty</code>方法可以说明这一点。但是，<code>in</code>运算符不能区分，对继承的属性也返回<code>true</code>。</p>
@@ -225,7 +225,7 @@
 <ul>
 <li><code>constructor</code>：保存着用于创建当前对象的函数。对于前面的例子而言，构造函数（<code>constructor</code>）就是Object()。</li>
 <li><code>hasOwnProperty(propertyName)</code>：用于检查给定的属性在当前对象实例中（而不是在实例的原型中）是否存在。其中，作为参数的属性名（propertyName）必须以字符串形式指定（例如：o.hasOwnProperty(“name”)）。</li>
-<li><code>isPrototypeOf(object)</code>：用于检查传入的对象是否是传入对象的原型（第5 章将讨论原型）。</li>
+<li><code>isPrototypeOf(object)</code>：用于检查传入的对象是否是传入对象的原型（第5章将讨论原型）。</li>
 <li><code>propertyIsEnumerable(propertyName)</code>：用于检查给定的属性是否能够使用for-in 语句（本章后面将会讨论）来枚举。与hasOwnProperty()方法一样，作为参数的属性名必须以字符串形式指定。</li>
 <li><code>toLocaleString()</code>：返回对象的字符串表示，该字符串与执行环境的地区对应。</li>
 <li><code>toString()</code>：返回对象的字符串表示。</li>
@@ -276,6 +276,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/02/18/类型转换/" title="类型转换">
+  <strong>上一篇：</strong><br/>
+  <span>
+  类型转换</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/02/02/好好学学String/"  title="好好学学String!">
@@ -316,7 +324,7 @@
 		  
 		
 		  
-			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>4</sup></a></li>
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>5</sup></a></li>
 		  
 		
 		</ul>
@@ -329,7 +337,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>14</sup></a></li>
 			
 		
 			
