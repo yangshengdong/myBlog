@@ -11,16 +11,16 @@
     
 
     
-    <meta name="description" content="#概述JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
+    <meta name="description" content="JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类型转换">
 <meta property="og:url" content="http://yoursite.com/2016/02/18/类型转换/index.html">
 <meta property="og:site_name" content="前端之路">
-<meta property="og:description" content="#概述JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
-<meta property="og:updated_time" content="2016-02-18T12:13:05.000Z">
+<meta property="og:description" content="JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
+<meta property="og:updated_time" content="2016-02-19T01:49:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型转换">
-<meta name="twitter:description" content="#概述JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
+<meta name="twitter:description" content="JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
 
     
     <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
@@ -100,7 +100,7 @@
 		
 		</div>
 		
-		<p>#概述<br>JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。<br><a id="more"></a></p>
+		<p>JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。<br><a id="more"></a></p>
 <h2 id="u5F3A_u5236_u8F6C_u6362"><a href="#u5F3A_u5236_u8F6C_u6362" class="headerlink" title="强制转换"></a>强制转换</h2><p>强制转换主要指使用Number、String和Boolean三个构造函数，手动将各种类型的值，转换成数字、字符串或者布尔值。<br>详细了解看这里：<a href="http://www.yangshengdonghome.com/2016/01/29/%E5%A5%BD%E5%A5%BD%E5%AD%A6%E5%AD%A6number/" target="_blank" rel="external">好好学学Number！</a></p>
 <h2 id="u81EA_u52A8_u8F6C_u6362"><a href="#u81EA_u52A8_u8F6C_u6362" class="headerlink" title="自动转换"></a>自动转换</h2><p>当遇到以下几种情况，JavaScript会自动转换数据类型：</p>
 <ul>
@@ -129,18 +129,77 @@
 <h2 id="u52A0_u6CD5_u8FD0_u7B97_u7B26_u7684_u7C7B_u578B_u8F6C_u5316"><a href="#u52A0_u6CD5_u8FD0_u7B97_u7B26_u7684_u7C7B_u578B_u8F6C_u5316" class="headerlink" title="加法运算符的类型转化"></a>加法运算符的类型转化</h2><p>加法运算符（+）需要特别讨论，因为它可以完成两种运算（加法和字符连接），所以不仅涉及到数据类型的转换，还涉及到确定运算类型。</p>
 <h3 id="u4E09_u79CD_u62BD_u8C61_u64CD_u4F5C"><a href="#u4E09_u79CD_u62BD_u8C61_u64CD_u4F5C" class="headerlink" title="三种抽象操作"></a>三种抽象操作</h3><p>加法运算符会触发三种类型转换:将值转换为原始值，转换为数字，转换为字符串，这刚好对应了JavaScript引擎内部的三种抽象操作:<code>ToPrimitive()</code>，<code>ToNumber()</code>，<code>ToString()</code>。</p>
 <h4 id="u901A_u8FC7ToPrimitive_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u539F_u59CB_u503C"><a href="#u901A_u8FC7ToPrimitive_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u539F_u59CB_u503C" class="headerlink" title="通过ToPrimitive()将值转换为原始值"></a>通过ToPrimitive()将值转换为原始值</h4><p>JavaScript引擎内部的抽象操作<code>ToPrimitive()</code>有着这样的签名:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ToPrimitive(input, PreferredType?)</span><br></pre></td></tr></table></figure></p>
-<p>可选参数PreferredType可以是Number或者String，它只代表了一个转换的偏好，转换结果不一定必须是这个参数所指的类型，但转换结果一定是一个原始值.如果PreferredType被标志为Number，则会进行下面的操作来转换输入的值:</p>
+<p>可选参数PreferredType可以是Number或者String，它只代表了一个转换的偏好，转换结果不一定必须是这个参数所指的类型，但转换结果一定是一个原始值。<br>如果PreferredType被标志为Number，则会进行下面的操作来转换输入的值:</p>
 <ol>
-<li>如果输入的值已经是个原始值，则直接返回它.</li>
-<li>否则，如果输入的值是一个对象.则调用该对象的valueOf()方法.如果valueOf()方法的返回值是一个原始值，则返回这个原始值.</li>
-<li>否则，调用这个对象的toString()方法.如果toString()方法的返回值是一个原始值，则返回这个原始值.</li>
-<li>否则，抛出TypeError异常.</li>
-<li>如果PreferredType被标志为String，则转换操作的第二步和第三步的顺序会调换.如果没有PreferredType这个参数，则PreferredType的值会按照这样的规则来自动设置：Date类型的对象会被设置为String，其它类型的值会被设置为Number。</li>
+<li>如果输入的值已经是个原始值，则直接返回它。</li>
+<li>否则，如果输入的值是一个对象。则调用该对象的valueOf()方法。如果valueOf()方法的返回值是一个原始值，则返回这个原始值。</li>
+<li>否则，调用这个对象的toString()方法。如果toString()方法的返回值是一个原始值，则返回这个原始值。</li>
+<li>否则，抛出TypeError异常。</li>
 </ol>
+<p>如果PreferredType被标志为String，则转换操作的第二步和第三步的顺序会调换。<br>如果没有PreferredType这个参数，则PreferredType的值会按照这样的规则来自动设置：Date类型的对象会被设置为String，其它类型的值会被设置为Number。</p>
 <h4 id="u901A_u8FC7ToNumber_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u6570_u5B57"><a href="#u901A_u8FC7ToNumber_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u6570_u5B57" class="headerlink" title="通过ToNumber()将值转换为数字"></a>通过ToNumber()将值转换为数字</h4><p>下面的表格解释了ToNumber()是如何将原始值转换成数字的。</p>
-<p> 参数         结果<br>undefined      NaN<br>null          +0<br>布尔值       true被转换为1，false转换为+0<br>数字           无需转换<br>字符串       由字符串解析为数字.例如，”324”被转换为324</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">undefined</td>
+<td style="text-align:center"><strong><code>NaN</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">null</td>
+<td style="text-align:center"><strong>+0</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">布尔值</td>
+<td style="text-align:center"><strong>true被转换为1，false转换为+0</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">数字</td>
+<td style="text-align:center"><strong>无需转换</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">字符串</td>
+<td style="text-align:center"><strong>由字符串解析为数字。例如，”324”被转换为324</strong></td>
+</tr>
+</tbody>
+</table>
 <p>如果输入的值是一个对象，则会首先会调用ToPrimitive(obj， Number)将该对象转换为原始值，然后在调用ToNumber()将这个原始值转换为数字。</p>
-<h4 id="u901A_u8FC7ToString_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32"><a href="#u901A_u8FC7ToString_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32" class="headerlink" title="通过ToString()将值转换为字符串"></a>通过ToString()将值转换为字符串</h4><p>下面的表格解释了ToString()是如何将原始值转换成字符串的。<br> 参数           结果<br>undefined    “undefined”<br>null           “null”<br>布尔值         “true” 或者 “false”<br>数字          数字作为字符串，比如. “1.765”<br>字符串            无需转换</p>
+<h4 id="u901A_u8FC7ToString_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32"><a href="#u901A_u8FC7ToString_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u5B57_u7B26_u4E32" class="headerlink" title="通过ToString()将值转换为字符串"></a>通过ToString()将值转换为字符串</h4><p>下面的表格解释了ToString()是如何将原始值转换成字符串的。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">undefined</td>
+<td style="text-align:center"><strong>“undefined”</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">null</td>
+<td style="text-align:center"><strong>“null”</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">布尔值</td>
+<td style="text-align:center"><strong>“true” 或者 “false”</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">数字</td>
+<td style="text-align:center"><strong>数字作为字符串，比如。”1.765”</strong></td>
+</tr>
+<tr>
+<td style="text-align:left">字符串</td>
+<td style="text-align:center"><strong>无需转换</strong></td>
+</tr>
+</tbody>
+</table>
 <p>如果输入的值是一个对象，则会首先会调用ToPrimitive(obj， String)将该对象转换为原始值，然后再调用ToString()将这个原始值转换为字符串。</p>
 <h3 id="u4E09_u79CD_u60C5_u51B5"><a href="#u4E09_u79CD_u60C5_u51B5" class="headerlink" title="三种情况"></a>三种情况</h3><p>加法运算符的类型转换，可以分成三种情况讨论。</p>
 <p><strong>（1）运算子之中存在字符串</strong></p>
@@ -200,7 +259,7 @@
 </li>
 </ol>
 <p><strong> 所以：</strong><br>a 为undefined/null时，a==false 符合规则5，为false。对于取反操作<code>undefined</code>和<code>null</code>都将转成boolean值false，取反!a后为true。</p>
-<p>参考链接：<br><a href="http://javascript.ruanyifeng.com/grammar/conversion.html" target="_blank" rel="external">阮一峰</a></p>
+<p>参考链接：<a href="http://javascript.ruanyifeng.com/grammar/conversion.html" target="_blank" rel="external">阮一峰</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
