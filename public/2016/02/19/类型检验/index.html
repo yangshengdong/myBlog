@@ -1,0 +1,709 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>类型检验 | 前端之路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jack">
+    
+
+    
+    <meta name="description" content="在JavaScript中，有5种简单数据类型和1种复杂数据类型，简单数据类型有：Undefined，Null，Boolean， Number和String；复杂数据类型是Object，Object中还细分了很多具体的类型，比如：Array，Function，Date，RegExp等等，还有我们自己定义的对象，自定义类型。今天我们就来探讨一下，使用什么方法判断一个出一个变量的类型。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类型检验">
+<meta property="og:url" content="http://yoursite.com/2016/02/19/类型检验/index.html">
+<meta property="og:site_name" content="前端之路">
+<meta property="og:description" content="在JavaScript中，有5种简单数据类型和1种复杂数据类型，简单数据类型有：Undefined，Null，Boolean， Number和String；复杂数据类型是Object，Object中还细分了很多具体的类型，比如：Array，Function，Date，RegExp等等，还有我们自己定义的对象，自定义类型。今天我们就来探讨一下，使用什么方法判断一个出一个变量的类型。">
+<meta property="og:image" content="http://yoursite.com/2016/02/19/类型检验/type.jpg">
+<meta property="og:updated_time" content="2016-02-19T08:08:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类型检验">
+<meta name="twitter:description" content="在JavaScript中，有5种简单数据类型和1种复杂数据类型，简单数据类型有：Undefined，Null，Boolean， Number和String；复杂数据类型是Object，Object中还细分了很多具体的类型，比如：Array，Function，Date，RegExp等等，还有我们自己定义的对象，自定义类型。今天我们就来探讨一下，使用什么方法判断一个出一个变量的类型。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端之路" title="前端之路"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端之路">前端之路</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/02/19/类型检验/" title="类型检验" itemprop="url">类型检验</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-02-19T02:38:35.000Z" itemprop="datePublished"> 发表于 2016-02-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u7CFB_u7EDF"><span class="toc-number">1.</span> <span class="toc-text">类型系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u8F6C_u5316_u8868"><span class="toc-number">2.</span> <span class="toc-text">类型转化表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u5224_u65AD"><span class="toc-number">3.</span> <span class="toc-text">类型判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#typeof"><span class="toc-number">3.1.</span> <span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instanceof"><span class="toc-number">3.2.</span> <span class="toc-text">instanceof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-prototype-toString-call_28_29"><span class="toc-number">3.3.</span> <span class="toc-text">Object.prototype.toString.call()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor-NaN"><span class="toc-number">3.4.</span> <span class="toc-text">constructor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5404_u79CD_u68C0_u9A8C_u65B9_u6CD5_u5BF9_u5E94_u503C"><span class="toc-number">4.</span> <span class="toc-text">各种检验方法对应值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5E38_u7528_u7684_u6821_u9A8C_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">一些常用的校验函数</span></a></li></ol>
+		
+		</div>
+		
+		<p>在JavaScript中，有5种简单数据类型和1种复杂数据类型，简单数据类型有：Undefined，Null，Boolean， Number和String；复杂数据类型是Object，Object中还细分了很多具体的类型，比如：Array，Function，Date，RegExp等等，还有我们自己定义的对象，自定义类型。今天我们就来探讨一下，使用什么方法判断一个出一个变量的类型。<br><a id="more"></a></p>
+<h2 id="u7C7B_u578B_u7CFB_u7EDF"><a href="#u7C7B_u578B_u7CFB_u7EDF" class="headerlink" title="类型系统"></a>类型系统</h2><img src="/2016/02/19/类型检验/type.jpg" alt="type.jpg" title="">
+<h2 id="u7C7B_u578B_u8F6C_u5316_u8868"><a href="#u7C7B_u578B_u8F6C_u5316_u8868" class="headerlink" title="类型转化表"></a>类型转化表</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">Value</th>
+<th style="text-align:center">Boolean</th>
+<th style="text-align:center">Number</th>
+<th style="text-align:center">String</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">undefined</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“undefined”</td>
+</tr>
+<tr>
+<td style="text-align:left">null</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“null”</td>
+</tr>
+<tr>
+<td style="text-align:left">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">“true”</td>
+</tr>
+<tr>
+<td style="text-align:left">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“false”</td>
+</tr>
+<tr>
+<td style="text-align:left">‘’</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“”</td>
+</tr>
+<tr>
+<td style="text-align:left">‘123’</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">123</td>
+<td style="text-align:center">“123”</td>
+</tr>
+<tr>
+<td style="text-align:left">‘1a’</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“1a”</td>
+</tr>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">“0”</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">“1”</td>
+</tr>
+<tr>
+<td style="text-align:left">Infinity</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">Infinity</td>
+<td style="text-align:center">“Infinity”</td>
+</tr>
+<tr>
+<td style="text-align:left">NaN</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“NaN”</td>
+</tr>
+<tr>
+<td style="text-align:left">{}</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">“[object Object]”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u7C7B_u578B_u5224_u65AD"><a href="#u7C7B_u578B_u5224_u65AD" class="headerlink" title="类型判断"></a>类型判断</h2><h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ul>
+<li>可以判别简单数据类型(null除外)</li>
+<li>不可判别具体的复杂数据类型(Function除外)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 可以判别简单数据类型(`null`除外)</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"number"</span></span><br><span class="line">obj = <span class="string">"abc"</span></span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"string"</span></span><br><span class="line">obj = <span class="literal">false</span></span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"boolean"</span></span><br><span class="line">obj = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"undefined"</span></span><br><span class="line">obj = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"object"，WTF，其实这是js的一个bug，人艰不拆 T_T</span></span><br><span class="line"><span class="comment">//2. 不可判别具体的复杂数据类型(`Function`除外)</span></span><br><span class="line">obj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"function"</span></span><br><span class="line">obj = [];</span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"object"</span></span><br><span class="line">obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">typeof</span> obj; <span class="comment">//"object"</span></span><br><span class="line">obj = <span class="regexp">/w/g</span>;</span><br><span class="line"><span class="keyword">typeof</span> obj <span class="comment">//"object"</span></span><br><span class="line">obj = <span class="keyword">new</span> <span class="built_in">Error</span>();</span><br><span class="line"><span class="keyword">typeof</span> obj <span class="comment">//"object"</span></span><br></pre></td></tr></table></figure>
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p><code>instanceof</code>左侧为查询变量，右侧为标识对象的类。</p>
+<ul>
+<li>能够判别复杂数据类型，但是不能判别<code>具体的复杂数据类型</code>和Object类型。</li>
+<li>不能判别简单数据类型，但是能判别通过基本包装行创建的变量。</li>
+<li>能够判别自定义类型。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    <span class="comment">//1. 不能判别简单数据类型 (number、string、boolean、null、undefined)，</span></span><br><span class="line">    <span class="number">99</span> <span class="keyword">instanceof</span> <span class="built_in">Number</span>,<span class="comment">//false</span></span><br><span class="line">    <span class="string">"2"</span> <span class="keyword">instanceof</span> <span class="built_in">String</span>,<span class="comment">//false</span></span><br><span class="line">    <span class="literal">true</span> <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>,<span class="comment">//false</span></span><br><span class="line">    <span class="literal">undefined</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>,<span class="comment">//false</span></span><br><span class="line">    <span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>,<span class="comment">//false</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//2.能够判别复杂数据类型，</span></span><br><span class="line">    [] <span class="keyword">instanceof</span> <span class="built_in">Array</span>,<span class="comment">//true</span></span><br><span class="line">    &#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Object</span>,<span class="comment">//true</span></span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;) <span class="keyword">instanceof</span> <span class="built_in">Function</span>,<span class="comment">//true</span></span><br><span class="line">    (<span class="keyword">new</span> <span class="built_in">Date</span>()) <span class="keyword">instanceof</span> <span class="built_in">Date</span>,<span class="comment">//true</span></span><br><span class="line">    /\d/ <span class="keyword">instanceof</span> <span class="built_in">RegExp</span>,<span class="comment">//true</span></span><br><span class="line">    (<span class="keyword">new</span> <span class="built_in">Error</span>()) <span class="keyword">instanceof</span> <span class="built_in">Error</span>,<span class="comment">//true</span></span><br><span class="line">    <span class="comment">//但是不能判别`具体的复杂数据类型`和Object类型</span></span><br><span class="line">    [] <span class="keyword">instanceof</span> <span class="built_in">Object</span>,<span class="comment">//true</span></span><br><span class="line">    /\d/ <span class="keyword">instanceof</span> <span class="built_in">Object</span><span class="comment">//true</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">//但是使用基本包装类型创建的变量通过 instanceof 可以判别。</span></span><br><span class="line"><span class="comment">//如果指定obj = "abc"则obj保存的实际上就是abc的值，是一个基本类型。而如果指定obj = new String('abc')那么obj实际上保存的是一个指向字符串对象的指针。</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'abc'</span>);</span><br><span class="line">obj <span class="keyword">instanceof</span> <span class="built_in">String</span><span class="comment">//true</span></span><br><span class="line"><span class="string">"abc"</span> <span class="keyword">instanceof</span> <span class="built_in">String</span><span class="comment">//false </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3. 能够判别自定义类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">c <span class="keyword">instanceof</span> Point;<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-prototype-toString-call_28_29"><a href="#Object-prototype-toString-call_28_29" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h3><ul>
+<li>能判别所有类型(除去自定义类型)</li>
+<li>不能判别自定义类型</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 所有类型(除去自定义类型)</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="number">1</span>),<span class="comment">// '[object Number]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="string">"abc"</span>),<span class="comment">//'[object String]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="literal">true</span>),<span class="comment">//'[object Boolean]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call([]),<span class="comment">//'[object Array]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;),<span class="comment">//'[object Object]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;),<span class="comment">//'[object Function]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>),<span class="comment">//'[object Undefined]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>),<span class="comment">//'[object Null]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Date</span>()),<span class="comment">//'[object Date]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="regexp">/^[a-zA-Z]&#123;5,20&#125;$/</span>),<span class="comment">//'[object RegExp]'</span></span><br><span class="line">    <span class="built_in">Object</span>.prototype.toString.call(<span class="keyword">new</span> <span class="built_in">Error</span>())<span class="comment">//'[object Error]'</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 不能判别自定义类型</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> Point(<span class="number">2</span>,<span class="number">3</span>);<span class="comment">//c instanceof Point;//true</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(c);<span class="comment">//"[object Object]"</span></span><br></pre></td></tr></table></figure>
+<p><strong>简单封装</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeProto</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj).slice(<span class="number">8</span>,-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">typeProto(<span class="string">"guo"</span>);<span class="comment">//"String"</span></span><br><span class="line">typeProto(&#123;&#125;);<span class="comment">//"Object"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>constructor本来是原型对象上的属性，指向构造函数。但是根据实例对象寻找属性的顺序，若实例对象上没有实例属性或方法时，就去原型链上寻找，因此，实例对象也是能使用constructor属性的。</p>
+<ul>
+<li>不可判别<code>null</code>、<code>undefined</code></li>
+<li>可判别简单类型数据(<code>null</code>、<code>undefined</code>除外)</li>
+<li>可判别复杂类型数据包括自定义类型数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> Tom = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="comment">// undefined和null没有constructor属性</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">    Tom.constructor === Person,</span><br><span class="line">    (<span class="number">2</span>).constructor === <span class="built_in">Number</span>,<span class="comment">//或者 2..constructor</span></span><br><span class="line">    <span class="string">"abc"</span>.constructor === <span class="built_in">String</span>,</span><br><span class="line">    <span class="literal">true</span>.constructor === <span class="built_in">Boolean</span>,</span><br><span class="line">    [].constructor === <span class="built_in">Array</span>,</span><br><span class="line">    &#123;&#125;.constructor === <span class="built_in">Object</span>,</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> <span class="title">aa</span>(<span class="params"></span>)</span>&#123;&#125;).constructor === <span class="built_in">Function</span>,</span><br><span class="line">    (<span class="keyword">new</span> <span class="built_in">Date</span>()).constructor === <span class="built_in">Date</span>,</span><br><span class="line">    <span class="regexp">/\d/</span>.constructor === <span class="built_in">RegExp</span>,</span><br><span class="line">    (<span class="keyword">new</span> <span class="built_in">Error</span>()).constructor === <span class="built_in">Error</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>不过使用constructor也不是保险的，因为constructor属性是可以被修改的，会导致检测出的结果不正确，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">Student.prototype = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">var</span> John = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="built_in">console</span>.log(John.constructor==Student); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(John.constructor==Person);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>在上面的例子中，Student原型中的constructor被修改为指向到Person，导致检测不出实例对象John真实的构造函数。<br><strong>注意：</strong><br>同时，使用<code>instaceof</code>和<code>construcor</code>，被判断的array必须是在当前页面声明的！比如，一个页面（父页面）有一个框架，框架中引用了一个页面（子页面），在子页面中声明了一个array，并将其赋值给父页面的一个变量，这时在父页面判断该变量，Array(父页面的Array构造函数) === object(子页面穿过来的字页面的Array对象).constructor;肯定会返回false；原因：</p>
+<ol>
+<li>array属于引用型数据，在传递过程中，仅仅是引用地址的传递。</li>
+<li>每个页面的Array原生对象所引用的地址是不一样的，在子页面声明的array，所对应的构造函数，是子页面的Array对象；父页面来进行判断，使用的Array并不等于子页面的Array；切记，不然很难跟踪问题！</li>
+</ol>
+<h2 id="u5404_u79CD_u68C0_u9A8C_u65B9_u6CD5_u5BF9_u5E94_u503C"><a href="#u5404_u79CD_u68C0_u9A8C_u65B9_u6CD5_u5BF9_u5E94_u503C" class="headerlink" title="各种检验方法对应值"></a>各种检验方法对应值</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">类型判断</th>
+<th style="text-align:center">typeof</th>
+<th style="text-align:center">instanceof</th>
+<th style="text-align:center">constructor</th>
+<th style="text-align:center">toString.call</th>
+<th style="text-align:center">$.type(jQuery库的方法)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">99</td>
+<td style="text-align:center">number</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object Number]</td>
+<td style="text-align:center">number</td>
+</tr>
+<tr>
+<td style="text-align:left">“abc”</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object String]</td>
+<td style="text-align:center">string</td>
+</tr>
+<tr>
+<td style="text-align:left">true</td>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object Boolean]</td>
+<td style="text-align:center">boolean</td>
+</tr>
+<tr>
+<td style="text-align:left">[1,2]</td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object Array]</td>
+<td style="text-align:center">array</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>{}</code></td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object Object]</td>
+<td style="text-align:center">object</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>(function aa(){})</code></td>
+<td style="text-align:center">function</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object Function]</td>
+<td style="text-align:center">function</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:center">undefined</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">[object Undefined]</td>
+<td style="text-align:center">undefined</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>null</code></td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">[object Null]</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>new Date()</code></td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object Date]</td>
+<td style="text-align:center">date</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>/\d/</code></td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object RegExp]</td>
+<td style="text-align:center">regexp</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>new Error()</code></td>
+<td style="text-align:center">object</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">[object Error]</td>
+<td style="text-align:center">error</td>
+</tr>
+<tr>
+<td style="text-align:left">优点</td>
+<td style="text-align:center">使用简单，能直接输出结果</td>
+<td style="text-align:center">能检测出复杂的类型</td>
+<td style="text-align:center">基本能检测出所有的类型</td>
+<td style="text-align:center">检测出所有的类型</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:left">缺点</td>
+<td style="text-align:center">检测出的类型太少</td>
+<td style="text-align:center">基本类型检测不出，且不能跨iframe</td>
+<td style="text-align:center">不能跨iframe，且constructor易被修改</td>
+<td style="text-align:center">IE6下undefined,null均为Object</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="u4E00_u4E9B_u5E38_u7528_u7684_u6821_u9A8C_u51FD_u6570"><a href="#u4E00_u4E9B_u5E38_u7528_u7684_u6821_u9A8C_u51FD_u6570" class="headerlink" title="一些常用的校验函数"></a>一些常用的校验函数</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//低版本ie中undefined变量可以被修改，所以使用void 0 获取真实的undefined值，</span></span><br><span class="line"><span class="keyword">var</span> isUndefined = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//or: return typeof obj === 'undefined';</span></span><br><span class="line">    <span class="keyword">return</span> obj === <span class="keyword">void</span> <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//typeof null 的结果是"object"。</span></span><br><span class="line"><span class="keyword">var</span> isNull = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj === <span class="literal">null</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// boolean值，number值和string值需要考虑两种情况，值为字面量时使用typeof和Object.prototype.toString能检测; </span></span><br><span class="line"><span class="comment">// 值为构造函数构建的时候需要使用Object.prototype.toString或者instanceof检测</span></span><br><span class="line"><span class="keyword">var</span> isBoolean = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object Boolean]'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> isNumber = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object Number]'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> isString = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object String]'</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">isNaN</span> = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj !== obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//typeof 操作符在引用类型的变量里能对function有效。</span></span><br><span class="line"><span class="keyword">var</span> isFunction = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//or:  return Object.prototype.toString.call(obj) == '[object Function]';</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">'function'</span>;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> isDate = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object Date]'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> isArray = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object Array]'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> isObject = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//or: return obj === Object(obj);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(obj) == <span class="string">'[object Object]'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/《JS高程3-笔记》/">《JS高程3-笔记》</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/02/19/类型检验/" data-title="类型检验 | 前端之路" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/02/18/类型转换/"  title="类型转换">
+ <strong>下一篇：</strong><br/> 
+ <span>类型转换
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u7CFB_u7EDF"><span class="toc-number">1.</span> <span class="toc-text">类型系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u8F6C_u5316_u8868"><span class="toc-number">2.</span> <span class="toc-text">类型转化表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u578B_u5224_u65AD"><span class="toc-number">3.</span> <span class="toc-text">类型判断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#typeof"><span class="toc-number">3.1.</span> <span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instanceof"><span class="toc-number">3.2.</span> <span class="toc-text">instanceof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-prototype-toString-call_28_29"><span class="toc-number">3.3.</span> <span class="toc-text">Object.prototype.toString.call()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor-NaN"><span class="toc-number">3.4.</span> <span class="toc-text">constructor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5404_u79CD_u68C0_u9A8C_u65B9_u6CD5_u5BF9_u5E94_u503C"><span class="toc-number">4.</span> <span class="toc-text">各种检验方法对应值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E00_u4E9B_u5E38_u7528_u7684_u6821_u9A8C_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">一些常用的校验函数</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>6</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="jack">jack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
