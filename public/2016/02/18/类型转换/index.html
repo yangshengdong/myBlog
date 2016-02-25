@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/18/类型转换/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
-<meta property="og:updated_time" content="2016-02-19T01:49:21.000Z">
+<meta property="og:updated_time" content="2016-02-22T05:51:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型转换">
 <meta name="twitter:description" content="JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
@@ -210,15 +210,15 @@
 <p><strong>（3）运算子之中存在对象</strong></p>
 <p>运算子之中存在对象（或者准确地说，存在非简单类型的值），则先调用该对象的valueOf方法。如果返回结果为简单类型的值，则运用上面两条规则；否则继续调用该对象的toString方法，对其返回值运用上面两条规则。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + [<span class="number">1</span>，<span class="number">2</span>]<span class="comment">// "11，2"</span></span><br><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line">arr.valueOf() === arr <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>上面代码的运行顺序是，先调用[1，2].valueOf()，结果还是数组[1，2]本身，则继续调用[1，2].toString()，结果字符串“1，2”，所以最终结果为字符串“11，2”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;a:<span class="number">1</span>&#125; <span class="comment">// "1[object Object]"</span></span><br></pre></td></tr></table></figure></p>
-<p>对象{a:1}的valueOf方法，返回的就是这个对象的本身，因此接着对它调用toString方法。({a:1}).toString()默认返回字符串”[object Object]”，所以最终结果就是字符串“1[object Object]”。</p>
+<p>上面代码的运行顺序是，先调用<code>[1，2].valueOf()</code>，结果还是数组[1，2]本身，则继续调用<code>[1，2].toString()</code>，结果字符串“1，2”，所以最终结果为字符串“11，2”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;a:<span class="number">1</span>&#125; <span class="comment">// "1[object Object]"</span></span><br></pre></td></tr></table></figure></p>
+<p>对象<code>{a:1}</code>的valueOf方法，返回的就是这个对象的本身，因此接着对它调用toString方法。<code>({a:1}).toString()</code>默认返回字符串”[object Object]”，所以最终结果就是字符串“1[object Object]”。</p>
 <p>有趣的是，如果更换上面代码的运算次序，就会得到不同的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;a:<span class="number">1</span>&#125; + <span class="number">1</span> <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></p>
-<p>原来此时，JavaScript引擎不将{a:1}视为对象，而是视为一个代码块，这个代码块没有返回值，所以被忽略。因此上面的代码，实际上等同于 {a:1};+1 ，所以最终结果就是1。为了避免这种情况，需要对{a:1}加上括号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(&#123;a:<span class="number">1</span>&#125;)+<span class="number">1</span> <span class="comment">//"[object Object]1"</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;a:<span class="number">1</span>&#125;+<span class="number">1</span>) <span class="comment">// "[object Object]1"</span></span><br></pre></td></tr></table></figure></p>
+<p>原来此时，JavaScript引擎不将<code>{a:1}</code>视为对象，而是视为一个代码块，这个代码块没有返回值，所以被忽略。因此上面的代码，实际上等同于 <code>{a:1};+1</code>，所以最终结果就是1。为了避免这种情况，需要对{a:1}加上括号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(&#123;a:<span class="number">1</span>&#125;)+<span class="number">1</span> <span class="comment">//"[object Object]1"</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;a:<span class="number">1</span>&#125;+<span class="number">1</span>) <span class="comment">// "[object Object]1"</span></span><br></pre></td></tr></table></figure></p>
 <p>将{a:1}放置在括号之中，由于JavaScript引擎预期括号之中是一个值，所以不把它当作代码块处理，而是当作对象处理，所以最终结果为“[object Object]1”。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;&#125;<span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
 <p>上面代码的valueOf方法返回数值2，所以最终结果为3。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;;&#125;&#125;<span class="comment">// "1[object Object]"</span></span><br></pre></td></tr></table></figure></p>
-<p>上面代码的valueOf方法返回一个空对象，则继续调用toString方法，所以最终结果是“1[object Object]”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;;&#125;， toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;&#125;<span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
-<p>上面代码的toString方法返回数值2（不是字符串），则最终结果就是数值3。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;;&#125;， toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;;&#125;&#125;<span class="comment">// TypeError: Cannot convert object to primitive value</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码的valueOf方法返回一个空对象，则继续调用toString方法，所以最终结果是“1[object Object]”。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;;&#125;,toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">2</span>;&#125;&#125;<span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码的toString方法返回数值2（不是字符串），则最终结果就是数值3。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + &#123;valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;;&#125;,toString:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> &#123;&#125;;&#125;&#125;<span class="comment">// TypeError: Cannot convert object to primitive value</span></span><br></pre></td></tr></table></figure></p>
 <p>上面代码的toString方法返回一个空对象，JavaScript就会报错，表示无法获得原始类型的值。</p>
 <h3 id="u56DB_u4E2A_u7279_u6B8A_u8868_u8FBE_u5F0F"><a href="#u56DB_u4E2A_u7279_u6B8A_u8868_u8FBE_u5F0F" class="headerlink" title="四个特殊表达式"></a>四个特殊表达式</h3><p>有了上面这些例子，我们再进一步来看四个特殊表达式。</p>
 <p><strong>（1）空数组 + 空数组</strong></p>
@@ -343,7 +343,7 @@
 		  
 		
 		  
-			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>7</sup></a></li>
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>8</sup></a></li>
 		  
 		
 		</ul>
@@ -356,7 +356,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>16</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>17</sup></a></li>
 			
 		
 			
