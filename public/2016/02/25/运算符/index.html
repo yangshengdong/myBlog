@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/25/运算符/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="运算符是处理数据的基本方法，用来从现有数据得到新的数据。JavaScript与其他编程语言一样，提供了多种运算符。">
-<meta property="og:updated_time" content="2016-02-25T12:19:40.000Z">
+<meta property="og:updated_time" content="2016-02-26T05:42:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运算符">
 <meta name="twitter:description" content="运算符是处理数据的基本方法，用来从现有数据得到新的数据。JavaScript与其他编程语言一样，提供了多种运算符。">
@@ -126,12 +126,12 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + <span class="string">''</span></span><br></pre></td></tr></table></figure>
 <p>上面代码表示，一个值加上空字符串，会使得该值转为字符串形式。</p>
 <p>布尔值和复合类型的值，也可以使用加法运算符，但是会导致数据类型的自动转换，关于这方面的详细讨论，参见<a href="http://www.yangshengdonghome.com/2016/02/18/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_blank" rel="external">《数据类型转换》</a>一节。</p>
-<p>加法运算符以外的其他算术运算符，都不会发生重载。它们的规则是：所有运算子一律转为数值，再进行相应的数学运算。</p>
+<p><strong>除加法运算符以外的其他算术运算符，都不会发生重载。它们的规则是：所有运算子一律转为数值，再进行相应的数学运算。</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - <span class="string">'1'</span> <span class="comment">// 0</span></span><br><span class="line">+<span class="string">'3'</span> <span class="comment">// 3</span></span><br><span class="line">-<span class="literal">true</span> <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
 <p>上面代码表示，减法运算符将字符串“1”自动转为数值1，数值运算符（+）将字符串“3”转为数值3，求负运算符（-）将布尔值true转为-1。</p>
 <p>由于加法运算符与其他算术运算符的这种差异，会导致一些意想不到的结果，计算时要小心。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">typeof</span> (now + <span class="number">1</span>) <span class="comment">// "string"</span></span><br><span class="line"><span class="keyword">typeof</span> (now - <span class="number">1</span>) <span class="comment">// "number"</span></span><br></pre></td></tr></table></figure>
-<p>上面代码中，<code>now</code>是一个Date对象的实例。加法运算时，<code>now</code>转为字符串，加一个数字，得到还是字符串；减法运算时，now转为数值，减一个数字，得到的是数字。<br><span style="color:red;">Date对象比较特殊在和一个数字相加的时候，会优先调用toString()方法，其他对象都是优先valueOf()</span></p>
+<p>上面代码中，<code>now</code>是一个Date对象的实例。加法运算时，<code>now</code>转为字符串，加一个数字，得到还是字符串；减法运算时，now转为数值，减一个数字，得到的是数字。<br><span style="color:red;">Date对象比较特殊在和一个任意类型的数据相加的时候，会优先调用toString()方法，其他对象都是优先valueOf()</span></p>
 <h3 id="u4F59_u6570_u8FD0_u7B97_u7B26"><a href="#u4F59_u6570_u8FD0_u7B97_u7B26" class="headerlink" title="余数运算符"></a>余数运算符</h3><p>余数运算符（<code>%</code>）返回前一个运算子被后一个运算子除，所得的余数。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12</span> % <span class="number">5</span> <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
 <p>需要注意的是，运算结果的正负号由第一个运算子的正负号决定。</p>
@@ -215,8 +215,7 @@
 <p><strong>（5）不相等运算符</strong></p>
 <p>相等运算符有一个对应的“不相等运算符”（!=），两者的运算结果正好相反。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">1</span> != <span class="string">"1"</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>摘录<a href="https://www.w3.org/html/ig/zh/wiki/ES5/expressions#.E7.AD.89.E4.BA.8E.E8.BF.90.E7.AE.97.E7.AC.A6.EF.BC.88.3D.3D.EF.BC.89" target="_blank" rel="external">ES5标准</a>：以 x 和 y 为值进行 x == y 比较会产生的结果可为 true 或 false。比较的执行步骤如下：</p>
+<p><strong>（6）详细比较过程</strong><br>摘录<a href="https://www.w3.org/html/ig/zh/wiki/ES5/expressions#.E7.AD.89.E4.BA.8E.E8.BF.90.E7.AE.97.E7.AC.A6.EF.BC.88.3D.3D.EF.BC.89" target="_blank" rel="external">ES5标准</a>：以 x 和 y 为值进行 x == y 比较会产生的结果可为 true 或 false。比较的执行步骤如下：</p>
 <ol>
 <li>若 Type(x) 与 Type(y) 相同， 则<ol>
 <li>若 Type(x) 为 Undefined， 返回 true。</li>
@@ -244,7 +243,7 @@
 <li>返回 false。<br>注：等于运算符不总是可传递。举例来说，两个代表相同 String 值但是不同的 String 对象会分别与 String 值 ==，但是两个对象间不相等。比如下例:</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>; <span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> a1 = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">2</span>); <span class="keyword">var</span> b1 = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a == a1) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(b == b1) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a == b)  <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a1 == b1) <span class="comment">//false</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">"123"</span>; <span class="keyword">var</span> b = <span class="string">"123"</span>;</span><br><span class="line"><span class="keyword">var</span> a1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"123"</span>); <span class="keyword">var</span> b1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"123"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a == a1) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(b == b1) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a == b) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(a1 == b1) <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-</blockquote>
+<p>注：不能将null 和undefined 转换成其他任何值，<strong>可以见得： <code>null</code>、<code>undefined</code>只和<code>null</code>、<code>undefined</code>相等，和<code>false</code>和0比都是<code>false</code>。</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">undefined</span> == <span class="number">0</span>; <span class="comment">//false</span></span><br><span class="line"><span class="literal">null</span> == <span class="number">0</span>; <span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> == <span class="literal">null</span>; <span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> == <span class="literal">undefined</span>; <span class="comment">//flase</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="u5E03_u5C14_u8FD0_u7B97_u7B26"><a href="#u5E03_u5C14_u8FD0_u7B97_u7B26" class="headerlink" title="布尔运算符"></a>布尔运算符</h2><p>布尔运算符用于将表达式转为布尔值。</p>
 <h3 id="u53D6_u53CD_u8FD0_u7B97_u7B26_uFF08_21_uFF09"><a href="#u53D6_u53CD_u8FD0_u7B97_u7B26_uFF08_21_uFF09" class="headerlink" title="取反运算符（!）"></a>取反运算符（!）</h3><p>取反运算符形式上是一个感叹号，用于将布尔值变为相反值，即true变成false，false变成true。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">!<span class="literal">true</span> <span class="comment">// false</span></span><br><span class="line">!<span class="literal">false</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
@@ -288,7 +287,7 @@
 <p>通常来说，三元条件表达式与if…else语句具有同样表达效果，前者可以表达的，后者也能表达。但是两者具有一个重大差别，if…else是语句，没有返回值；三元条件表达式是表达式，具有返回值。所以，在需要返回值的场合，只能使用三元条件表达式，而不能使用if..else。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> check = <span class="literal">true</span> ? <span class="built_in">console</span>.log(<span class="string">'T'</span>) : <span class="built_in">console</span>.log(<span class="string">'F'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> ? <span class="string">'T'</span> : <span class="string">'F'</span>);</span><br></pre></td></tr></table></figure>
 <p>上面代码是赋值语句和console.log方法的例子，它们都需要使用表达式，这时三元条件表达式就能满足需要。如果要用if…else语句，就必须改变整个代码写法了。</p>
-<h2 id="u4F4D_u8FD0_u7B97_u7B26"><a href="#u4F4D_u8FD0_u7B97_u7B26" class="headerlink" title="位运算符"></a>位运算符</h2><h3 id="u7B80_u4ECB"><a href="#u7B80_u4ECB" class="headerlink" title="简介"></a>简介</h3><p>位运算符用于直接对二进制位进行计算，一共有7个。</p>
+<h2 id="u4F4D_u8FD0_u7B97_u7B26"><a href="#u4F4D_u8FD0_u7B97_u7B26" class="headerlink" title="位运算符"></a>位运算符</h2><h3 id="u7B80_u4ECB"><a href="#u7B80_u4ECB" class="headerlink" title="简介"></a>简介</h3><p>ECMAScript 中的所有数值都以IEEE-754 64 位格式存储，但位操作符并不直接操作64 位的值。而是先将64 位的值转换成32 位的整数，然后执行操作，最后再将结果转换回64 位，位运算符用于直接对二进制位进行计算，一共有7个。<br>如果对非数值应用位操作符，会先使用Number()函数将该值转换为一个数值（自动完成），然后再应用位操作。</p>
 <ul>
 <li><p><strong>或运算</strong>（or）：符号为|，表示两个二进制位中有一个为1，则结果为1，否则为0。</p>
 </li>
@@ -306,10 +305,11 @@
 </li>
 </ul>
 <p>这些位运算符直接处理每一个比特位，所以是非常底层的运算，好处是速度极快，缺点是很不直观，许多场合不能使用它们，否则会带来过度的复杂性。</p>
-<p>有一点需要特别注意，位运算符只对整数起作用，<strong>如果一个运算子不是整数，会自动转为整数后再运行。另外，虽然在JavaScript内部，数值都是以64位浮点数的形式储存，但是做位运算的时候，是以32位带符号的整数进行运算的，并且返回值也是一个32位带符号的整数。</strong></p>
+<p>有一点需要特别注意，位运算符只对整数起作用，<strong>如果一个运算子不是整数，会自动将小数部分舍去后再运行。另外，虽然在JavaScript内部，数值都是以64位浮点数的形式储存，但是做位运算的时候，是以32位带符号的整数进行运算的，并且返回值也是一个32位带符号的整数。</strong></p>
+<p>在ECMAScript 中，当对数值应用位操作符时，后台会发生如下转换过程：64 位的数值被转换成32位数值，然后执行位操作，最后再将32 位的结果转换回64 位数值。这样，表面上看起来就好像是在操作32 位数值，就跟在其他语言中以类似方式执行二进制操作一样。但这个转换过程也导致了一个严重的副效应，<strong>即在对特殊的NaN 和Infinity 值应用位操作时，这两个值都会被当成0 来处理</strong>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">i = i|<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
 <p>上面这行代码的意思，就是将i转为32位整数。</p>
-<h3 id="u201C_u6216_u8FD0_u7B97_u201D_u4E0E_u201C_u4E0E_u8FD0_u7B97_u201D"><a href="#u201C_u6216_u8FD0_u7B97_u201D_u4E0E_u201C_u4E0E_u8FD0_u7B97_u201D" class="headerlink" title="“或运算”与“与运算”"></a>“或运算”与“与运算”</h3><p>这两种运算比较容易理解，就是逐位比较两个运算子。“或运算”的规则是，如果两个二进制位之中至少有一个位为1，则返回1，否则返回0。“与运算”的规则是，如果两个二进制位之中至少有一个位为0，则返回0，否则返回1。</p>
+<h3 id="u201C_u6216_u8FD0_u7B97_u201D_u4E0E_u201C_u4E0E_u8FD0_u7B97_u201D"><a href="#u201C_u6216_u8FD0_u7B97_u201D_u4E0E_u201C_u4E0E_u8FD0_u7B97_u201D" class="headerlink" title="“或运算”与“与运算”"></a>“或运算”与“与运算”</h3><p>这两种运算比较容易理解，就是逐位比较两个运算子。<br>“或运算”的规则是，如果两个二进制位之中至少有一个位为1，则返回1，否则返回0。<br>“与运算”的规则是，如果两个二进制位之中至少有一个位为0，则返回0，否则返回1。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">0</span> | <span class="number">3</span> <span class="comment">// 3</span></span><br><span class="line"><span class="number">0</span> &amp; <span class="number">3</span> <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
 <p>上面两个表达式，0和3的二进制形式分别是00和11，所以进行“或运算”会得到11（即3），进行”与运算“会得到00（即0）。</p>
 <p><strong>位运算只对整数有效，遇到小数时，会将小数部分舍去，只保留整数部分。</strong>所以，将一个小数与0进行或运算，等同于对该数去除小数部分，即取整数位。</p>

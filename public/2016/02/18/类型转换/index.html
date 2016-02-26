@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/02/18/类型转换/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
-<meta property="og:updated_time" content="2016-02-22T05:51:26.000Z">
+<meta property="og:updated_time" content="2016-02-26T03:01:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型转换">
 <meta name="twitter:description" content="JavaScript是一种动态类型语言，变量是没有类型的，可以随时赋予任意值。但是，数据本身和各种运算是有类型的，因此运算时变量需要转换类型。大多数情况下，这种数据类型转换是自动的，但是有时也需要手动强制转换。">
@@ -136,7 +136,7 @@
 <li>否则，调用这个对象的toString()方法。如果toString()方法的返回值是一个原始值，则返回这个原始值。</li>
 <li>否则，抛出TypeError异常。</li>
 </ol>
-<p>如果PreferredType被标志为String，则转换操作的第二步和第三步的顺序会调换。<br>如果没有PreferredType这个参数，则PreferredType的值会按照这样的规则来自动设置：Date类型的对象会被设置为String，其它类型的值会被设置为Number。</p>
+<p>如果PreferredType被标志为String，则转换操作的第二步和第三步的顺序会调换。<br>如果没有PreferredType这个参数，则PreferredType的值会按照这样的规则来自动设置：<span style="color:red;">Date类型的对象会被设置为String，其它类型的值会被设置为Number。</span></p>
 <h4 id="u901A_u8FC7ToNumber_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u6570_u5B57"><a href="#u901A_u8FC7ToNumber_28_29_u5C06_u503C_u8F6C_u6362_u4E3A_u6570_u5B57" class="headerlink" title="通过ToNumber()将值转换为数字"></a>通过ToNumber()将值转换为数字</h4><p>下面的表格解释了ToNumber()是如何将原始值转换成数字的。</p>
 <table>
 <thead>
