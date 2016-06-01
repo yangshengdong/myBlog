@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/05/1-JavaScrpt简介/index.html">
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="先简要说一下和JavaScript相关的一些背景术语，就不详细讨论JavaScript的历史了，想了解的朋友可以参考原书。">
-<meta property="og:updated_time" content="2016-01-22T05:57:44.000Z">
+<meta property="og:updated_time" content="2016-06-01T02:33:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一章 JavaScrpt简介">
 <meta name="twitter:description" content="先简要说一下和JavaScript相关的一些背景术语，就不详细讨论JavaScript的历史了，想了解的朋友可以参考原书。">
@@ -96,32 +96,43 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E13_u6709_u540D_u8BCD"><span class="toc-number">1.</span> <span class="toc-text">专有名词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM"><span class="toc-number">2.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#what_is_DOM_uFF1F"><span class="toc-number">2.1.</span> <span class="toc-text">what is DOM？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM_Level"><span class="toc-number">2.2.</span> <span class="toc-text">DOM Level</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BOM"><span class="toc-number">2.3.</span> <span class="toc-text">BOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LiveScript_u3001JavaScript_u3001JScript_uFF1A"><span class="toc-number">2.4.</span> <span class="toc-text">LiveScript、JavaScript、JScript：</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<p>先简要说一下和JavaScript相关的一些背景术语，就不详细讨论JavaScript的历史了，想了解的朋友可以参考原书。<br><a id="more"></a></p>
-<ul>
+<h3 id="u4E13_u6709_u540D_u8BCD"><a href="#u4E13_u6709_u540D_u8BCD" class="headerlink" title="专有名词"></a>专有名词</h3><ul>
 <li>ECMA：<br>欧洲计算机制造商协会（Standard ECMA-262European Computer Manufacturers Association）</li>
 <li>TC39：<br>ECMA第39号技术委员会（Technical Committee#39），由来自一些关注脚本语言发展的公司的程序员组成，负责制定一种通用、跨平台、供应商中立的脚本语言。</li>
 <li>ECMAScript：<br>由ECMA制定，在ECMA-262中定义的脚本语言标准。ECMAScript只是一个脚本语言标准，你尽可以在自己的环境中取实现它，这个环境，就称为ECMAScript的宿主环境，Web浏览器可以说是ECMAScript目前最重要的宿主环境了，而不同的Web浏览器，对ECMAScript标准的支持也不尽相同。除Web浏览器，Adobe ActionScript也实现了ECMAScript。一般的宿主环境，除了实现ECMAScript标准，也会有各自的扩展，以便与环境更好的交互。</li>
 <li>ES3、ES5、ES6：是指ECMAScript 的三个版本，最新版是ES6，已经有部分特性被浏览器支持。<a href="http://kangax.github.io/compat-table/es5/" target="_blank" rel="external">查看各个版本被各大浏览器的支持情况</a>。</li>
-<li>DOM<blockquote>
-<ul>
-<li><strong>DOM1级：</strong><br>DOM1 级由两个模块组成：DOM核心（DOM Core）和DOM HTML。其中，DOM 核心规定的是如何映射基于XML 的文档结构，以便简化对文档中任意部分的访问和操作。DOM HTML 模块则在DOM 核心的基础上加以扩展，添加了针对HTML 的对象和方法。</li>
-<li><strong>DOM2级：</strong><br>DOM2 级在原来DOM 的基础上又扩充了（DHTML 一直都支持的）鼠标和用户界面事件、范围、遍历（迭代DOM文档的方法）等细分模块，而且通过对象接口增加了对CSS（Cascading Style Sheets，层叠样式表）的支持。DOM1 级中的DOM核心模块也经过扩展开始支持XML 命名空间。</li>
-<li><strong>DOM3级：</strong></li>
 </ul>
-<ol>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><h4 id="what_is_DOM_uFF1F"><a href="#what_is_DOM_uFF1F" class="headerlink" title="what is DOM？"></a>what is DOM？</h4><p>通过 JavaScript，您可以重构整个HTML文档。您可以添加、移除、改变或重排页面上的项目。要改变页面的某个东西，JavaScript就需要对HTML文档中所有元素进行访问的入口。这个入口，连同对HTML 元素进行添加、移动、改变或移除的方法和属性，都是通过文档对象模型来获得的（DOM）。在 1998 年，W3C 发布了第一级的 DOM 规范。这个规范允许访问和操作 HTML 页面中的每一个单独的元素。所有的浏览器都执行了这个标准，因此，DOM 的兼容性问题也几乎难觅踪影了。DOM 可被 JavaScript 用来读取、改变 HTML、XHTML 以及 XML 文档。</p>
+<ul>
+<li>DOM 被分为不同的部分（核心、XML及HTML）和级别（DOM Level 1/2/3）：<ul>
+<li>Core DOM 定义了一套标准的针对任何结构化文档的对象 </li>
+<li>XML DOM  定义了一套标准的针对 XML 文档的对象 </li>
+<li>HTML DOM 定义了一套标准的针对 HTML 文档的对象。</li>
+</ul>
+</li>
+</ul>
+<h4 id="DOM_Level"><a href="#DOM_Level" class="headerlink" title="DOM Level"></a>DOM Level</h4><ul>
+<li>DOM1级：<ol>
+<li>DOM1 级由两个模块组成：DOM核心（DOM Core）和DOM HTML。其中，DOM 核心规定的是如何映射基于XML 的文档结构，以便简化对文档中任意部分的访问和操作。DOM HTML 模块则在DOM 核心的基础上加以扩展，添加了针对HTML 的对象和方法。</li>
+</ol>
+</li>
+<li>DOM2级：<ol>
+<li>DOM2 级在原来DOM 的基础上又扩充了（DHTML 一直都支持的）鼠标和用户界面事件、范围、遍历（迭代DOM文档的方法）等细分模块，而且通过对象接口增加了对CSS（Cascading Style Sheets，层叠样式表）的支持。DOM1 级中的DOM核心模块也经过扩展开始支持XML 命名空间。</li>
+</ol>
+</li>
+<li>DOM3级：<ol>
 <li>引入了以统一方式加载和保存文档的方法</li>
 <li>新增了验证文档的方法</li>
 <li>DOM3 级也对DOM 核心进行了扩展，开始支持XML 1.0 规范，涉及XML Infoset、XPath和XML Base。</li>
 </ol>
-</blockquote>
 </li>
 </ul>
-<ul>
-<li><strong>BOM ：</strong><br>从根本上讲，BOM 只处理浏览器窗口和框架；但人们习惯上也把所有针对浏览器的JavaScript 扩展算作BOM的一部分。下面就是一些这样的扩展：<blockquote>
+<h4 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h4><p>从根本上讲，BOM 只处理浏览器窗口和框架；但人们习惯上也把所有针对浏览器的JavaScript 扩展算作BOM的一部分。下面就是一些这样的扩展：</p>
 <ol>
 <li>弹出新浏览器窗口的功能；</li>
 <li>移动、缩放和关闭浏览器窗口的功能；</li>
@@ -131,19 +142,12 @@
 <li>对cookies 的支持；</li>
 <li>像XMLHttpRequest 和IE 的ActiveXObject 这样的自定义对象。</li>
 </ol>
-</blockquote>
-</li>
-</ul>
+<h4 id="LiveScript_u3001JavaScript_u3001JScript_uFF1A"><a href="#LiveScript_u3001JavaScript_u3001JScript_uFF1A" class="headerlink" title="LiveScript、JavaScript、JScript："></a>LiveScript、JavaScript、JScript：</h4><p>LiveScript是JavaScript的前身，而JScript则是微软为了防止版权冲突而给自己的脚本语言起的名称。他们除了实现了ECMAScript外，还会包括针对浏览器的扩展（BOM：浏览器对象模型）和针对XML/HTML API的扩展（DOM：文档对象模型）。</p>
 <ul>
-<li>LiveScript、JavaScript、JScript：<br>LiveScript是JavaScript的前身，而JScript则是微软为了防止版权冲突而给自己的脚本语言起的名称。他们除了实现了ECMAScript外，还会包括针对浏览器的扩展（BOM：浏览器对象模型）和针对XML/HTML API的扩展（DOM：文档对象模型）。<blockquote>
-<p>JavaScript 是一种专为网页交互设计的脚本语言，由下列三个不同的部分组成：</p>
-<blockquote>
-<p>ECMAScript：规定了以下这些内容：语法、类型、语句、关键字、保留字、操作符、对象</p>
-<p>DOM：文档对象模型（Document Object Model）</p>
-<p>BOM：浏览器对象模型（Browser Object Model）</p>
-</blockquote>
-</blockquote>
-</li>
+<li>JavaScript 是一种专为网页交互设计的脚本语言，由下列三个不同的部分组成：</li>
+<li>ECMAScript：规定了以下这些内容：语法、类型、语句、关键字、保留字、操作符、对象</li>
+<li>DOM：文档对象模型（Document Object Model）</li>
+<li>BOM：浏览器对象模型（Browser Object Model）</li>
 </ul>
   
 	</div>
@@ -199,7 +203,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E13_u6709_u540D_u8BCD"><span class="toc-number">1.</span> <span class="toc-text">专有名词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM"><span class="toc-number">2.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#what_is_DOM_uFF1F"><span class="toc-number">2.1.</span> <span class="toc-text">what is DOM？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM_Level"><span class="toc-number">2.2.</span> <span class="toc-text">DOM Level</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BOM"><span class="toc-number">2.3.</span> <span class="toc-text">BOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LiveScript_u3001JavaScript_u3001JScript_uFF1A"><span class="toc-number">2.4.</span> <span class="toc-text">LiveScript、JavaScript、JScript：</span></a></li></ol></li></ol>
  
   </div>
 

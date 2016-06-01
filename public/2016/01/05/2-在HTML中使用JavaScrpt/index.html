@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="script元素&amp;lt;script src=&amp;quot;demo.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;尽管&amp;lt;script&amp;gt; 标签内没有内容，结束的 &amp;lt;/script&amp;gt; 标签也是必需的。外部文件一般扩展名为.js，但这不是强制的，不写.js扩展名一样可以运行。">
 <meta property="og:image" content="http://yoursite.com/2016/01/05/2-在HTML中使用JavaScrpt/deferAsync.png">
-<meta property="og:updated_time" content="2016-01-20T01:33:33.000Z">
+<meta property="og:updated_time" content="2016-06-01T05:55:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二章 在HTML中使用JavaScrpt">
 <meta name="twitter:description" content="script元素&amp;lt;script src=&amp;quot;demo.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;尽管&amp;lt;script&amp;gt; 标签内没有内容，结束的 &amp;lt;/script&amp;gt; 标签也是必需的。外部文件一般扩展名为.js，但这不是强制的，不写.js扩展名一样可以运行。">
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script_u5143_u7D20"><span class="toc-number">1.</span> <span class="toc-text">script元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u7B7E_u7684_u4F4D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">标签的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5EF6_u8FDF_u811A_u672C_defer"><span class="toc-number">3.</span> <span class="toc-text">延迟脚本 defer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F02_u6B65_u811A_u672C_async"><span class="toc-number">4.</span> <span class="toc-text">异步脚本 async</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Defer_u548Casync_u7684_u533A_u522B"><span class="toc-number">5.</span> <span class="toc-text">Defer和async的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09"><span class="toc-number">5.1.</span> <span class="toc-text">Defer async常规表现（一些高级浏览器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE"><span class="toc-number">5.2.</span> <span class="toc-text">IE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5D4C_u5165_u4EE3_u7801_u4E0E_u5916_u90E8_u6587_u4EF6"><span class="toc-number">6.</span> <span class="toc-text">嵌入代码与外部文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u6863_u6A21_u5F0F__26lt_3B_21DOCTYPE_*_26gt_3B"><span class="toc-number">7.</span> <span class="toc-text">文档模式 <!DOCTYPE *></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#noscript"><span class="toc-number">8.</span> <span class="toc-text">noscript</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script_u5143_u7D20"><span class="toc-number">1.</span> <span class="toc-text">script元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u7B7E_u7684_u4F4D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">标签的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5EF6_u8FDF_u811A_u672C_defer"><span class="toc-number">3.</span> <span class="toc-text">延迟脚本 defer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F02_u6B65_u811A_u672C_async"><span class="toc-number">4.</span> <span class="toc-text">异步脚本 async</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Defer_u548Casync_u7684_u533A_u522B"><span class="toc-number">5.</span> <span class="toc-text">Defer和async的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09"><span class="toc-number">5.1.</span> <span class="toc-text">Defer async常规表现（一些高级浏览器）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#herder"><span class="toc-number">5.1.1.</span> <span class="toc-text">herder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#body"><span class="toc-number">5.1.2.</span> <span class="toc-text">body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ajax"><span class="toc-number">5.1.3.</span> <span class="toc-text">ajax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.1.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE"><span class="toc-number">5.2.</span> <span class="toc-text">IE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5D4C_u5165_u4EE3_u7801_u4E0E_u5916_u90E8_u6587_u4EF6"><span class="toc-number">6.</span> <span class="toc-text">嵌入代码与外部文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u6863_u6A21_u5F0F__26lt_3B_21DOCTYPE_*_26gt_3B"><span class="toc-number">7.</span> <span class="toc-text">文档模式 <!DOCTYPE *></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#noscript"><span class="toc-number">8.</span> <span class="toc-text">noscript</span></a></li></ol>
 		
 		</div>
 		
@@ -137,8 +137,8 @@
 </code></pre><h2 id="u5EF6_u8FDF_u811A_u672C_defer"><a href="#u5EF6_u8FDF_u811A_u672C_defer" class="headerlink" title="延迟脚本 defer"></a>延迟脚本 defer</h2><p>defer这个属性的用途是表明脚本在执行时不会影响页面的构造。也就是说，脚本会被延迟到整个页面都解析完毕(<code>/HTML</code>)后再运行。因此，在<code>&lt;script&gt;</code>元素中设置defer 属性，相当于告诉浏览器立即下载，但延迟执行。</p>
 <blockquote>
 <p><strong>注意：</strong><br>多个延迟脚本并不一定会按照顺序执行，因此最好只包含一个延迟脚本。<br><strong>浏览器支持情况：</strong><br>IE4、Firefox 3.5、Safari 5 和Chrome ，其他浏览器会忽略这个属性。为此，把延迟脚本放在页面底部仍然是最佳选择。<br><strong>defer执行的脚本都会在DOMContentLoaded之前就执行，defer会阻塞页面加载</strong></p>
-<h2 id="u5F02_u6B65_u811A_u672C_async"><a href="#u5F02_u6B65_u811A_u672C_async" class="headerlink" title="异步脚本 async"></a>异步脚本 async</h2></blockquote>
-<p>HTML5 为<code>&lt;script&gt;</code>元素定义了async 属性。指定async 属性的目的是不让页面等待两个脚本下载和执行，从而异步加载页面其他内容。为此，建议异步脚本不要在加载期间修改DOM。</p>
+</blockquote>
+<h2 id="u5F02_u6B65_u811A_u672C_async"><a href="#u5F02_u6B65_u811A_u672C_async" class="headerlink" title="异步脚本 async"></a>异步脚本 async</h2><p>HTML5 为<code>&lt;script&gt;</code>元素定义了async 属性。指定async 属性的目的是不让页面等待两个脚本下载和执行，从而异步加载页面其他内容。为此，建议异步脚本不要在加载期间修改DOM。</p>
 <blockquote>
 <p><strong>注意：</strong><br>多个延迟脚本并不一定会按照顺序执行，因此最好只包含一个延迟脚本。<br><strong>浏览器支持情况：</strong></p>
 <ul>
@@ -148,24 +148,44 @@
 <li><strong>异步执行的表现是，在DOMContentLoaded事件之后，window.loaded事件之前，所以，这个属性处理阻塞的问题是可行的</strong></li>
 </ul>
 </blockquote>
-<h2 id="Defer_u548Casync_u7684_u533A_u522B"><a href="#Defer_u548Casync_u7684_u533A_u522B" class="headerlink" title="Defer和async的区别"></a>Defer和async的区别</h2><p>先来试个一句话解释仨，当浏览器碰到 script 脚本的时候：<br><code>&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;</code><br>没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。<br><code>&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;</code><br>有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。<br><code>&lt;script defer src=&quot;myscript.js&quot;&gt;&lt;/script&gt;</code><br>有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。</p>
+<h2 id="Defer_u548Casync_u7684_u533A_u522B"><a href="#Defer_u548Casync_u7684_u533A_u522B" class="headerlink" title="Defer和async的区别"></a>Defer和async的区别</h2><p>先来试个一句话解释仨，当浏览器碰到 script 脚本的时候：</p>
+<ul>
+<li><code>&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;</code><ul>
+<li>没有 defer 或 async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</li>
+</ul>
+</li>
+<li><code>&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;</code><ul>
+<li>有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。</li>
+</ul>
+</li>
+<li><code>&lt;script defer src=&quot;myscript.js&quot;&gt;&lt;/script&gt;</code><ul>
+<li>有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。</li>
+</ul>
+</li>
+</ul>
 <p>然后从实用角度来说呢，首先把所有脚本都丢到 <code>&lt;/body&gt;</code> 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析。<br>接着，我们来看一张图咯：</p>
 <img src="/2016/01/05/2-在HTML中使用JavaScrpt/deferAsync.png" alt="deferAsync.png" title="">
-<p><strong>此图告诉我们以下几个要点：</strong><br>defer 和 async 在网络读取（下载）这块儿是一样的，都是异步的（相较于 HTML 解析）它俩的差别在于脚本下载完之后何时执行，显然 defer 是最接近我们对于应用脚本加载和执行的要求的关于 defer，此图未尽之处在于它是按照加载顺序执行脚本的，这一点要善加利用async 则是一个乱序执行的主，反正对它来说脚本的加载和执行是紧紧挨着的，所以不管你声明的顺序如何，只要它加载完了就会立刻执行仔细想想，async 对于应用脚本的用处不大，因为它完全不考虑依赖（哪怕是最低级的顺序执行），不过它对于那些可以不依赖任何脚本或不被任何脚本依赖的脚本来说却是非常合适的，最典型的例子：Google Analytics。</p>
-<h3 id="Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09"><a href="#Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09" class="headerlink" title="Defer async常规表现（一些高级浏览器）"></a>Defer async常规表现（一些高级浏览器）</h3><ul>
-<li>herder<br>header中行内脚本执行顺序不受defer async影响，顺序执行，会阻塞DOMContentLoaded。<br>header中行内脚本中ajax请求不会对页面加载带来任何阻塞。<br>header中引用外部脚本，添加defer async后，浏览器表现情况不统一，async的可能先执行，所以引用外部脚本并不适合加在header中，也不适合添加defer async标示。</li>
-<li>body<br>body中图片加载会阻塞window.loaded,不会阻塞DOMContentLoaded。<br>body中行内脚本执行顺序不受defer async影响，顺序执行，阻塞DOMContentLoaded。<br>body中行内脚本ajax请求不会阻塞页面加载。<br>body中引用外部脚本，defer async表现正常，外部脚本应该加在body中，body结束标签上面。</li>
-<li>ajax<br>无论是header还是body中，行内脚本执行的ajax还是外部脚本执行的ajax，都对页面加载没有影响。</li>
-<li>总结</li>
-</ul>
-<ol>
+<p><strong>此图告诉我们以下几个要点：</strong><br>defer 和 async 在网络读取（下载）这块儿是一样的，都是异步的（相较于 HTML 解析）。它俩的差别在于脚本下载完之后何时执行，显然 defer 是最接近我们对于应用脚本加载和执行的要求的，关于 defer，此图未尽之处在于它是按照加载顺序执行脚本的，这一点要善加利用。async 则是一个乱序执行的主，反正对它来说脚本的加载和执行是紧紧挨着的，所以不管你声明的顺序如何，只要它加载完了就会立刻执行仔细想想，async 对于应用脚本的用处不大，因为它完全不考虑依赖（哪怕是最低级的顺序执行），不过它对于那些可以不依赖任何脚本或不被任何脚本依赖的脚本来说却是非常合适的，最典型的例子：Google Analytics。</p>
+<h3 id="Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09"><a href="#Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09" class="headerlink" title="Defer async常规表现（一些高级浏览器）"></a>Defer async常规表现（一些高级浏览器）</h3><h4 id="herder"><a href="#herder" class="headerlink" title="herder"></a>herder</h4><ol>
+<li>header中行内脚本执行顺序不受defer async影响，顺序执行，会阻塞DOMContentLoaded。</li>
+<li>header中引用外部脚本，添加defer async后，浏览器表现情况不统一，async的可能先执行，所以引用外部脚本并不适合加在header中，也不适合添加defer async标示。</li>
+</ol>
+<h4 id="body"><a href="#body" class="headerlink" title="body"></a>body</h4><ol>
+<li>body中图片加载会阻塞window.loaded,不会阻塞DOMContentLoaded。</li>
+<li>body中行内脚本执行顺序不受defer async影响，顺序执行，阻塞DOMContentLoaded。</li>
+<li>body中引用外部脚本，defer async表现正常，外部脚本应该加在body中，body结束标签上面。</li>
+</ol>
+<h4 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h4><ol>
+<li>无论是header还是body中，行内脚本执行的ajax还是外部脚本执行的ajax，都对页面加载没有影响。</li>
+</ol>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><ol>
 <li>defer执行的脚本都会在DOMContentLoaded之前就执行，defer会阻塞页面加载。</li>
 <li>async脚本都会在loaded之前执行，它会阻塞window.loaded。</li>
 <li>DOMContentLoaded在window.loaded之前执行，阻塞DOMContentLoaded也就会阻塞window.loaded</li>
-<li><p>document ready在DOMContentLoaded之前执行，说明document ready是监听DOMContentLoaded完成的</p>
-<h3 id="IE"><a href="#IE" class="headerlink" title="IE"></a>IE</h3></li>
-<li><p>IE支持defer属性,不支持async属性，从IE9及以上支持onload,支持DOMContentLoaded。</p>
-</li>
+<li>document ready在DOMContentLoaded之前执行，说明document ready是监听DOMContentLoaded完成的</li>
+</ol>
+<h3 id="IE"><a href="#IE" class="headerlink" title="IE"></a>IE</h3><ol>
+<li>IE支持defer属性,不支持async属性，从IE9及以上支持onload,支持DOMContentLoaded。</li>
 <li>IE6，7支持行内脚本defer属性， 从表现上来看IE6,7,8,9都支持行内脚本的defer，所以我们在ie6,7,8,9中观察到的现象是，行内的先执行async,再执行没加defer async标记的，defer的延迟执行了。</li>
 <li>同时我们又发现IE6,7脚本中ajax影响了页面加载，影响document ready,IE8及以上版本不受影响。</li>
 <li>到了IE8以上，表现和webkit内核浏览器基本相似了。</li>
@@ -176,7 +196,7 @@
 </blockquote>
 <h2 id="u5D4C_u5165_u4EE3_u7801_u4E0E_u5916_u90E8_u6587_u4EF6"><a href="#u5D4C_u5165_u4EE3_u7801_u4E0E_u5916_u90E8_u6587_u4EF6" class="headerlink" title="嵌入代码与外部文件"></a>嵌入代码与外部文件</h2><ul>
 <li>推荐通过<code>&lt;script&gt;</code>标签引入外部js文件。</li>
-<li>浏览器能够根据具体的设置缓存链接的所有外部JavaScript 文件。也就是说，如果有两个<br>页面都使用同一个文件，那么这个文件只需下载一次。因此，最终结果就是能够加快页面加载的<br>速度。</li>
+<li>浏览器能够根据具体的设置缓存链接的所有外部JavaScript 文件。也就是说，如果有两个页面都使用同一个文件，那么这个文件只需下载一次。因此，最终结果就是能够加快页面加载的<br>速度。</li>
 </ul>
 <h2 id="u6587_u6863_u6A21_u5F0F__26lt_3B_21DOCTYPE_*_26gt_3B"><a href="#u6587_u6863_u6A21_u5F0F__26lt_3B_21DOCTYPE_*_26gt_3B" class="headerlink" title="文档模式 &lt;!DOCTYPE *&gt;"></a>文档模式 <code>&lt;!DOCTYPE *&gt;</code></h2><p>E5.5 引入了文档模式的概念，而这个概念是通过使用文档类型（doctype）切换实现的。</p>
 <ol>
@@ -255,7 +275,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script_u5143_u7D20"><span class="toc-number">1.</span> <span class="toc-text">script元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u7B7E_u7684_u4F4D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">标签的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5EF6_u8FDF_u811A_u672C_defer"><span class="toc-number">3.</span> <span class="toc-text">延迟脚本 defer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F02_u6B65_u811A_u672C_async"><span class="toc-number">4.</span> <span class="toc-text">异步脚本 async</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Defer_u548Casync_u7684_u533A_u522B"><span class="toc-number">5.</span> <span class="toc-text">Defer和async的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09"><span class="toc-number">5.1.</span> <span class="toc-text">Defer async常规表现（一些高级浏览器）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE"><span class="toc-number">5.2.</span> <span class="toc-text">IE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5D4C_u5165_u4EE3_u7801_u4E0E_u5916_u90E8_u6587_u4EF6"><span class="toc-number">6.</span> <span class="toc-text">嵌入代码与外部文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u6863_u6A21_u5F0F__26lt_3B_21DOCTYPE_*_26gt_3B"><span class="toc-number">7.</span> <span class="toc-text">文档模式 <!DOCTYPE *></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#noscript"><span class="toc-number">8.</span> <span class="toc-text">noscript</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script_u5143_u7D20"><span class="toc-number">1.</span> <span class="toc-text">script元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6807_u7B7E_u7684_u4F4D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">标签的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5EF6_u8FDF_u811A_u672C_defer"><span class="toc-number">3.</span> <span class="toc-text">延迟脚本 defer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F02_u6B65_u811A_u672C_async"><span class="toc-number">4.</span> <span class="toc-text">异步脚本 async</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Defer_u548Casync_u7684_u533A_u522B"><span class="toc-number">5.</span> <span class="toc-text">Defer和async的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Defer_async_u5E38_u89C4_u8868_u73B0_uFF08_u4E00_u4E9B_u9AD8_u7EA7_u6D4F_u89C8_u5668_uFF09"><span class="toc-number">5.1.</span> <span class="toc-text">Defer async常规表现（一些高级浏览器）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#herder"><span class="toc-number">5.1.1.</span> <span class="toc-text">herder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#body"><span class="toc-number">5.1.2.</span> <span class="toc-text">body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ajax"><span class="toc-number">5.1.3.</span> <span class="toc-text">ajax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">5.1.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE"><span class="toc-number">5.2.</span> <span class="toc-text">IE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5D4C_u5165_u4EE3_u7801_u4E0E_u5916_u90E8_u6587_u4EF6"><span class="toc-number">6.</span> <span class="toc-text">嵌入代码与外部文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u6863_u6A21_u5F0F__26lt_3B_21DOCTYPE_*_26gt_3B"><span class="toc-number">7.</span> <span class="toc-text">文档模式 <!DOCTYPE *></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#noscript"><span class="toc-number">8.</span> <span class="toc-text">noscript</span></a></li></ol>
  
   </div>
 

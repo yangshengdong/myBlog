@@ -39,27 +39,25 @@ html加载过程中会有一个document.readyState状态
 + 4 complete（完成）： 响应内容解析完成，客户端可以用了。
 *complete事件和window.onload事件是同时的。*
 
-这就是要监听页面的readystatechange事件，当事件为interactive或者complete时就可以开始做js的事情了。
-document.readyState 状态
-如果我们注册 ready 函数的时间点太晚了，页面已经加载完成之后，我们才注册自己的 ready 函数，那就用不着上面的层层检查了，直接看看当前页面的 readyState 就可以了，如果已经是 complete ，那就可以直接执行我们准备注册的 ready 函数了。不过 ChrisS 报告了一个很特别的错误情况，我们需要延迟一下执行。
->
-setTimeout 经常被用来做网页上的定时器，允许为它指定一个毫秒数作为间隔执行的时间。当被启动的程序需要在非常短的时间内运行，我们就会给它指定一个很小的时间数，或者需要马上执行的话，我们甚至把这个毫秒数设置为0，但事实上，setTimeout有一个最小执行时间，当指定的时间小于该时间时，浏览器会用最小允许的时间作为setTimeout的时间间隔，也就是说即使我们把setTimeout的毫秒数设置为0，被调用的程序也没有马上启动。这个最小的时间间隔是多少呢？这和浏览器及操作系统有关。在John Resig的新书《Javascript忍者的秘密》一书中提到。
->>Browsers all have a 10ms minimum delay on OSX and a(approximately) 15ms delay on Windows.（在苹果机上的最小时间间隔是10毫秒，在Windows系统上的最小时间间隔大约是15毫秒），另外，MDC中关于setTimeout的介绍中也提到，Firefox中定义的最小时间间隔（DOM_MIN_TIMEOUT_VALUE）是10毫秒，HTML5定义的最小时间间隔是4毫秒。
+这就是要监听页面的readystatechange事件，当事件为interactive或者complete时就可以开始做js的事情了。但是如果我们注册 ready 函数的时间点太晚了，这时页面已经加载完成，而我们才注册自己的 ready 函数，那就用不着上面的层层检查了，直接看看当前页面的 readyState 就可以了，如果已经是 complete ，那就可以直接执行我们准备注册的 ready 函数了。不过 ChrisS 报告了一个很特别的错误情况，我们需要延迟一下执行。
+
+> setTimeout 经常被用来做网页上的定时器，允许为它指定一个毫秒数作为间隔执行的时间。当被启动的程序需要在非常短的时间内运行，我们就会给它指定一个很小的时间数，或者需要马上执行的话，我们甚至把这个毫秒数设置为0，但事实上，setTimeout有一个最小执行时间，当指定的时间小于该时间时，浏览器会用最小允许的时间作为setTimeout的时间间隔，也就是说即使我们把setTimeout的毫秒数设置为0，被调用的程序也没有马上启动。这个最小的时间间隔是多少呢？这和浏览器及操作系统有关。在John Resig的新书《Javascript忍者的秘密》一书中提到。
+>> Browsers all have a 10ms minimum delay on OSX and a(approximately) 15ms delay on Windows.（在苹果机上的最小时间间隔是10毫秒，在Windows系统上的最小时间间隔大约是15毫秒），另外，MDC中关于setTimeout的介绍中也提到，Firefox中定义的最小时间间隔（DOM_MIN_TIMEOUT_VALUE）是10毫秒，HTML5定义的最小时间间隔是4毫秒。
 
 既然规范都是这样写的，那看来使用setTimeout是没办法再把这个最小时间间隔缩短了。这样，通过设置为 1, 我们可以让程序在浏览器支持的最小时间间隔之后执行了。
 
+```javascript
     if (document.readyState === "complete") {
         // 延迟 1 毫秒之后，执行 ready 函数
         setTimeout(jQuery.ready, 1);
     }
+```
 
 #### doScroll 检测法
 但是当页面中带有iframe时，这个readyState状态会挂起一直等待，等待页面的iframe也加载完毕之后再处理，这个过程是我们不想要得，那就有另外一种处理方案。
->
-MSDN 关于 JScript 的一个方法有段不起眼的话，当页面 DOM 未加载完成时，调用 doScroll 方法时，会产生异常。那么我们反过来用，如果不异常，那么就是页面DOM加载完毕了！
-Diego Perini 在 2007 年的时候，报告了一种检测 IE 是否加载完成的方式，使用 doScroll 方法调用。详细的说明见这里。
-原理是对于 IE 在非 iframe 内时，只有不断地通过能否执行 doScroll 判断 DOM 是否加载完毕。在本例中每间隔 50 毫秒尝试去执行 doScroll，注意，由于页面没有加载完成的时候，调用 doScroll 会导致异常，所以使用了 try -catch 来捕获异常。
+> MSDN 关于 JScript 的一个方法有段不起眼的话，当页面 DOM 未加载完成时，调用 doScroll 方法时，会产生异常。那么我们反过来用，如果不异常，那么就是页面DOM加载完毕了！Diego Perini 在 2007 年的时候，报告了一种检测 IE 是否加载完成的方式，使用 doScroll 方法调用。详细的说明见这里。原理是对于 IE 在非 iframe 内时，只有不断地通过能否执行 doScroll 判断 DOM 是否加载完毕。在本例中每间隔 50 毫秒尝试去执行 doScroll，注意，由于页面没有加载完成的时候，调用 doScroll 会导致异常，所以使用了 try -catch 来捕获异常。
 
+```javascript
     (function doScrollCheck() {
         if (!jQuery.isReady) {  
             try {
@@ -73,8 +71,11 @@ Diego Perini 在 2007 年的时候，报告了一种检测 IE 是否加载完成
             jQuery.ready();
         }
     })();
+```
 
 #### jQuery的实现  
+
+```javascript
     //全局方法
     DOMContentLoaded = function() {
         if ( document.addEventListener ) {
@@ -97,92 +98,91 @@ Diego Perini 在 2007 年的时候，报告了一种检测 IE 是否加载完成
     }
 
     jQuery.ready.promise = function( obj ) {
-    if ( !readyList ) {
+        if ( !readyList ) {
 
-        readyList = jQuery.Deferred();
+            readyList = jQuery.Deferred();
 
-        // Catch cases where $(document).ready() is called after the browser event has already occurred.
-        // we once tried to use readyState "interactive" here, but it caused issues like the one
-        // discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
-        // 当页面加载完了，直接调用ready方法
-        if ( document.readyState === "complete" ) {
-            // Handle it asynchronously to allow scripts the opportunity to delay ready
-            setTimeout( jQuery.ready, 1 );
+            // Catch cases where $(document).ready() is called after the browser event has already occurred.
+            // we once tried to use readyState "interactive" here, but it caused issues like the one
+            // discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
+            // 当页面加载完了，直接调用ready方法
+            if ( document.readyState === "complete" ) {
+                // Handle it asynchronously to allow scripts the opportunity to delay ready
+                setTimeout( jQuery.ready, 1 );
 
-        // Standards-based browsers support DOMContentLoaded
-        } else if ( document.addEventListener ) {
-            // Use the handy event callback
-            document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );
+            // Standards-based browsers support DOMContentLoaded
+            } else if ( document.addEventListener ) {
+                // Use the handy event callback
+                document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );
 
-            // A fallback to window.onload, that will always work
-            window.addEventListener( "load", jQuery.ready, false );
+                // A fallback to window.onload, that will always work
+                window.addEventListener( "load", jQuery.ready, false );
 
-        // If IE event model is used
-        } else {
-            // Ensure firing before onload, maybe late but safe also for iframes
-            document.attachEvent( "onreadystatechange", DOMContentLoaded );
+            // If IE event model is used
+            } else {
+                // Ensure firing before onload, maybe late but safe also for iframes
+                document.attachEvent( "onreadystatechange", DOMContentLoaded );
 
-            // A fallback to window.onload, that will always work
-            window.attachEvent( "onload", jQuery.ready );
+                // A fallback to window.onload, that will always work
+                window.attachEvent( "onload", jQuery.ready );
 
-            // If IE and not a frame
-            // continually check to see if the document is ready
-            var top = false;
+                // If IE and not a frame
+                // continually check to see if the document is ready
+                var top = false;
 
-            try {
-                top = window.frameElement == null && document.documentElement;
-            } catch(e) {}
+                try {
+                    top = window.frameElement == null && document.documentElement;
+                } catch(e) {}
 
-            if ( top && top.doScroll ) {
-                (function doScrollCheck() {
-                    if ( !jQuery.isReady ) {
+                if ( top && top.doScroll ) {
+                    (function doScrollCheck() {
+                        if ( !jQuery.isReady ) {
 
-                        try {
-                            // Use the trick by Diego Perini
-                            // http://javascript.nwbox.com/IEContentLoaded/
-                            top.doScroll("left");
-                        } catch(e) {
-                            return setTimeout( doScrollCheck, 50 );
+                            try {
+                                // Use the trick by Diego Perini
+                                // http://javascript.nwbox.com/IEContentLoaded/
+                                top.doScroll("left");
+                            } catch(e) {
+                                return setTimeout( doScrollCheck, 50 );
+                            }
+
+                            // and execute any waiting functions
+                            jQuery.ready();
                         }
-
-                        // and execute any waiting functions
-                        jQuery.ready();
-                    }
-                })();
+                    })();
+                }
             }
         }
-    }
-    return readyList.promise( obj );
+        return readyList.promise( obj );
     };
 
     jQuery.extend({
-        // Is the DOM ready to be used? Set to true once it occurs.
+        // 表示ready方法是否正在执行，若正在执行，则将isReady设置为true
         isReady: false,
 
-        // A counter to track how many items to wait for before
-        // the ready event fires. See #6781
         // ready方法执行前需要等待的次数
         readyWait: 1,
 
-        // Handle when the DOM is ready
+        // hold或者释放ready方法，若参数为true则readyWait++，否则执行ready，传入参数为true
+        holdReady: function( hold ) {
+            if ( hold ) {
+                jQuery.readyWait++;
+            } else {
+                jQuery.ready( true );
+            }
+        },
+
         // 当DOM加载完毕时开始执行ready
         ready: function( wait ) {
-            // Abort if there are pending holds or we're already ready
-            // 判断页面是否加载完成并且ready方法已经执行
-            // 若传入的参数为true，则--readyWait；否则判断isReady，即ready是否正在执行
+
+            // 若传入的参数为true，则--readyWait；否则判断isReady，即ready是否正在执行  
             if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
                 return;
             }
 
-            // Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
-            if ( !document.body ) {
-                return setTimeout( jQuery.ready, 1 );
-            }
-
             // Remember that the DOM is ready
-            jQuery.isReady = true; //指示ready 方法已经被执行
+            jQuery.isReady = true;
 
-            // If a normal DOM Ready event fired, decrement, and wait if need be
             // 若readyWait-1后还是大于0，则返回，不执行ready。
             if ( wait !== true && --jQuery.readyWait > 0 ) {
                 return;
@@ -191,13 +191,14 @@ Diego Perini 在 2007 年的时候，报告了一种检测 IE 是否加载完成
             // If there are functions bound, to execute
             readyList.resolveWith( document, [ jQuery ] );
 
-            // Trigger any bound ready events
-            if ( jQuery.fn.trigger ) {
-                // 触发ready方法，然后解除绑定的ready方法。
-                jQuery( document ).trigger("ready").off("ready");
+            // 触发ready方法，然后解除绑定的ready方法。
+            if ( jQuery.fn.triggerHandler ) {
+                jQuery( document ).triggerHandler( "ready" );
+                jQuery( document ).off( "ready" );
             }
         }
     });
+```
 根据以上代码可见，最终DOMContented事件执行的，其实是jQUery.ready()这个工具函数。
 （注意，jquery.ready()和jquery(document).raedy()不一样！！，前者是工具函数，后者是实例函数。）
 这里是通过定义一个DOMContentLoaded函数作为桥梁来执行jquery.ready()函数的，这样做的目的就是为了及时的remove掉document的DOMContentLoaded事件的引用。
