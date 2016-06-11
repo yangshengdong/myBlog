@@ -19,7 +19,7 @@
 <meta property="og:description" content="Number类型JavaScript内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相等的，而且1加上1.0得到的还是一个整数，不会像有些语言那样变成小数。">
 <meta property="og:image" content="http://yoursite.com/2016/01/29/好好学学number/number2.png">
 <meta property="og:image" content="http://yoursite.com/2016/01/29/好好学学number/number.png">
-<meta property="og:updated_time" content="2016-02-02T07:09:17.000Z">
+<meta property="og:updated_time" content="2016-06-11T04:57:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="好好学学number!">
 <meta name="twitter:description" content="Number类型JavaScript内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，1与1.0是相等的，而且1加上1.0得到的还是一个整数，不会像有些语言那样变成小数。">
@@ -201,7 +201,24 @@
 <p>方法2: 除了上面讲的几种解法.还有一个解法来自Allen Wirfs-Brock(译者注:TC39编辑,ES标准就是他写出来的。):</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNegativeZero</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x !== <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(obj, <span class="string">'z'</span>, &#123; value: -<span class="number">0</span>, configurable: <span class="literal">false</span> &#125;);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 如果x的值和z属性的当前值不相等的话,就会抛出异常.</span></span><br><span class="line">        <span class="built_in">Object</span>.defineProperty(obj, <span class="string">'z'</span>, &#123; value: x &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>解释: 通常情况下,你不能重新定义一个不可配置的对象属性，否则会抛出异常:<code>TypeError: Cannot redefine property: z</code>可是，如果你重新定义属性时指定的属性特性的值与该特性当前的值相等，则JavaScript会忽略掉这个重定义，不会抛出异常。其中在判断两个值是否相等时使用的运算不是===，是一个称之为SameValue的内部算法，该算法可以区分开 -0 和 +0 。可以从Wirfs-Brock的原文中了解更多细。(冻结一个对象会让该对象的所有属性变的不可配置)。</p>
-<blockquote>
+<pre><code>SameValue 算法
+内部严格比较操作 SameValue(x,y)，x 和 y 为 ECMAScript 语言中的值，需要产出 true 或 false。Note.png Note.png V8.png
+
+比较过程如下：
+
+如果 Type(x) 与 Type(y) 的结果不一致，返回 false，否则
+如果 Type(x) 结果为 Undefined，返回 true
+如果 Type(x) 结果为 Null，返回 true
+如果 Type(x) 结果为 Number，则
+如果 x 为 NaN，且 y 也为 NaN，返回 true
+如果 x 为 +0，y 为 -0，返回 false
+如果 x 为 -0，y 为 +0，返回 false
+如果 x 与 y 为同一个数字，返回 true
+返回 false
+如果 Type(x) 结果为 String，如果 x 与 y 为完全相同的字符序列（相同的长度和相同的字符对应相同的位置），返回 true，否则，返回 false
+如果 Type(x) 结果为 Boolean，如果 x 与 y 都为 true 或 false，则返回 true，否则，返回 false
+如果 x 和 y 引用到同一个 Object 对象，返回 true，否则，返回 false
+</code></pre><blockquote>
 <p>在执行一些特殊方法的时候，比如alert或innerHTML等方法，它将由脚本解析器自动调用toString()方法。</p>
 </blockquote>
 <p>看完上面这些，那么这节开头的题目的结果自然而然就知道喽。</p>
@@ -260,8 +277,9 @@
 <li><p>进制转换<br><code>parseInt()</code>方法还可以接受第二个参数（2到36之间，超出区间(<code>包括负数但0除外</code>)返回<code>NaN</code>），表示被解析的值的进制，返回该值对应的十进制数。<br>如果第二个参数不是数值，会被自动转为（调用<code>Number()</code>）一个整数，这个整数只有在2到36之间，才能得到有意义的结果，超出这个范围，则返回<code>NaN</code>，如果转换的结果为<code>0，NaN</code>，都会直接忽略返回原值。<br>如果第二个参数是<code>0</code>、<code>undefined</code>和<code>null</code>等等一些不能转为正常整数的值，则直接忽略。</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="number">2</span>) <span class="comment">// 8</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="number">6</span>) <span class="comment">// 216</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="number">8</span>) <span class="comment">// 512</span></span><br><span class="line"><span class="comment">//特殊情况</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="string">"8"</span>) <span class="comment">// 512 把"8"自动转为8</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="string">" +8 "</span>) <span class="comment">// 512 会自动去掉前置和后置空格</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="string">" -8 "</span>) <span class="comment">// NaN 负数超出范围</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="number">1</span>) <span class="comment">// NaN 超出范围</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="number">37</span>) <span class="comment">// NaN 超出范围</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="string">"8aa"</span>) <span class="comment">// 1000 因为Number("8aa")等于NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="number">0</span>) <span class="comment">// 1000  直接忽略返回原值</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="literal">NaN</span>) <span class="comment">// 1000</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="literal">null</span>) <span class="comment">// 1000 因为Number(NaN)等于0</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000</span>, <span class="literal">undefined</span>) <span class="comment">// 1000 因为Number(undefined)等于NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">"1000"</span>, &#123;</span><br><span class="line">    a:<span class="number">1</span>,</span><br><span class="line">    valueOf:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;) <span class="comment">//125  因为Number(&#123;a:1,valueOf:function()&#123;return 5;&#125;&#125;) 返回5 所以</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>特别注意<br>需要注意的是，进制转换的时候，参数是字符串或数值，<code>parseInt</code>的行为不一致。</p>
-</li>
+</ul>
+<ul>
+<li>特别注意<br>需要注意的是，进制转换的时候，参数是字符串或数值，<code>parseInt</code>的行为不一致。</li>
 </ul>
 <ol>
 <li><p>如果第一个参数是数值，会将这个数值先转为十进制，然后再应用第二个参数。</p>
@@ -280,6 +298,8 @@
 <li><p>如果第一个参数是以<code>0x</code>或<code>0X</code>开头的字符串，而第二个参数省略或为0，则<code>parseInt</code>自动将第二个参数设为16。</p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0xFF'</span>) <span class="comment">// 255</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0xFF'</span>, <span class="number">0</span>) <span class="comment">// 255</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0xFF'</span>, <span class="number">16</span>) <span class="comment">// 255</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0xFF'</span>, <span class="number">10</span>) <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'0xFF'</span>, <span class="number">17</span>) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
 <p> 上面代码中，第二个参数除了0、16和省略，其他情况都会依次解析第一个参数，直到遇到第一个不可解析字符。</p>
+</li>
+<li><p>如果参数是对象，数据或者{}<br>和Number()过程相反，先调用 toString()，如果返回的不是 简单数据类型则再调用valueOf方法。<br><code>parseInt({a:1,valueOf:function(){return 5},toString:function(){return 4}});// 4</code><br><code>parseInt([2,3]);//2因为数组的valueOf返回还是数组，继续调用toString方法，返回&quot;2,3&quot;,再parseInt返回 2</code></p>
 </li>
 <li><p>科学计数法产生的扯淡问题<br> 对于那些会自动转为科学计数法的数字，<code>parseInt</code>会将科学计数法的表示方法视为字符串，因此导致一些奇怪的结果。</p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="number">1000000000000000000000.5</span>, <span class="number">10</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'1e+21'</span>, <span class="number">10</span>) <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">0.0000008</span>, <span class="number">10</span>) <span class="comment">// 8</span></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'8e-7'</span>, <span class="number">10</span>) <span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
@@ -300,6 +320,9 @@
 </li>
 <li><p>如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回<code>NaN</code>。</p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>([]) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'FF2'</span>) <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="literal">true</span>)  <span class="comment">// NaN 不同于`Number`函数</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>) <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="literal">null</span>) <span class="comment">// NaN 不同于`Number`函数</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">''</span>) <span class="comment">// NaN 不同于`Number`函数</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">''</span>) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">'123.45#'</span>) <span class="comment">// 123.45  不同于`Number`函数</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'123.45#'</span>) <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>如果参数是对象，数据或者{}<br>和Number()过程相反，先调用 toString()，如果返回的不是 简单数据类型则再调用valueOf方法。<br><code>parseFloat({a:1,valueOf:function(){return 5},toString:function(){return 4}});// 4</code><br><code>parseInt([2,3]);//2因为数组的valueOf返回还是数组，继续调用toString方法，返回&quot;2,3&quot;,再parseInt返回 2</code></li>
+</ol>
 </li>
 </ol>
 <p><strong> 特别注意：<code>parseInt()</code>和<code>parseFloat()</code>会先调用值的<code>toString()</code>方法，<code>Number()</code>是先调用<code>valueOf</code>，返回结果有问题再调用<code>toString</code></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(&#123;</span><br><span class="line">a: <span class="number">1</span>,</span><br><span class="line">toString: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"11"</span></span><br><span class="line">            &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">parseFloat</span>(&#123;</span><br><span class="line">a: <span class="number">1</span>,</span><br><span class="line">toString: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"11"</span></span><br><span class="line">            &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
@@ -389,7 +412,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>9</sup></a></li>
 		  
 		
 		  
@@ -406,7 +429,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>17</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>18</sup></a></li>
 			
 		
 			

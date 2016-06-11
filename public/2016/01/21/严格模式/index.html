@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="前端之路">
 <meta property="og:description" content="概述ECMAScript 5 的严格模式是JavaScript中的一种限制性更强的变种方式。严格模式不是一个子集：它在语义上与正常代码有着明显的差异。不支持严格模式的浏览器与同支持严格模式的浏览器行为上也不一样， 所以不要在未经严格模式特性测试情况下使用严格模式。严格模式可以与非严格模式共存，所以脚本可以逐渐的选择性加入严格模式。支持情况：IE 10在内的主流浏览器，都已经支持它，许多大项目已经开">
 <meta property="og:image" content="http://yoursite.com/2016/01/21/严格模式/stracit.png">
-<meta property="og:updated_time" content="2016-06-06T02:38:22.000Z">
+<meta property="og:updated_time" content="2016-06-07T14:48:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="严格模式">
 <meta name="twitter:description" content="概述ECMAScript 5 的严格模式是JavaScript中的一种限制性更强的变种方式。严格模式不是一个子集：它在语义上与正常代码有着明显的差异。不支持严格模式的浏览器与同支持严格模式的浏览器行为上也不一样， 所以不要在未经严格模式特性测试情况下使用严格模式。严格模式可以与非严格模式共存，所以脚本可以逐渐的选择性加入严格模式。支持情况：IE 10在内的主流浏览器，都已经支持它，许多大项目已经开">
@@ -172,12 +172,20 @@ function f(){
 　　return !this;
 }
 // 返回true，因为严格模式下，this的值为undefined，所以&quot;!this&quot;为true。
-</code></pre><h3 id="caller/callee__u88AB_u7981_u7528"><a href="#caller/callee__u88AB_u7981_u7528" class="headerlink" title="caller/callee 被禁用"></a>caller/callee 被禁用</h3><pre><code>function f1() {　　　　
-    &quot;use strict&quot;;　　　　
-    f1.caller; // 报错 正常模式下f1.caller是最后一个调用f1的函数
-    f1.callee; // 报错        　　
-}　　
-f1();
+</code></pre><h3 id="caller/callee__u88AB_u7981_u7528"><a href="#caller/callee__u88AB_u7981_u7528" class="headerlink" title="caller/callee 被禁用"></a>caller/callee 被禁用</h3><pre><code>function parentCheck() {
+    check(&quot;&quot;);
+    function check() {
+        subCheck();
+        function subCheck() {
+            console.log(arguments.caller);
+            // ECMAScript 5 还定义了 arguments.caller 属性，但在严格模式下访问它也会导致错误，而在非严格模式下这个属性始终是 undefined。定义这个属性是为了分清arguments.caller 和函数的caller 属性。
+            console.log(arguments.callee);
+            console.log(subCheck.caller);
+            console.log(subCheck.caller.caller);
+        }
+    }
+}
+parentCheck();
 </code></pre><h3 id="u663E_u5F0F_u62A5_u9519"><a href="#u663E_u5F0F_u62A5_u9519" class="headerlink" title="显式报错"></a>显式报错</h3><p>NaN 是一个不可写的全局变量. 在正常模式下, 给 NaN 赋值不会产生任何作用; 开发者也不会受到任何错误反馈. 但在严格模式下, 给 NaN 赋值会抛出一个异常</p>
 <pre><code>&quot;use strict&quot;;
 NaN = 2;//报错
@@ -189,13 +197,25 @@ Object.defineProperty(o, &quot;v&quot;, {
     writable: false
 });　　
 o.v = 2; // 报错
-</code></pre><p>严格模式下，对一个使用getter方法读取的属性进行赋值，会报错。</p>
+</code></pre><p>严格模式下，对一个只有getter方法的属性进行赋值，会报错。</p>
 <pre><code>&quot;use strict&quot;;
 　
 var o = {
     　get v() {return 1; }　　
 };　　
 o.v = 2; // 报错
+</code></pre><p>如果有setter 则不会报错。</p>
+<pre><code>&quot;use strict&quot;;　
+var o = {
+　　get v() {
+        return this.aa; 
+    },
+    set v(a){
+        this.aa = a;
+    }    　
+};　　
+o.v = 2; // 不会报错
+console.log(o.v);
 </code></pre><p>严格模式下，对禁止扩展的对象添加新属性，会报错。</p>
 <pre><code>&quot;use strict&quot;;　　
 var o = {};　　
@@ -208,14 +228,14 @@ delete Object.prototype; // 报错
 <pre><code>&quot;use strict&quot;;　　
 var o = {　　　　
     p: 1,
-    　　　　p: 2　　
+    p: 2　　
 }; // 语法错误
 </code></pre><h3 id="u51FD_u6570_u4E0D_u80FD_u6709_u91CD_u540D_u7684_u53C2_u6570"><a href="#u51FD_u6570_u4E0D_u80FD_u6709_u91CD_u540D_u7684_u53C2_u6570" class="headerlink" title="函数不能有重名的参数"></a>函数不能有重名的参数</h3><p>正常模式下，如果函数有多个重名的形参，不会报错，在严格模式下，这属于语法错误。</p>
 <pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">"use strict"</span>;　　</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">a, a, b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a,a,b);</span><br><span class="line">    <span class="comment">// Duplicate parameter name not allowed in this context　</span></span><br><span class="line">    <span class="comment">//正常模式 输出 1 2 3</span></span><br><span class="line">&#125;</span><br><span class="line">f(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
 </code></pre><h2 id="u7981_u6B62_u516B_u8FDB_u5236_u8868_u793A_u6CD5"><a href="#u7981_u6B62_u516B_u8FDB_u5236_u8868_u793A_u6CD5" class="headerlink" title="禁止八进制表示法"></a>禁止八进制表示法</h2><p>正常模式下，整数的第一位如果是0，表示这是八进制数，比如0100等于十进制的64。严格模式禁止这种表示法，整数第一位为0，将报错。</p>
 <pre><code>&quot;use strict&quot;;　　
 var n = 0100; // 语法错误
-</code></pre><h2 id="eval_u548Carguments_u5BF9_u8C61_u7684_u9650_u5236"><a href="#eval_u548Carguments_u5BF9_u8C61_u7684_u9650_u5236" class="headerlink" title="eval和arguments对象的限制"></a>eval和arguments对象的限制</h2><h3 id="u8D4B_u503C_u548C_u7ED1_u5B9A"><a href="#u8D4B_u503C_u548C_u7ED1_u5B9A" class="headerlink" title="赋值和绑定"></a>赋值和绑定</h3><p>首先, 名称 eval 和 arguments 不能通过程序语法被绑定(be bound)或赋值，以下这些尝试都将报错：</p>
+</code></pre><h2 id="eval_u548Carguments_u5BF9_u8C61_u7684_u9650_u5236"><a href="#eval_u548Carguments_u5BF9_u8C61_u7684_u9650_u5236" class="headerlink" title="eval和arguments对象的限制"></a>eval和arguments对象的限制</h2><h3 id="u8D4B_u503C_u548C_u7ED1_u5B9A"><a href="#u8D4B_u503C_u548C_u7ED1_u5B9A" class="headerlink" title="赋值和绑定"></a>赋值和绑定</h3><p>首先, arguments, eval这两个在严格模式下不能做标识符或属性名</p>
 <pre><code>&quot;use strict&quot;;
 eval = 17;
 arguments++;
@@ -279,15 +299,14 @@ for (var i = 0; i &lt; 5; i++) {　　　　
 <h3 id="u8FD0_u884C_u65F6_u9519_u8BEF"><a href="#u8FD0_u884C_u65F6_u9519_u8BEF" class="headerlink" title="运行时错误"></a>运行时错误</h3><p>JavaScript曾经会在一些上下文的某些情况中静默的失败，严格模式会在这些情况下抛出错误。如果你的代码包含这样的场景，请务必测试以确保没有代码受到影响。再说一次，严格模式是可以设置在代码粒度下的。</p>
 <ol>
 <li>给一个未声明的变量赋值</li>
-<li><p>改变一个全局对象的值可能会造成不可预期的后果。如果你真的想设置一个全局对象的值，把他作为一个参数并且明确的把它作为一个属性。</p>
-<pre><code>var global = this; // in the top-level context, &quot;this&quot; always refers the global object
+<li>改变一个全局对象的值可能会造成不可预期的后果。如果你真的想设置一个全局对象的值，把他作为一个参数并且明确的把它作为一个属性。<pre><code>var global = this; // in the top-level context, &quot;this&quot; always refers the global object
 function f() {
     &quot;use strict&quot;;
     var a = 12;
     global.b = a + x * 35;
 }
 f();
-</code></pre></li>
+</code></pre>·</li>
 <li><p>尝试删除一个不可配置的属性。</p>
 <pre><code>&quot;use strict&quot;;
 delete Object.prototype; // error!
@@ -394,7 +413,7 @@ delete Object.prototype; // error!
 		<ul>
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>8</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>9</sup></a></li>
 		  
 		
 		  
@@ -411,7 +430,7 @@ delete Object.prototype; // error!
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>17</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>18</sup></a></li>
 			
 		
 			
