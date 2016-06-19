@@ -81,25 +81,33 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/10/双精度64位浮点数/" title="双精度64位浮点数" itemprop="url">双精度64位浮点数</a>
+      <a href="/2016/06/19/numberInJavaScript/" title="numberInJavaScript" itemprop="url">numberInJavaScript</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-10T01:55:43.000Z" itemprop="datePublished"> 发表于 2016-06-10</time>
+    <time datetime="2016-06-19T13:51:58.000Z" itemprop="datePublished"> 发表于 2016-06-19</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h1 id="u6D6E_u70B9_u6570"><a href="#u6D6E_u70B9_u6570" class="headerlink" title="浮点数"></a>浮点数</h1><h2 id="u4EC0_u4E48_u662F_u6D6E_u70B9_u6570_uFF1F"><a href="#u4EC0_u4E48_u662F_u6D6E_u70B9_u6570_uFF1F" class="headerlink" title="什么是浮点数？"></a>什么是浮点数？</h2><p>在计算机系统的发展过程中，曾经提出过多种方法表达实数。典型的比如相对于浮点数的定点数（Fixed Point Number）。在这种表达方式中，小数点固定的位于实数所有数字中间的某个位置。货币的表达就可以使用这种方式，比如 99.00 或者 00.99 可以用于表达具有四位精度（Precision），小数点后有两位的货币值。由于小数点位置固定，所以可以直接用四位数值来表达相应的数值。<br>定点数表达法的缺点在于其形式过于僵硬，固定的小数点位置决定了固定位数的整数部分和小数部分，不利于同时表达特别大的数或者特别小的数。最终，绝大多数现代的计算机系统采纳了所谓的浮点数表达方式。这种表达方式利用科学计数法来表达实数，即用一个尾数（Mantissa，尾数有时也称为有效数字——Significand；尾数实际上是有效数字的非正式说法），一个基数（Base），一个指数（Exponent）以及一个表示正负的符号来表达实数。比如 123.45 用十进制科学计数法可以表达为 1.2345 × 102 ，其中 1.2345 为尾数，10 为基数，2 为指数。浮点数利用指数达到了浮动小数点的效果，从而可以灵活地表达更大范围的实数。</p>
+        <h1 id="u601D_u8003"><a href="#u601D_u8003" class="headerlink" title="思考"></a>思考</h1><p>先想几个问题吧：</p>
+<ol>
+<li>JavaScript的数字为什么有0和-0？</li>
+<li>JavaScript中的NaN为什么互不相等？</li>
+<li>JavaScript中的数字真的只有一种类型吗？</li>
+<li>JavaScript中常被诟病的0.3 - 0.2 == 0.1原因是什么？</li>
+<li>数组的最大长度是多少？为什么是这个值？</li>
+</ol>
+<p>上述问题，只有在JavaScript中有吗？<br>
         
         
         <p class="article-more-link">
           
-            <a href="/2016/06/10/双精度64位浮点数/#more">Read More</a>
+            <a href="/2016/06/19/numberInJavaScript/#more">Read More</a>
           
        </p>
     </div>
