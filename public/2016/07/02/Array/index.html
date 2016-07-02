@@ -1,0 +1,533 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Array | 前端之路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jack">
+    
+
+    
+    <meta name="description" content="数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Array">
+<meta property="og:url" content="http://yoursite.com/2016/07/02/Array/index.html">
+<meta property="og:site_name" content="前端之路">
+<meta property="og:description" content="数组">
+<meta property="og:updated_time" content="2016-07-02T06:54:55.467Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Array">
+<meta name="twitter:description" content="数组">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端之路" title="前端之路"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端之路">前端之路</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/02/Array/" title="Array" itemprop="url">Array</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-02T04:56:18.000Z" itemprop="datePublished"> 发表于 2016-07-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u6570_u7EC4"><span class="toc-number">1.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4_u7684_u5B9A_u4E49"><span class="toc-number">1.1.</span> <span class="toc-text">数组的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4_u7684_u672C_u8D28"><span class="toc-number">1.2.</span> <span class="toc-text">数组的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#length_u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">length属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u4F3C_u6570_u7EC4_u7684_u5BF9_u8C61"><span class="toc-number">1.4.</span> <span class="toc-text">类似数组的对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#in_u8FD0_u7B97_u7B26"><span class="toc-number">1.5.</span> <span class="toc-text">in运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for_u2026in_u5FAA_u73AF_u548C_u6570_u7EC4_u7684_u904D_u5386"><span class="toc-number">1.6.</span> <span class="toc-text">for…in循环和数组的遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4_u7684_u7A7A_u4F4D"><span class="toc-number">1.7.</span> <span class="toc-text">数组的空位</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="u6570_u7EC4"><a href="#u6570_u7EC4" class="headerlink" title="数组"></a>数组</h1><a id="more"></a>
+<h2 id="u6570_u7EC4_u7684_u5B9A_u4E49"><a href="#u6570_u7EC4_u7684_u5B9A_u4E49" class="headerlink" title="数组的定义"></a>数组的定义</h2><p>数组（array）是按次序排列的一组值。每个值的位置都有编号（从0开始），整个数组用方括号表示。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中的<code>a</code>、<code>b</code>、<code>c</code>就构成一个数组，两端的方括号是数组的标志。<code>[]
+a</code>是0号位置，b是1号位置，c是2号位置。</p>
+<p>除了在定义时赋值，数组也可以先定义后赋值。<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">var</span> <span class="atom">arr</span> = [];</span><br><span class="line"></span><br><span class="line"><span class="atom">arr</span>[<span class="number">0</span>] = <span class="string">'a'</span>;</span><br><span class="line"><span class="atom">arr</span>[<span class="number">1</span>] = <span class="string">'b'</span>;</span><br><span class="line"><span class="atom">arr</span>[<span class="number">2</span>] = <span class="string">'c'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>任何类型的数据，都可以放入数组。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var arr = [</span><br><span class="line">  &#123;a: <span class="number">1</span>&#125;,</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  function() &#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">arr[<span class="number">0</span>] <span class="comment">// Object &#123;a: 1&#125;</span></span><br><span class="line">arr[<span class="number">1</span>] <span class="comment">// [1, 2, 3]</span></span><br><span class="line">arr[<span class="number">2</span>] <span class="comment">// function ()&#123;return true;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面数组arr的3个成员依次是对象、数组、函数。<br>如果数组的元素还是数组，就形成了多维数组。<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = [[1, 2], [3, 4]];</span><br><span class="line">a[<span class="link_label">0</span>][<span class="link_reference">1</span>] // 2</span><br><span class="line">a[<span class="link_label">1</span>][<span class="link_reference">1</span>] // 4</span><br></pre></td></tr></table></figure></p>
+<h2 id="u6570_u7EC4_u7684_u672C_u8D28"><a href="#u6570_u7EC4_u7684_u672C_u8D28" class="headerlink" title="数组的本质"></a>数组的本质</h2><p>本质上，数组属于一种特殊的对象。<code>typeof</code>运算符会返回数组的类型是<code>object</code>。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="comment">// "object"</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码表明，<code>typeof</code>运算符认为数组的类型就是对象。</p>
+<p>数组的特殊性体现在，它的键名是按次序排列的一组整数（0，1，2…）。<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">var</span> <span class="atom">arr</span> = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</span><br><span class="line"></span><br><span class="line"><span class="name">Object</span>.<span class="atom">keys</span>(<span class="atom">arr</span>)</span><br><span class="line">// [<span class="string">"0"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>]</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，<code>Object.keys</code>方法返回数组的所有键名。可以看到数组的键名就是整数0、1、2。</p>
+<p>由于数组成员的键名是固定的，因此数组不用为每个元素指定键名，而对象的每个成员都必须指定键名。</p>
+<p>JavaScript语言规定，对象的键名一律为字符串，所以，数组的键名其实也是字符串。之所以可以用数值读取，是因为非字符串的键名会被转为字符串。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>];</span><br><span class="line"></span><br><span class="line">arr[<span class="string">'0'</span>] <span class="comment">// 'a'</span></span><br><span class="line">arr[<span class="number">0</span>] <span class="comment">// 'a'</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码分别用数值和字符串作为键名，结果都能读取数组。原因是数值键名被自动转为了字符串。</p>
+<p>需要注意的是，这一条在赋值时也成立。如果一个值可以被转换为整数，则以该值为键名，等于以对应的整数为键名。<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="atom">var</span> <span class="atom">a</span> = [];</span><br><span class="line"></span><br><span class="line"><span class="atom">a</span>[<span class="string">'1000'</span>] = <span class="string">'abc'</span>;</span><br><span class="line"><span class="atom">a</span>[<span class="number">1000</span>] // <span class="string">'abc'</span></span><br><span class="line"></span><br><span class="line"><span class="atom">a</span>[<span class="number">1.00</span>] = <span class="number">6</span>;</span><br><span class="line"><span class="atom">a</span>[<span class="number">1</span>] // <span class="number">6</span></span><br></pre></td></tr></table></figure></p>
+<p>上一节说过，对象有两种读取成员的方法：“点”结构（<code>object.key</code>）和方括号结构（<code>object[key]</code>）。但是，对于数值的键名，不能使用点结构。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr<span class="number">.0</span> <span class="comment">// SyntaxError</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，<code>arr.0</code>的写法不合法，因为单独的数值不能作为标识符（<code>identifier</code>）。所以，数组成员只能用方括号<code>arr[0]</code>表示（方括号是运算符，可以接受数值）。</p>
+<h2 id="length_u5C5E_u6027"><a href="#length_u5C5E_u6027" class="headerlink" title="length属性"></a>length属性</h2><p>数组的<code>length</code>属性，返回数组的成员数量。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]<span class="class">.length</span> <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p>JavaScript使用一个32位整数，保存数组的元素个数。这意味着，数组成员最多只有4294967295个（2<sup>32</sup> - 1）个，也就是说<code>length</code>属性的最大值就是4294967295。<br>数组的<code>length</code>属性与对象的<code>length</code>属性有区别，只要是数组，就一定有<code>length</code>属性，而对象不一定有。而且，数组的<code>length</code>属性是一个动态的值，等于键名中的最大整数加上<code>1</code>。<br><figure class="highlight rsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var arr = [<span class="string">'a'</span>, <span class="string">'b'</span>];</span><br><span class="line">arr.<span class="built_in">length</span> <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">'c'</span>;</span><br><span class="line">arr.<span class="built_in">length</span> <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">arr[<span class="number">9</span>] = <span class="string">'d'</span>;</span><br><span class="line">arr.<span class="built_in">length</span> <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line">arr[<span class="number">1000</span>] = <span class="string">'e'</span>;</span><br><span class="line">arr.<span class="built_in">length</span> <span class="comment">// 1001</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码表示，数组的数字键不需要连续，<code>length</code>属性的值总是比最大的那个整数键大<code>1</code>。另外，这也表明数组是一种动态的数据结构，可以随时增减数组的成员。<br><code>length</code>属性是可写的。如果人为设置一个小于当前成员个数的值，该数组的成员会自动减少到<code>length</code>设置的值。<br><figure class="highlight rsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr = [ <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span> ];</span><br><span class="line">arr.<span class="built_in">length</span> <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">arr.<span class="built_in">length</span> = <span class="number">2</span>;</span><br><span class="line">arr <span class="comment">// ["a", "b"]</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码表示，当数组的<code>length</code>属性设为<code>2</code>（即最大的整数键只能是<code>1</code>）那么整数键<code>2</code>（值为c）就已经不在数组中了，被自动删除了。</p>
+<p>将数组清空的一个有效方法，就是将<code>length</code>属性设为<code>0</code>。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [ <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span> ];</span><br><span class="line"></span><br><span class="line">arr.length = <span class="number">0</span>;</span><br><span class="line">arr <span class="comment">// []</span></span><br></pre></td></tr></table></figure></p>
+<p>如果人为设置<code>length</code>大于当前元素个数，则数组的成员数量会增加到这个值，新增的位置都是空位。<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var <span class="literal">a</span> = ['<span class="literal">a</span>']<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="literal">a</span>.length = <span class="number">3</span><span class="comment">;</span></span><br><span class="line"><span class="literal">a</span>[<span class="number">1</span>] // undefined</span><br></pre></td></tr></table></figure></p>
+<p>上面代码表示，当<code>length</code>属性设为大于数组个数时，读取新增的位置都会返回<code>undefined</code>。</p>
+<p>如果人为设置<code>length</code>为不合法的值，JavaScript会报错。<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 设置负值</span><br><span class="line"><span class="keyword">[</span>].length = -1</span><br><span class="line">// RangeError: Invalid<span class="instruction"> array </span>length</span><br><span class="line"></span><br><span class="line">// 数组元素个数大于等于2的32次方</span><br><span class="line"><span class="keyword">[</span>].length =<span class="function"> Math.pow(</span>2,32<span class="function">)</span></span><br><span class="line">// RangeError: Invalid<span class="instruction"> array </span>length</span><br><span class="line"></span><br><span class="line">// 设置字符串</span><br><span class="line"><span class="keyword">[</span>].length = 'abc'</span><br><span class="line">// RangeError: Invalid<span class="instruction"> array </span>length</span><br></pre></td></tr></table></figure></p>
+<p>值得注意的是，由于数组本质上是对象的一种，所以我们可以为数组添加属性，但是这不影响<code>length</code>属性的值。<br><figure class="highlight rsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = [];</span><br><span class="line"></span><br><span class="line">a[<span class="string">'p'</span>] = <span class="string">'abc'</span>;</span><br><span class="line">a.<span class="built_in">length</span> <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line">a[<span class="number">2.1</span>] = <span class="string">'abc'</span>;</span><br><span class="line">a.<span class="built_in">length</span> <span class="comment">// 0</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码将数组的键分别设为字符串和小数，结果都不影响<code>length</code>属性。因为，<code>length</code>属性的值就是等于最大的数字键加1，而这个数组没有整数键，所以<code>length</code>属性保持为<code>0</code>。</p>
+<h2 id="u7C7B_u4F3C_u6570_u7EC4_u7684_u5BF9_u8C61"><a href="#u7C7B_u4F3C_u6570_u7EC4_u7684_u5BF9_u8C61" class="headerlink" title="类似数组的对象"></a>类似数组的对象</h2><p>在JavaScript中，有些对象被称为“<code>类似数组的对象</code>”（array-like object）。意思是，它们看上去很像数组，可以使用<code>length</code>属性，但是它们并不是数组，所以无法使用一些数组的方法。</p>
+<p>下面就是一个类似数组的对象。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  <span class="number">0</span>: <span class="string">'a'</span>,</span><br><span class="line">  <span class="number">1</span>: <span class="string">'b'</span>,</span><br><span class="line">  <span class="number">2</span>: <span class="string">'c'</span>,</span><br><span class="line">  length: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj[<span class="number">0</span>] <span class="comment">// 'a'</span></span><br><span class="line">obj[<span class="number">2</span>] <span class="comment">// 'c'</span></span><br><span class="line">obj.length <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码的变量<code>obj</code>是一个对象，但是看上去跟数组很像。所以只要有数字键和<code>length</code>属性，就是一个类似数组的对象。当然，变量<code>obj</code>无法使用数组特有的一些方法，比如<code>pop</code>和<code>push</code>方法。而且，<code>length</code>属性不是动态值，不会随着成员的变化而变化。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  length: <span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line">obj[<span class="number">3</span>] = <span class="string">'d'</span>;</span><br><span class="line">obj.length <span class="comment">// 0</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码为对象<code>obj</code>添加了一个数字键，但是<code>length</code>属性没变。这就说明了<code>obj</code>不是数组。</p>
+<p>典型的类似数组的对象是函数的<code>arguments</code>对象，以及大多数<code>DOM</code>元素集，还有字符串。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arguments对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">args</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="built_in">arguments</span> &#125;</span><br><span class="line"><span class="keyword">var</span> arrayLike = args(<span class="string">'a'</span>, <span class="string">'b'</span>);</span><br><span class="line"></span><br><span class="line">arrayLike[<span class="number">0</span>] <span class="comment">// 'a'</span></span><br><span class="line">arrayLike.length <span class="comment">// 2</span></span><br><span class="line">arrayLike <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DOM元素集</span></span><br><span class="line"><span class="keyword">var</span> elts = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'h3'</span>);</span><br><span class="line">elts.length <span class="comment">// 3</span></span><br><span class="line">elts <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串</span></span><br><span class="line"><span class="string">'abc'</span>[<span class="number">1</span>] <span class="comment">// 'b'</span></span><br><span class="line"><span class="string">'abc'</span>.length <span class="comment">// 3</span></span><br><span class="line"><span class="string">'abc'</span> <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>数组的<code>slice</code>方法将类似数组的对象，变成真正的数组。<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">Array</span>.prototype.slice.call(arrayLike);</span><br></pre></td></tr></table></figure></p>
+<p>遍历类似数组的对象，可以采用<code>for</code>循环，也可以采用数组的<code>forEach</code>方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for循环</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logArgs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i + <span class="string">'. '</span> + <span class="built_in">arguments</span>[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// forEach方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logArgs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">Array</span>.prototype.forEach.call(<span class="built_in">arguments</span>, <span class="function"><span class="keyword">function</span> (<span class="params">elem, i</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i+<span class="string">'. '</span>+elem);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于字符串也是类似数组的对象，所以也可以用<code>Array.prototype.forEach.call</code>遍历。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.forEach.call(<span class="string">'abc'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chr</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(chr);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// a</span></span><br><span class="line"><span class="comment">// b</span></span><br><span class="line"><span class="comment">// c</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="in_u8FD0_u7B97_u7B26"><a href="#in_u8FD0_u7B97_u7B26" class="headerlink" title="in运算符"></a>in运算符</h2><p>检查某个键名是否存在的运算符<code>in</code>，适用于对象，也适用于数组。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> <span class="keyword">in</span> [ <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span> ] <span class="comment">// true</span></span><br><span class="line"><span class="string">'2'</span> <span class="keyword">in</span> [ <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span> ] <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码表明，数组存在键名为<code>2</code>的键。由于键名都是字符串，所以数值<code>2</code>会自动转成字符串。</p>
+<h2 id="for_u2026in_u5FAA_u73AF_u548C_u6570_u7EC4_u7684_u904D_u5386"><a href="#for_u2026in_u5FAA_u73AF_u548C_u6570_u7EC4_u7684_u904D_u5386" class="headerlink" title="for…in循环和数组的遍历"></a>for…in循环和数组的遍历</h2><p><code>for...in</code>循环不仅可以遍历对象，也可以遍历数组，毕竟数组只是一种特殊对象。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (var i in a) &#123;</span><br><span class="line">  console.<span class="built_in">log</span>(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p>但是，<code>for...in</code>不仅会遍历数组所有的数字键，还会遍历非数字键。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">a.foo = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (var key in a) &#123;</span><br><span class="line">  console.<span class="built_in">log</span>(key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// foo</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码在遍历数组时，也遍历到了非整数键<code>foo</code>。所以，不推荐使用<code>for...in</code>遍历数组。</p>
+<p>数组的遍历可以考虑使用<code>for</code>循环或<code>while</code>循环。<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [1, 2, 3];</span><br><span class="line"></span><br><span class="line"><span class="comment">// for循环</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = 0; i &lt; a.length; i++) &#123;</span><br><span class="line">  console.<span class="literal">log</span>(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// while循环</span></span><br><span class="line"><span class="keyword">var</span> i = 0;</span><br><span class="line"><span class="keyword">while</span> (i &lt; a.length) &#123;</span><br><span class="line">  console.<span class="literal">log</span>(a[i]);</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">l</span> = a.length;</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">l</span>--) &#123;</span><br><span class="line">  console.<span class="literal">log</span>(a[<span class="keyword">l</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码是三种遍历数组的写法。最后一种写法是逆向遍历，即从最后一个元素向第一个元素遍历。</p>
+<p>数组的<code>forEach</code>方法，也可以用来遍历数组，详见《标准库》一章的<code>Array</code>对象部分。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>];</span><br><span class="line">colors.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">color</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(color);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="u6570_u7EC4_u7684_u7A7A_u4F4D"><a href="#u6570_u7EC4_u7684_u7A7A_u4F4D" class="headerlink" title="数组的空位"></a>数组的空位</h2><p>当数组的某个位置是空元素，即两个逗号之间没有任何值，我们称该数组存在空位（hole）。<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var <span class="literal">a</span> = [<span class="number">1</span>, , <span class="number">1</span>]<span class="comment">;</span></span><br><span class="line"><span class="literal">a</span>.length // <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码表明，数组的空位不影响<code>length</code>属性。</p>
+<p>需要注意的是，如果最后一个元素后面有逗号，并不会产生空位。也就是说，有没有这个逗号，结果都是一样的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>,];</span><br><span class="line"></span><br><span class="line">a.length <span class="comment">// 3</span></span><br><span class="line">a <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，数组最后一个成员后面有一个逗号，这不影响<code>length</code>属性的值，与没有这个逗号时效果一样。</p>
+<p>数组的空位是可以读取的，返回<code>undefined</code>。<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var <span class="literal">a</span> = [, , ,]<span class="comment">;</span></span><br><span class="line"><span class="literal">a</span>[<span class="number">1</span>] // undefined</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>delete</code>命令删除一个值，会形成空位。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> a[<span class="number">1</span>];</span><br><span class="line">a[<span class="number">1</span>] <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></p>
+<p><code>delete</code>命令不影响<code>length</code>属性。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">delete</span> a[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">delete</span> a[<span class="number">2</span>];</span><br><span class="line">a.length <span class="comment">// 3</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码用<code>delete</code>命令删除了两个键，对<code>length</code>属性没有影响。也就是说，<code>length</code>属性不过滤空位。所以，使用<code>length</code>属性进行数组遍历，一定要非常小心。</p>
+<p>数组的某个位置是空位，与某个位置是<code>undefined</code>，是不一样的。如果是空位，使用数组的<code>forEach</code>方法、<code>for...in</code>结构、以及<code>Object.keys</code>方法进行遍历，空位都会被跳过。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a><a href="/tags/jQuery/">jQuery</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/07/02/Array/" data-title="Array | 前端之路" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/07/02/function/" title="function">
+  <strong>上一篇：</strong><br/>
+  <span>
+  function</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/19/numberInJavaScript/"  title="numberInJavaScript">
+ <strong>下一篇：</strong><br/> 
+ <span>numberInJavaScript
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u6570_u7EC4"><span class="toc-number">1.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4_u7684_u5B9A_u4E49"><span class="toc-number">1.1.</span> <span class="toc-text">数组的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4_u7684_u672C_u8D28"><span class="toc-number">1.2.</span> <span class="toc-text">数组的本质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#length_u5C5E_u6027"><span class="toc-number">1.3.</span> <span class="toc-text">length属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7C7B_u4F3C_u6570_u7EC4_u7684_u5BF9_u8C61"><span class="toc-number">1.4.</span> <span class="toc-text">类似数组的对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#in_u8FD0_u7B97_u7B26"><span class="toc-number">1.5.</span> <span class="toc-text">in运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for_u2026in_u5FAA_u73AF_u548C_u6570_u7EC4_u7684_u904D_u5386"><span class="toc-number">1.6.</span> <span class="toc-text">for…in循环和数组的遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4_u7684_u7A7A_u4F4D"><span class="toc-number">1.7.</span> <span class="toc-text">数组的空位</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>8</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>22</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>7</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="jack">jack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
