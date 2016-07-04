@@ -349,4 +349,4 @@ function doAction(action) {
 }
 ```
 建议避免使用`switch...case`结构，用对象结构代替。
-转自： http://javascript.ruanyifeng.com/grammar/style.html
+转自： [阮一峰教程](http://javascript.ruanyifeng.com/grammar/style.html)
