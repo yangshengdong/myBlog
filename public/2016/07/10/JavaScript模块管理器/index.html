@@ -1,0 +1,522 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JavaScript模块管理器 | 前端之路</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="jack">
+    
+
+    
+    <meta name="description" content="模块化时光回溯到2009年，CommonJS规范和NodeJS都还在襁褓之中，离Bower诞生还有三年时间，Ruby还统治着github，CoffeeScript在年末提交了第一个commit……备受加载顺序，依赖关系折磨的前端开发，开始站起来试图解决日益复杂的前端开发的种种问题，RequireJS降临了。如果说NodeJS吹响了JS全栈革命的号角，那么同时发生的前端模块化革命便是RequireJ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript模块管理器">
+<meta property="og:url" content="http://yoursite.com/2016/07/10/JavaScript模块管理器/index.html">
+<meta property="og:site_name" content="前端之路">
+<meta property="og:description" content="模块化时光回溯到2009年，CommonJS规范和NodeJS都还在襁褓之中，离Bower诞生还有三年时间，Ruby还统治着github，CoffeeScript在年末提交了第一个commit……备受加载顺序，依赖关系折磨的前端开发，开始站起来试图解决日益复杂的前端开发的种种问题，RequireJS降临了。如果说NodeJS吹响了JS全栈革命的号角，那么同时发生的前端模块化革命便是RequireJ">
+<meta property="og:updated_time" content="2016-07-10T09:50:13.913Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript模块管理器">
+<meta name="twitter:description" content="模块化时光回溯到2009年，CommonJS规范和NodeJS都还在襁褓之中，离Bower诞生还有三年时间，Ruby还统治着github，CoffeeScript在年末提交了第一个commit……备受加载顺序，依赖关系折磨的前端开发，开始站起来试图解决日益复杂的前端开发的种种问题，RequireJS降临了。如果说NodeJS吹响了JS全栈革命的号角，那么同时发生的前端模块化革命便是RequireJ">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端之路" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端之路" title="前端之路"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端之路">前端之路</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/10/JavaScript模块管理器/" title="JavaScript模块管理器" itemprop="url">JavaScript模块管理器</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="jack" target="_blank" itemprop="author">jack</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-10T07:47:41.000Z" itemprop="datePublished"> 发表于 2016-07-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u6A21_u5757_u5316"><span class="toc-number">1.</span> <span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bower"><span class="toc-number">1.1.</span> <span class="toc-text">Bower</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Duo"><span class="toc-number">1.2.</span> <span class="toc-text">Duo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Browserify"><span class="toc-number">1.3.</span> <span class="toc-text">Browserify</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack"><span class="toc-number">1.4.</span> <span class="toc-text">webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack__u597D_u5904_uFF1A"><span class="toc-number">1.4.1.</span> <span class="toc-text">webpack 好处：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6709_u4E86gulp_u548Cwebpack_uFF0C_u8FD8_u9700_u8981bower_u5417_uFF1F"><span class="toc-number">1.4.2.</span> <span class="toc-text">有了gulp和webpack，还需要bower吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3A_u4EC0_u4E48_u5F88_u591A_u4EBA_u559C_u6B22gulp+webpack_uFF0C_u800C_u4E0D_u76F4_u63A5_u4F7F_u7528webpack_uFF1F"><span class="toc-number">1.4.3.</span> <span class="toc-text">为什么很多人喜欢gulp+webpack，而不直接使用webpack？</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="u6A21_u5757_u5316"><a href="#u6A21_u5757_u5316" class="headerlink" title="模块化"></a>模块化</h1><p>时光回溯到2009年，CommonJS规范和NodeJS都还在襁褓之中，离Bower诞生还有三年时间，Ruby还统治着github，CoffeeScript在年末提交了第一个commit……<br>备受加载顺序，依赖关系折磨的前端开发，开始站起来试图解决日益复杂的前端开发的种种问题，RequireJS降临了。如果说NodeJS吹响了JS全栈革命的号角，那么同时发生的前端模块化革命便是RequireJS的历史使命。<br>五年过去了，RequireJS战胜了同级生LabJS，带起了中国小伙伴SeaJS。他完美地引领了前端模块化的革命，但今天看来，它有些过时了：它重浏览器端，轻打包编译，没有及时跟进包管理体系，almond没有成为标配而只是周边，配置晦涩……诞生太早的RequireJS，虽然一度成为了前端模块化的某种程度上的事实标准，但难掩其缺点。<br>为了解决这个问题，前端的模块管理器（package management）应运而生，五年间，NodeJS成为了服务端以及脚本工具的一代翘楚，NPM的成功让大家意识到一个集中式的依赖／包管理体系的重要性，Bower应运而生，还有试图将CMD和NPM包带到前端领域，统一前后端包格式的Browserify等等，大量的前端工具爆发式地出现，WebPack是其中的(又)一款模块打包工具。</p>
+<a id="more"></a>
+<p>require.js一类的模块管理器的问题在于各种参数设置过于繁琐，不容易学习，很难完全掌握。而且，实际应用中，往往还需要在服务器端，将所有模块合并后，再统一加载，这多出了很多工作量。</p>
+<ul>
+<li>seajs / require : 是一种在线”编译” 模块的方案，相当于在页面上加载一个 CMD/AMD 解释器。这样浏览器就认识了 define、exports、module 这些东西。也就实现了模块化。</li>
+<li>browserify / webpack / Duo : 是一个预编译模块的方案，相比于上面 ，这个方案更加智能。没用过browserify，这里以webpack为例。首先，它是预编译的，不需要在浏览器中加载解释器。另外，你在本地直接写JS，不管是 AMD / CMD / ES6 风格的模块化，它都能认识，并且编译成浏览器认识的JS。<h2 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h2><a href="https://bower.io/" target="_blank" rel="external">Bower</a>的主要作用是，为模块的安装、升级和删除，提供一种统一的、可维护的管理模式。<br>Bower是一个客户端技术的软件包管理器，它可用于搜索、安装和卸载如JavaScript、HTML、CSS之类的网络资源。其他一些建立在Bower基础之上的开发工具，如YeoMan和Grunt，这个会在以后的文章中介绍。<br>首先，安装Bower。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> bower</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后，使用<code>bower install</code>命令安装各种模块。下面是一些例子。<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 模块的名称</span></span><br><span class="line">$ bower install jquery</span><br><span class="line"><span class="preprocessor"># github用户名/项目名</span></span><br><span class="line">$ bower install jquery/jquery</span><br><span class="line"><span class="preprocessor"># git代码仓库地址</span></span><br><span class="line">$ bower install git:<span class="comment">//github.com/user/package.git</span></span><br><span class="line"><span class="preprocessor"># 模块网址</span></span><br><span class="line">$ bower install http:<span class="comment">//example.com/script.js</span></span><br></pre></td></tr></table></figure></p>
+<p>所谓”安装”，就是将该模块（以及其依赖的模块）下载到当前目录的bower_components子目录中。下载后，就可以直接插入网页。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"/bower_componets/jquery/dist/jquery.min.js"</span>&gt;</span><span class="undefined"></span></span><br></pre></td></tr></table></figure></p>
+<p><code>bower update</code>命令用于更新模块。如果不给出模块的名称，则更新所有模块。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bower </span>update jquery</span><br></pre></td></tr></table></figure></p>
+<p><code>bower uninstall</code>命令用于卸载模块。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bower </span>uninstall jquery</span><br></pre></td></tr></table></figure></p>
+<p>注意，默认情况下，会连所依赖的模块一起卸载。比如，如果卸载jquery-ui，会连jquery一起卸载，除非还有别的模块依赖jquery。</p>
+<p>(bower简明入门教程)[<a href="https://segmentfault.com/a/1190000000349555" target="_blank" rel="external">https://segmentfault.com/a/1190000000349555</a>]</p>
+<h2 id="Duo"><a href="#Duo" class="headerlink" title="Duo"></a>Duo</h2><p>(Duo)[<a href="http://duojs.org/]是在Component的基础上开发的，语法和配置文件基本通用，并且借鉴了Browserify和Go语言的一些特点，相当地强大和好用。" target="_blank" rel="external">http://duojs.org/]是在Component的基础上开发的，语法和配置文件基本通用，并且借鉴了Browserify和Go语言的一些特点，相当地强大和好用。</a><br>首先，安装Duo。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> duo</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，编写一个本地文件index.js。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uid = <span class="built_in">require</span>(<span class="string">'matthewmueller/uid'</span>);</span><br><span class="line"><span class="keyword">var</span> fmt = <span class="built_in">require</span>(<span class="string">'yields/fmt'</span>);</span><br><span class="line">　　</span><br><span class="line"><span class="keyword">var</span> msg = fmt(<span class="string">'Your unique ID is %s!'</span>, uid());</span><br><span class="line"><span class="built_in">window</span>.alert(msg);</span><br></pre></td></tr></table></figure></p>
+<p>上面代码加载了uid和fmt两个模块，采用Component的”github用户名/项目名”格式。<br>接着，编译最终的脚本文件。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">duo</span> <span class="tag">index</span><span class="class">.js</span> &gt; <span class="tag">build</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<p>编译后的文件可以直接插入网页。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"build.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Duo不仅可以编译JavaScript，还可以编译CSS。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">import</span> <span class="string">'necolas/normalize.css'</span></span>;</span><br><span class="line"><span class="at_rule">@<span class="keyword">import</span> <span class="string">'./layout/layout.css'</span></span>;</span><br><span class="line">　　</span><br><span class="line"><span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">color</span>:<span class="value"> teal</span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url</span>(<span class="string">'./background-image.jpg'</span>)</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>编译时，Duo自动将normalize.css和layout.css，与当前样式表合并成同一个文件。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">duo</span> <span class="tag">index</span><span class="class">.css</span> &gt; <span class="tag">build</span><span class="class">.css</span></span><br></pre></td></tr></table></figure></p>
+<p>编译后，插入网页即可。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"build.css"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="http://www.ifeenan.com/nodejs/2014-08-24-Duo%20JS%20%E4%B8%80%E4%B8%AA%E9%9D%9E%E5%B8%B8%E9%85%B7%E7%9A%84%E5%89%8D%E7%AB%AF%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/" target="_blank" rel="external">Duo js 一个非常酷的前端打包工具</a></p>
+<h2 id="Browserify"><a href="#Browserify" class="headerlink" title="Browserify"></a>Browserify</h2><p>Browserify本身不是模块管理器，只是让服务器端的<code>CommonJS</code>格式的模块可以运行在浏览器端。这意味着通过它，我们可以使用<code>Node.js的npm模块管理器</code>。所以，实际上，它等于间接为浏览器提供了npm的功能。<br>首先，安装Browserify。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> browserify</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，编写一个服务器端脚本。<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var uniq = <span class="keyword">require</span>(<span class="string">'uniq'</span>);</span><br><span class="line">var nums = [ <span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span> ];</span><br><span class="line">console.<span class="keyword">log</span>(uni<span class="string">q(nums)</span>);</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中uniq模块是CommonJS格式，无法在浏览器中运行。这时，Browserify就登场了，将上面代码编译为浏览器脚本。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">browserify</span> <span class="tag">robot</span><span class="class">.js</span> &gt; <span class="tag">bundle</span><span class="class">.js</span></span><br></pre></td></tr></table></figure></p>
+<p>生成的bundle.js可以直接插入网页。</p>
+<p><script src="bundle.js"></script><br>Browserify编译的时候，会将脚本所依赖的模块一起编译进去。这意味着，它可以将多个模块合并成一个文件。</p>
+<h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>web开发中常用到的静态资源主要有JavaScript、CSS、图片、Jade等文件，webpack中将静态资源文件称之为模块。<br>webpack是一个module bundler(模块打包工具)，其可以兼容多种js书写规范，且可以处理模块间的依赖关系，具有更强大的js模块化的功能。Webpack对它们进行统一的管理以及打包发布，其官方主页用下面这张图来说明Webpack的作用：<br></p>
+<h3 id="webpack__u597D_u5904_uFF1A"><a href="#webpack__u597D_u5904_uFF1A" class="headerlink" title="webpack 好处："></a>webpack 好处：</h3><ol>
+<li>模块来源广泛，支持包括npm/bower等等的各种主流模块安装／依赖解决方案</li>
+<li>对 CommonJS 、 AMD 、ES6的语法做了兼容</li>
+<li>对js、css、图片等资源文件都支持打包</li>
+<li>串联式模块加载器以及插件机制，让其具有更好的灵活性和扩展性，例如提供对CoffeeScript、ES6的支持</li>
+<li>有独立的配置文件webpack.config.js</li>
+<li>可以将代码切割成不同的chunk，实现按需加载，降低了初始化时间</li>
+<li>支持 SourceUrls 和 SourceMaps，易于调试</li>
+<li>具有强大的Plugin接口，大多是内部插件，使用起来比较灵活</li>
+<li>webpack 使用异步 IO 并具有多级缓存。这使得 webpack 很快且在增量编译上更加快</li>
+</ol>
+<h3 id="u6709_u4E86gulp_u548Cwebpack_uFF0C_u8FD8_u9700_u8981bower_u5417_uFF1F"><a href="#u6709_u4E86gulp_u548Cwebpack_uFF0C_u8FD8_u9700_u8981bower_u5417_uFF1F" class="headerlink" title="有了gulp和webpack，还需要bower吗？"></a>有了gulp和webpack，还需要bower吗？</h3><p>webpack是一个比browserify功能更强大的模块加载器。既然是模块加载器，当然就包括对各种各样模块的加载，包括SASS/LESS/CoffeeScript/png/jpg等，以及webpack对于node_module模块加载已经非常完善了。<br>那么，为什么还需要bower呢？由于前端开发很多第三方模块并非都以标准npm包形式存在，有一些非主流，或者各种原因没放到npm上的包，可以在bower找到。<br>基于这个原因，使用webpack时候，凭着能用npm就用（依赖加载更加方便，功能更加强大），不能用的时候使用bower声明第三方模块依赖，然后使用js/css加载方式进行加载。<br>值得一提的是，webpack官方也提供非常便利的方式加载bower模块（模块的主要文件，被声明在bower.json main属性里面）,通过配置后就可以很方便地沿用require来加载bower模块。</p>
+<h3 id="u4E3A_u4EC0_u4E48_u5F88_u591A_u4EBA_u559C_u6B22gulp+webpack_uFF0C_u800C_u4E0D_u76F4_u63A5_u4F7F_u7528webpack_uFF1F"><a href="#u4E3A_u4EC0_u4E48_u5F88_u591A_u4EBA_u559C_u6B22gulp+webpack_uFF0C_u800C_u4E0D_u76F4_u63A5_u4F7F_u7528webpack_uFF1F" class="headerlink" title="为什么很多人喜欢gulp+webpack，而不直接使用webpack？"></a>为什么很多人喜欢gulp+webpack，而不直接使用webpack？</h3><p>一个例子，webpack没有雪碧图功能，可能还有其他，但是这是我遇到的，需要配合gulp完成的</p>
+<p><a href="https://segmentfault.com/a/1190000003970448" target="_blank" rel="external">详解前端模块化工具-Webpack</a><br><a href="https://segmentfault.com/a/1190000004249679" target="_blank" rel="external">gulp与webpack的迷思</a></p>
+<blockquote>
+<p>阮一峰：<a href="http://www.ruanyifeng.com/blog/2014/09/package-management.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2014/09/package-management.html</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/模块化/">模块化</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JavaScript/">JavaScript</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/07/10/JavaScript模块管理器/" data-title="JavaScript模块管理器 | 前端之路" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/10/javascript模块化/"  title="javascript模块化">
+ <strong>下一篇：</strong><br/> 
+ <span>javascript模块化
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#u6A21_u5757_u5316"><span class="toc-number">1.</span> <span class="toc-text">模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bower"><span class="toc-number">1.1.</span> <span class="toc-text">Bower</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Duo"><span class="toc-number">1.2.</span> <span class="toc-text">Duo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Browserify"><span class="toc-number">1.3.</span> <span class="toc-text">Browserify</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack"><span class="toc-number">1.4.</span> <span class="toc-text">webpack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack__u597D_u5904_uFF1A"><span class="toc-number">1.4.1.</span> <span class="toc-text">webpack 好处：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6709_u4E86gulp_u548Cwebpack_uFF0C_u8FD8_u9700_u8981bower_u5417_uFF1F"><span class="toc-number">1.4.2.</span> <span class="toc-text">有了gulp和webpack，还需要bower吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3A_u4EC0_u4E48_u5F88_u591A_u4EBA_u559C_u6B22gulp+webpack_uFF0C_u800C_u4E0D_u76F4_u63A5_u4F7F_u7528webpack_uFF1F"><span class="toc-number">1.4.3.</span> <span class="toc-text">为什么很多人喜欢gulp+webpack，而不直接使用webpack？</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/《JS高程3-笔记》/" title="《JS高程3-笔记》">《JS高程3-笔记》<sup>8</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/模块化/" title="模块化">模块化<sup>2</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>24</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>7</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="jack">jack</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
