@@ -165,7 +165,7 @@
 <p>另外，需要注意的是，<code>typeof null</code> 应该返回”null”，但实际上返回的是”object”，这是一个历史遗留问题，并没有其他原因，不要想太多，曾经有提案 <code>typeof null === &#39;null&#39;</code>但提案被拒绝。</p>
 <blockquote>
 <p>《javascript高级程序设计3》是这么解释的:从逻辑角度来看，null 值表示一个空对象指针，而这也正是使用typeof 操作符检测null 值时会返回”object”的原因。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断null值，这个时候就不能用typeOf了，直接用if(xxx === null)&#123;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>) <span class="comment">//"Object"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">// false</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>,b;</span><br><span class="line"><span class="built_in">console</span>.log(a === <span class="literal">null</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(b === <span class="literal">null</span>) <span class="comment">//false 因为 undefined !== null  三个等号为false</span></span><br><span class="line"><span class="built_in">console</span>.log(b == <span class="literal">null</span>) <span class="comment">// true 两个等号为true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断null值，这个时候就不能用typeOf了，直接用if(<span class="label">xxx === null)&#123;&#125;</span></span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> <span class="literal">null</span>) <span class="comment">//"Object"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>) <span class="comment">// false</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>,b;</span><br><span class="line"><span class="built_in">console</span>.log(a === <span class="literal">null</span>) <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(b === <span class="literal">null</span>) <span class="comment">//false 因为 undefined !== null  三个等号为false</span></span><br><span class="line"><span class="built_in">console</span>.log(b == <span class="literal">null</span>) <span class="comment">// true 两个等号为true</span></span><br></pre></td></tr></table></figure>
 <p>undefined == null //true <a href="https://www.w3.org/html/ig/zh/wiki/ES5/expressions#.E7.AD.89.E5.80.BC.E8.BF.90.E7.AE.97.E7.AC.A6" target="_blank" rel="external">为什么相等？</a></p>
 </blockquote>
 <h2 id="Boolean_u7C7B_u578B"><a href="#Boolean_u7C7B_u578B" class="headerlink" title="Boolean类型"></a>Boolean类型</h2><p>boolean类型只有两个字面值：<code>true</code>和<code>false</code> 。 但在Javascript中，所有类型的值都可以转化为与boolean等价的值。要将一个值转换为其对应的Boolean值，可以调用类型转换函数Boolean()。其中转换结果为false的值有(false, “”, +0, -0, NaN, null, undefined)，其他值(包括空对象、空数组)均将转换为true。</p>
@@ -297,6 +297,10 @@
 		
 			
 				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>1</sup></a></li>
 			
 		
 			
